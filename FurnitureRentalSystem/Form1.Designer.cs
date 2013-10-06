@@ -38,6 +38,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.firstNameRegisterCustomerLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.phoneNumberSearchCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.searchResultsSearchCustomerListView = new System.Windows.Forms.ListView();
             this.membershipIDSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.firstNameSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,7 +50,6 @@
             this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.phoneNumberSearchCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -156,6 +156,14 @@
             this.tabPage2.Text = "Search For Customer ID";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // phoneNumberSearchCustomerMaskedTextBox
+            // 
+            this.phoneNumberSearchCustomerMaskedTextBox.Location = new System.Drawing.Point(368, 23);
+            this.phoneNumberSearchCustomerMaskedTextBox.Mask = "(999) 000-0000";
+            this.phoneNumberSearchCustomerMaskedTextBox.Name = "phoneNumberSearchCustomerMaskedTextBox";
+            this.phoneNumberSearchCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
+            this.phoneNumberSearchCustomerMaskedTextBox.TabIndex = 8;
+            // 
             // searchResultsSearchCustomerListView
             // 
             this.searchResultsSearchCustomerListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -203,6 +211,7 @@
             this.searchSearchCustomerButton.TabIndex = 6;
             this.searchSearchCustomerButton.Text = "Search";
             this.searchSearchCustomerButton.UseVisualStyleBackColor = true;
+            this.searchSearchCustomerButton.Click += new System.EventHandler(this.searchSearchCustomerButton_Click);
             // 
             // phoneNumberSearchCustomerLabel
             // 
@@ -244,14 +253,6 @@
             this.firstNameSearchCustomerLabel.Size = new System.Drawing.Size(60, 13);
             this.firstNameSearchCustomerLabel.TabIndex = 0;
             this.firstNameSearchCustomerLabel.Text = "First Name:";
-            // 
-            // phoneNumberSearchCustomerMaskedTextBox
-            // 
-            this.phoneNumberSearchCustomerMaskedTextBox.Location = new System.Drawing.Point(368, 23);
-            this.phoneNumberSearchCustomerMaskedTextBox.Mask = "(999) 000-0000";
-            this.phoneNumberSearchCustomerMaskedTextBox.Name = "phoneNumberSearchCustomerMaskedTextBox";
-            this.phoneNumberSearchCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
-            this.phoneNumberSearchCustomerMaskedTextBox.TabIndex = 8;
             // 
             // Form1
             // 
