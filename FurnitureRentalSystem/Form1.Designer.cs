@@ -76,7 +76,7 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.searchForCustomerIDTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -548,8 +548,8 @@
             this.tabControl.ResumeLayout(false);
             this.registerCustomerTab.ResumeLayout(false);
             this.registerCustomerTab.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.searchForCustomerIDTab.ResumeLayout(false);
+            this.searchForCustomerIDTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
