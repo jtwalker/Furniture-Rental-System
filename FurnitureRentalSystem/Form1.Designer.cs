@@ -38,18 +38,18 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.firstNameRegisterCustomerLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.lastNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.phoneNumberSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.phoneNumberSearchCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.searchSearchCustomerButton = new System.Windows.Forms.Button();
             this.searchResultsSearchCustomerListView = new System.Windows.Forms.ListView();
             this.membershipIDSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.firstNameSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lastNameSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.phoneNumberSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.searchSearchCustomerButton = new System.Windows.Forms.Button();
+            this.phoneNumberSearchCustomerLabel = new System.Windows.Forms.Label();
+            this.lastNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
+            this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
+            this.phoneNumberSearchCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -140,9 +140,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.phoneNumberSearchCustomerMaskedTextBox);
             this.tabPage2.Controls.Add(this.searchResultsSearchCustomerListView);
             this.tabPage2.Controls.Add(this.searchSearchCustomerButton);
-            this.tabPage2.Controls.Add(this.phoneNumberSearchCustomerTextBox);
             this.tabPage2.Controls.Add(this.phoneNumberSearchCustomerLabel);
             this.tabPage2.Controls.Add(this.lastNameSearchCustomerTextBox);
             this.tabPage2.Controls.Add(this.lastNameSearchCustomerLabel);
@@ -155,63 +155,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Search For Customer ID";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // firstNameSearchCustomerLabel
-            // 
-            this.firstNameSearchCustomerLabel.AutoSize = true;
-            this.firstNameSearchCustomerLabel.Location = new System.Drawing.Point(48, 26);
-            this.firstNameSearchCustomerLabel.Name = "firstNameSearchCustomerLabel";
-            this.firstNameSearchCustomerLabel.Size = new System.Drawing.Size(60, 13);
-            this.firstNameSearchCustomerLabel.TabIndex = 0;
-            this.firstNameSearchCustomerLabel.Text = "First Name:";
-            // 
-            // firstNameSearchCustomerTextBox
-            // 
-            this.firstNameSearchCustomerTextBox.Location = new System.Drawing.Point(114, 23);
-            this.firstNameSearchCustomerTextBox.Name = "firstNameSearchCustomerTextBox";
-            this.firstNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.firstNameSearchCustomerTextBox.TabIndex = 1;
-            // 
-            // lastNameSearchCustomerLabel
-            // 
-            this.lastNameSearchCustomerLabel.AutoSize = true;
-            this.lastNameSearchCustomerLabel.Location = new System.Drawing.Point(51, 59);
-            this.lastNameSearchCustomerLabel.Name = "lastNameSearchCustomerLabel";
-            this.lastNameSearchCustomerLabel.Size = new System.Drawing.Size(61, 13);
-            this.lastNameSearchCustomerLabel.TabIndex = 2;
-            this.lastNameSearchCustomerLabel.Text = "Last Name:";
-            // 
-            // lastNameSearchCustomerTextBox
-            // 
-            this.lastNameSearchCustomerTextBox.Location = new System.Drawing.Point(114, 56);
-            this.lastNameSearchCustomerTextBox.Name = "lastNameSearchCustomerTextBox";
-            this.lastNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.lastNameSearchCustomerTextBox.TabIndex = 3;
-            // 
-            // phoneNumberSearchCustomerLabel
-            // 
-            this.phoneNumberSearchCustomerLabel.AutoSize = true;
-            this.phoneNumberSearchCustomerLabel.Location = new System.Drawing.Point(281, 26);
-            this.phoneNumberSearchCustomerLabel.Name = "phoneNumberSearchCustomerLabel";
-            this.phoneNumberSearchCustomerLabel.Size = new System.Drawing.Size(81, 13);
-            this.phoneNumberSearchCustomerLabel.TabIndex = 4;
-            this.phoneNumberSearchCustomerLabel.Text = "Phone Number:";
-            // 
-            // phoneNumberSearchCustomerTextBox
-            // 
-            this.phoneNumberSearchCustomerTextBox.Location = new System.Drawing.Point(368, 23);
-            this.phoneNumberSearchCustomerTextBox.Name = "phoneNumberSearchCustomerTextBox";
-            this.phoneNumberSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.phoneNumberSearchCustomerTextBox.TabIndex = 5;
-            // 
-            // searchSearchCustomerButton
-            // 
-            this.searchSearchCustomerButton.Location = new System.Drawing.Point(393, 54);
-            this.searchSearchCustomerButton.Name = "searchSearchCustomerButton";
-            this.searchSearchCustomerButton.Size = new System.Drawing.Size(75, 23);
-            this.searchSearchCustomerButton.TabIndex = 6;
-            this.searchSearchCustomerButton.Text = "Search";
-            this.searchSearchCustomerButton.UseVisualStyleBackColor = true;
             // 
             // searchResultsSearchCustomerListView
             // 
@@ -252,6 +195,64 @@
             this.phoneNumberSearchCustomerColumnHeader.Text = "Phone Number";
             this.phoneNumberSearchCustomerColumnHeader.Width = 180;
             // 
+            // searchSearchCustomerButton
+            // 
+            this.searchSearchCustomerButton.Location = new System.Drawing.Point(393, 54);
+            this.searchSearchCustomerButton.Name = "searchSearchCustomerButton";
+            this.searchSearchCustomerButton.Size = new System.Drawing.Size(75, 23);
+            this.searchSearchCustomerButton.TabIndex = 6;
+            this.searchSearchCustomerButton.Text = "Search";
+            this.searchSearchCustomerButton.UseVisualStyleBackColor = true;
+            // 
+            // phoneNumberSearchCustomerLabel
+            // 
+            this.phoneNumberSearchCustomerLabel.AutoSize = true;
+            this.phoneNumberSearchCustomerLabel.Location = new System.Drawing.Point(281, 26);
+            this.phoneNumberSearchCustomerLabel.Name = "phoneNumberSearchCustomerLabel";
+            this.phoneNumberSearchCustomerLabel.Size = new System.Drawing.Size(81, 13);
+            this.phoneNumberSearchCustomerLabel.TabIndex = 4;
+            this.phoneNumberSearchCustomerLabel.Text = "Phone Number:";
+            // 
+            // lastNameSearchCustomerTextBox
+            // 
+            this.lastNameSearchCustomerTextBox.Location = new System.Drawing.Point(114, 56);
+            this.lastNameSearchCustomerTextBox.Name = "lastNameSearchCustomerTextBox";
+            this.lastNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.lastNameSearchCustomerTextBox.TabIndex = 3;
+            // 
+            // lastNameSearchCustomerLabel
+            // 
+            this.lastNameSearchCustomerLabel.AutoSize = true;
+            this.lastNameSearchCustomerLabel.Location = new System.Drawing.Point(51, 59);
+            this.lastNameSearchCustomerLabel.Name = "lastNameSearchCustomerLabel";
+            this.lastNameSearchCustomerLabel.Size = new System.Drawing.Size(61, 13);
+            this.lastNameSearchCustomerLabel.TabIndex = 2;
+            this.lastNameSearchCustomerLabel.Text = "Last Name:";
+            // 
+            // firstNameSearchCustomerTextBox
+            // 
+            this.firstNameSearchCustomerTextBox.Location = new System.Drawing.Point(114, 23);
+            this.firstNameSearchCustomerTextBox.Name = "firstNameSearchCustomerTextBox";
+            this.firstNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.firstNameSearchCustomerTextBox.TabIndex = 1;
+            // 
+            // firstNameSearchCustomerLabel
+            // 
+            this.firstNameSearchCustomerLabel.AutoSize = true;
+            this.firstNameSearchCustomerLabel.Location = new System.Drawing.Point(48, 26);
+            this.firstNameSearchCustomerLabel.Name = "firstNameSearchCustomerLabel";
+            this.firstNameSearchCustomerLabel.Size = new System.Drawing.Size(60, 13);
+            this.firstNameSearchCustomerLabel.TabIndex = 0;
+            this.firstNameSearchCustomerLabel.Text = "First Name:";
+            // 
+            // phoneNumberSearchCustomerMaskedTextBox
+            // 
+            this.phoneNumberSearchCustomerMaskedTextBox.Location = new System.Drawing.Point(368, 23);
+            this.phoneNumberSearchCustomerMaskedTextBox.Mask = "(999) 000-0000";
+            this.phoneNumberSearchCustomerMaskedTextBox.Name = "phoneNumberSearchCustomerMaskedTextBox";
+            this.phoneNumberSearchCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
+            this.phoneNumberSearchCustomerMaskedTextBox.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,7 +291,6 @@
         private System.Windows.Forms.Label lastNameSearchCustomerLabel;
         private System.Windows.Forms.TextBox firstNameSearchCustomerTextBox;
         private System.Windows.Forms.Label firstNameSearchCustomerLabel;
-        private System.Windows.Forms.TextBox phoneNumberSearchCustomerTextBox;
         private System.Windows.Forms.Label phoneNumberSearchCustomerLabel;
         private System.Windows.Forms.ListView searchResultsSearchCustomerListView;
         private System.Windows.Forms.Button searchSearchCustomerButton;
@@ -298,6 +298,7 @@
         private System.Windows.Forms.ColumnHeader firstNameSearchCustomerColumnHeader;
         private System.Windows.Forms.ColumnHeader lastNameSearchCustomerColumnHeader;
         private System.Windows.Forms.ColumnHeader phoneNumberSearchCustomerColumnHeader;
+        private System.Windows.Forms.MaskedTextBox phoneNumberSearchCustomerMaskedTextBox;
     }
 }
 
