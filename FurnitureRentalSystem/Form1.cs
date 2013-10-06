@@ -29,5 +29,7 @@ namespace FurnitureRentalSystem
             String aboutMessage = "Furniture Rental System\nVersion 0.1\nCreated By: Justin Walker and Jennifer Holland";
             MessageBox.Show(aboutMessage, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
     }
 }
