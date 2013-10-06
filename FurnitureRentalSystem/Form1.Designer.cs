@@ -39,22 +39,27 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.registerCustomerTab = new System.Windows.Forms.TabPage();
-            this.searchForCustomerIDTab = new System.Windows.Forms.TabPage();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.firstNameRegisterCustomerLabel = new System.Windows.Forms.Label();
-            this.middleNameRegisterCustomerLabel = new System.Windows.Forms.Label();
-            this.stateRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.firstNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.middleNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameRegisterCustomerLabel = new System.Windows.Forms.Label();
-            this.lastNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.streetAddressRegisterCustomerlabel = new System.Windows.Forms.Label();
-            this.streetAddressRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.cityRegisterCustomerlabel = new System.Windows.Forms.Label();
-            this.cityRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.stateRegisterCustomerlabel = new System.Windows.Forms.Label();
-            this.zipCodeRegisterCustomerlabel = new System.Windows.Forms.Label();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.registerCustomerButton = new System.Windows.Forms.Button();
+            this.phoneRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.phoneRegisterCustomerLabel = new System.Windows.Forms.Label();
+            this.ssnRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.ssnRegisterCustomerLabel = new System.Windows.Forms.Label();
             this.zipCodeRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.zipCodeRegisterCustomerlabel = new System.Windows.Forms.Label();
+            this.stateRegisterCustomerlabel = new System.Windows.Forms.Label();
+            this.cityRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.cityRegisterCustomerlabel = new System.Windows.Forms.Label();
+            this.streetAddressRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.streetAddressRegisterCustomerlabel = new System.Windows.Forms.Label();
+            this.lastNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameRegisterCustomerLabel = new System.Windows.Forms.Label();
+            this.middleNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
+            this.stateRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.middleNameRegisterCustomerLabel = new System.Windows.Forms.Label();
+            this.firstNameRegisterCustomerLabel = new System.Windows.Forms.Label();
+            this.searchForCustomerIDTab = new System.Windows.Forms.TabPage();
             this.phoneNumberSearchCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.searchResultsSearchCustomerListView = new System.Windows.Forms.ListView();
             this.membershipIDSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,12 +72,10 @@
             this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.ssnRegisterCustomerLabel = new System.Windows.Forms.Label();
-            this.ssnRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.phoneRegisterCustomerLabel = new System.Windows.Forms.Label();
-            this.phoneRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.registerCustomerButton = new System.Windows.Forms.Button();
-            this.clearButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.errorSearchCustomerLabel = new System.Windows.Forms.Label();
+            this.middleNameSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.addressSearchCustomerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -103,7 +106,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -143,7 +146,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -193,211 +196,25 @@
             this.registerCustomerTab.Text = "Register Customer";
             this.registerCustomerTab.UseVisualStyleBackColor = true;
             // 
-            // searchForCustomerIDTab
+            // clearButton
             // 
-            this.searchForCustomerIDTab.CausesValidation = false;
-            this.searchForCustomerIDTab.Location = new System.Drawing.Point(4, 22);
-            this.searchForCustomerIDTab.Name = "searchForCustomerIDTab";
-            this.searchForCustomerIDTab.Padding = new System.Windows.Forms.Padding(3);
-            this.searchForCustomerIDTab.Size = new System.Drawing.Size(738, 526);
-            this.searchForCustomerIDTab.TabIndex = 1;
-            this.searchForCustomerIDTab.Text = "Search For Customer ID";
-            this.searchForCustomerIDTab.UseVisualStyleBackColor = true;      
-            this.searchForCustomerIDTab.Controls.Add(this.phoneNumberSearchCustomerMaskedTextBox);
-            this.searchForCustomerIDTab.Controls.Add(this.searchResultsSearchCustomerListView);
-            this.searchForCustomerIDTab.Controls.Add(this.searchSearchCustomerButton);
-            this.searchForCustomerIDTab.Controls.Add(this.phoneNumberSearchCustomerLabel);
-            this.searchForCustomerIDTab.Controls.Add(this.lastNameSearchCustomerTextBox);
-            this.searchForCustomerIDTab.Controls.Add(this.lastNameSearchCustomerLabel);
-            this.searchForCustomerIDTab.Controls.Add(this.firstNameSearchCustomerTextBox);
-            this.searchForCustomerIDTab.Controls.Add(this.firstNameSearchCustomerLabel);
-            this.searchForCustomerIDTab.Location = new System.Drawing.Point(4, 22);
-            this.searchForCustomerIDTab.Name = "tabPage2";
-            this.searchForCustomerIDTab.Padding = new System.Windows.Forms.Padding(3);
-            this.searchForCustomerIDTab.Size = new System.Drawing.Size(738, 444);
-            this.searchForCustomerIDTab.TabIndex = 1;
-            this.searchForCustomerIDTab.Text = "Search For Customer ID";
-            this.searchForCustomerIDTab.UseVisualStyleBackColor = true;
+            this.clearButton.Location = new System.Drawing.Point(427, 426);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
+            this.clearButton.TabIndex = 21;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
-            // toolTip1
+            // registerCustomerButton
             // 
-            this.toolTip1.IsBalloon = true;
-            // 
-            // firstNameRegisterCustomerLabel
-            // 
-            this.firstNameRegisterCustomerLabel.AutoSize = true;
-            this.firstNameRegisterCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNameRegisterCustomerLabel.Location = new System.Drawing.Point(104, 62);
-            this.firstNameRegisterCustomerLabel.Name = "firstNameRegisterCustomerLabel";
-            this.firstNameRegisterCustomerLabel.Size = new System.Drawing.Size(60, 13);
-            this.firstNameRegisterCustomerLabel.TabIndex = 0;
-            this.firstNameRegisterCustomerLabel.Text = "First Name:";
-            // 
-            // middleNameRegisterCustomerLabel
-            // 
-            this.middleNameRegisterCustomerLabel.AutoSize = true;
-            this.middleNameRegisterCustomerLabel.Location = new System.Drawing.Point(92, 111);
-            this.middleNameRegisterCustomerLabel.Name = "middleNameRegisterCustomerLabel";
-            this.middleNameRegisterCustomerLabel.Size = new System.Drawing.Size(72, 13);
-            this.middleNameRegisterCustomerLabel.TabIndex = 4;
-            this.middleNameRegisterCustomerLabel.Text = "Middle Name:";
-            // 
-            // stateRegisterCustomerMaskedTextBox
-            // 
-            this.stateRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(427, 258);
-            this.stateRegisterCustomerMaskedTextBox.Mask = ">LL";
-            this.stateRegisterCustomerMaskedTextBox.Name = "stateRegisterCustomerMaskedTextBox";
-            this.stateRegisterCustomerMaskedTextBox.PromptChar = ' ';
-            this.stateRegisterCustomerMaskedTextBox.ResetOnSpace = false;
-            this.stateRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(34, 20);
-            this.stateRegisterCustomerMaskedTextBox.TabIndex = 13;
-            this.stateRegisterCustomerMaskedTextBox.Tag = "";
-            this.stateRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.letterMask_MaskInputRejected);
-            this.stateRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.stateRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
-            this.stateRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
-            // 
-            // firstNameRegisterCustomerTextBox
-            // 
-            this.firstNameRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 59);
-            this.firstNameRegisterCustomerTextBox.Name = "firstNameRegisterCustomerTextBox";
-            this.firstNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
-            this.firstNameRegisterCustomerTextBox.TabIndex = 3;
-            this.firstNameRegisterCustomerTextBox.Tag = "";
-            this.firstNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.firstNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
-            // 
-            // middleNameRegisterCustomerTextBox
-            // 
-            this.middleNameRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 108);
-            this.middleNameRegisterCustomerTextBox.Name = "middleNameRegisterCustomerTextBox";
-            this.middleNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
-            this.middleNameRegisterCustomerTextBox.TabIndex = 5;
-            this.middleNameRegisterCustomerTextBox.Tag = "";
-            this.middleNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            // 
-            // lastNameRegisterCustomerLabel
-            // 
-            this.lastNameRegisterCustomerLabel.AutoSize = true;
-            this.lastNameRegisterCustomerLabel.Location = new System.Drawing.Point(103, 159);
-            this.lastNameRegisterCustomerLabel.Name = "lastNameRegisterCustomerLabel";
-            this.lastNameRegisterCustomerLabel.Size = new System.Drawing.Size(61, 13);
-            this.lastNameRegisterCustomerLabel.TabIndex = 6;
-            this.lastNameRegisterCustomerLabel.Text = "Last Name:";
-            // 
-            // lastNameRegisterCustomerTextBox
-            // 
-            this.lastNameRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 156);
-            this.lastNameRegisterCustomerTextBox.Name = "lastNameRegisterCustomerTextBox";
-            this.lastNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
-            this.lastNameRegisterCustomerTextBox.TabIndex = 7;
-            this.lastNameRegisterCustomerTextBox.Tag = "";
-            this.lastNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.lastNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
-            // 
-            // streetAddressRegisterCustomerlabel
-            // 
-            this.streetAddressRegisterCustomerlabel.AutoSize = true;
-            this.streetAddressRegisterCustomerlabel.Location = new System.Drawing.Point(85, 208);
-            this.streetAddressRegisterCustomerlabel.Name = "streetAddressRegisterCustomerlabel";
-            this.streetAddressRegisterCustomerlabel.Size = new System.Drawing.Size(79, 13);
-            this.streetAddressRegisterCustomerlabel.TabIndex = 8;
-            this.streetAddressRegisterCustomerlabel.Text = "Street Address:";
-            // 
-            // streetAddressRegisterCustomerTextBox
-            // 
-            this.streetAddressRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 205);
-            this.streetAddressRegisterCustomerTextBox.Name = "streetAddressRegisterCustomerTextBox";
-            this.streetAddressRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
-            this.streetAddressRegisterCustomerTextBox.TabIndex = 9;
-            this.streetAddressRegisterCustomerTextBox.Tag = "";
-            this.streetAddressRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.streetAddressRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
-            // 
-            // cityRegisterCustomerlabel
-            // 
-            this.cityRegisterCustomerlabel.AutoSize = true;
-            this.cityRegisterCustomerlabel.Location = new System.Drawing.Point(137, 261);
-            this.cityRegisterCustomerlabel.Name = "cityRegisterCustomerlabel";
-            this.cityRegisterCustomerlabel.Size = new System.Drawing.Size(27, 13);
-            this.cityRegisterCustomerlabel.TabIndex = 10;
-            this.cityRegisterCustomerlabel.Text = "City:";
-            // 
-            // cityRegisterCustomerTextBox
-            // 
-            this.cityRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 258);
-            this.cityRegisterCustomerTextBox.Name = "cityRegisterCustomerTextBox";
-            this.cityRegisterCustomerTextBox.Size = new System.Drawing.Size(180, 20);
-            this.cityRegisterCustomerTextBox.TabIndex = 11;
-            this.cityRegisterCustomerTextBox.Tag = "";
-            this.cityRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
-            this.cityRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
-            // 
-            // stateRegisterCustomerlabel
-            // 
-            this.stateRegisterCustomerlabel.AutoSize = true;
-            this.stateRegisterCustomerlabel.Location = new System.Drawing.Point(386, 261);
-            this.stateRegisterCustomerlabel.Name = "stateRegisterCustomerlabel";
-            this.stateRegisterCustomerlabel.Size = new System.Drawing.Size(35, 13);
-            this.stateRegisterCustomerlabel.TabIndex = 12;
-            this.stateRegisterCustomerlabel.Text = "State:";
-            // 
-            // zipCodeRegisterCustomerlabel
-            // 
-            this.zipCodeRegisterCustomerlabel.AutoSize = true;
-            this.zipCodeRegisterCustomerlabel.Location = new System.Drawing.Point(479, 261);
-            this.zipCodeRegisterCustomerlabel.Name = "zipCodeRegisterCustomerlabel";
-            this.zipCodeRegisterCustomerlabel.Size = new System.Drawing.Size(55, 13);
-            this.zipCodeRegisterCustomerlabel.TabIndex = 14;
-            this.zipCodeRegisterCustomerlabel.Text = "ZIP Code:";
-            // 
-            // zipCodeRegisterCustomerMaskedTextBox
-            // 
-            this.zipCodeRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(540, 258);
-            this.zipCodeRegisterCustomerMaskedTextBox.Mask = "00000";
-            this.zipCodeRegisterCustomerMaskedTextBox.Name = "zipCodeRegisterCustomerMaskedTextBox";
-            this.zipCodeRegisterCustomerMaskedTextBox.PromptChar = ' ';
-            this.zipCodeRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(49, 20);
-            this.zipCodeRegisterCustomerMaskedTextBox.TabIndex = 15;
-            this.zipCodeRegisterCustomerMaskedTextBox.Tag = "";
-            this.zipCodeRegisterCustomerMaskedTextBox.ValidatingType = typeof(int);
-            this.zipCodeRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
-            this.zipCodeRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.zipCodeRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
-            this.zipCodeRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
-            // 
-            // ssnRegisterCustomerLabel
-            // 
-            this.ssnRegisterCustomerLabel.AutoSize = true;
-            this.ssnRegisterCustomerLabel.Location = new System.Drawing.Point(132, 319);
-            this.ssnRegisterCustomerLabel.Name = "ssnRegisterCustomerLabel";
-            this.ssnRegisterCustomerLabel.Size = new System.Drawing.Size(32, 13);
-            this.ssnRegisterCustomerLabel.TabIndex = 16;
-            this.ssnRegisterCustomerLabel.Text = "SSN:";
-            // 
-            // ssnRegisterCustomerMaskedTextBox
-            // 
-            this.ssnRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(187, 312);
-            this.ssnRegisterCustomerMaskedTextBox.Mask = "000-00-0000";
-            this.ssnRegisterCustomerMaskedTextBox.Name = "ssnRegisterCustomerMaskedTextBox";
-            this.ssnRegisterCustomerMaskedTextBox.PromptChar = ' ';
-            this.ssnRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
-            this.ssnRegisterCustomerMaskedTextBox.TabIndex = 17;
-            this.ssnRegisterCustomerMaskedTextBox.Tag = "";
-            this.ssnRegisterCustomerMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.ssnRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
-            this.ssnRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.ssnRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
-            this.ssnRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
-            // 
-            // phoneRegisterCustomerLabel
-            // 
-            this.phoneRegisterCustomerLabel.AutoSize = true;
-            this.phoneRegisterCustomerLabel.Location = new System.Drawing.Point(123, 366);
-            this.phoneRegisterCustomerLabel.Name = "phoneRegisterCustomerLabel";
-            this.phoneRegisterCustomerLabel.Size = new System.Drawing.Size(41, 13);
-            this.phoneRegisterCustomerLabel.TabIndex = 18;
-            this.phoneRegisterCustomerLabel.Text = "Phone:";
+            this.registerCustomerButton.Location = new System.Drawing.Point(514, 426);
+            this.registerCustomerButton.Name = "registerCustomerButton";
+            this.registerCustomerButton.Size = new System.Drawing.Size(75, 23);
+            this.registerCustomerButton.TabIndex = 20;
+            this.registerCustomerButton.Text = "Register";
+            this.registerCustomerButton.UseVisualStyleBackColor = true;
+            this.registerCustomerButton.Click += new System.EventHandler(this.registerCustomerButton_Click);
             // 
             // phoneRegisterCustomerMaskedTextBox
             // 
@@ -415,25 +232,201 @@
             this.phoneRegisterCustomerMaskedTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PhoneMaskedTextBox_KeyUp);
             this.phoneRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
             // 
-            // registerCustomerButton
+            // phoneRegisterCustomerLabel
             // 
-            this.registerCustomerButton.Location = new System.Drawing.Point(514, 426);
-            this.registerCustomerButton.Name = "registerCustomerButton";
-            this.registerCustomerButton.Size = new System.Drawing.Size(75, 23);
-            this.registerCustomerButton.TabIndex = 20;
-            this.registerCustomerButton.Text = "Register";
-            this.registerCustomerButton.UseVisualStyleBackColor = true;
-            this.registerCustomerButton.Click += new System.EventHandler(this.registerCustomerButton_Click);
+            this.phoneRegisterCustomerLabel.AutoSize = true;
+            this.phoneRegisterCustomerLabel.Location = new System.Drawing.Point(123, 366);
+            this.phoneRegisterCustomerLabel.Name = "phoneRegisterCustomerLabel";
+            this.phoneRegisterCustomerLabel.Size = new System.Drawing.Size(41, 13);
+            this.phoneRegisterCustomerLabel.TabIndex = 18;
+            this.phoneRegisterCustomerLabel.Text = "Phone:";
             // 
-            // clearButton
+            // ssnRegisterCustomerMaskedTextBox
             // 
-            this.clearButton.Location = new System.Drawing.Point(427, 426);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 21;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.ssnRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(187, 312);
+            this.ssnRegisterCustomerMaskedTextBox.Mask = "000-00-0000";
+            this.ssnRegisterCustomerMaskedTextBox.Name = "ssnRegisterCustomerMaskedTextBox";
+            this.ssnRegisterCustomerMaskedTextBox.PromptChar = ' ';
+            this.ssnRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ssnRegisterCustomerMaskedTextBox.TabIndex = 17;
+            this.ssnRegisterCustomerMaskedTextBox.Tag = "";
+            this.ssnRegisterCustomerMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.ssnRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
+            this.ssnRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
+            this.ssnRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
+            this.ssnRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
+            // 
+            // ssnRegisterCustomerLabel
+            // 
+            this.ssnRegisterCustomerLabel.AutoSize = true;
+            this.ssnRegisterCustomerLabel.Location = new System.Drawing.Point(132, 319);
+            this.ssnRegisterCustomerLabel.Name = "ssnRegisterCustomerLabel";
+            this.ssnRegisterCustomerLabel.Size = new System.Drawing.Size(32, 13);
+            this.ssnRegisterCustomerLabel.TabIndex = 16;
+            this.ssnRegisterCustomerLabel.Text = "SSN:";
+            // 
+            // zipCodeRegisterCustomerMaskedTextBox
+            // 
+            this.zipCodeRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(540, 258);
+            this.zipCodeRegisterCustomerMaskedTextBox.Mask = "00000";
+            this.zipCodeRegisterCustomerMaskedTextBox.Name = "zipCodeRegisterCustomerMaskedTextBox";
+            this.zipCodeRegisterCustomerMaskedTextBox.PromptChar = ' ';
+            this.zipCodeRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(49, 20);
+            this.zipCodeRegisterCustomerMaskedTextBox.TabIndex = 15;
+            this.zipCodeRegisterCustomerMaskedTextBox.Tag = "";
+            this.zipCodeRegisterCustomerMaskedTextBox.ValidatingType = typeof(int);
+            this.zipCodeRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
+            this.zipCodeRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
+            this.zipCodeRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
+            this.zipCodeRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
+            // 
+            // zipCodeRegisterCustomerlabel
+            // 
+            this.zipCodeRegisterCustomerlabel.AutoSize = true;
+            this.zipCodeRegisterCustomerlabel.Location = new System.Drawing.Point(479, 261);
+            this.zipCodeRegisterCustomerlabel.Name = "zipCodeRegisterCustomerlabel";
+            this.zipCodeRegisterCustomerlabel.Size = new System.Drawing.Size(55, 13);
+            this.zipCodeRegisterCustomerlabel.TabIndex = 14;
+            this.zipCodeRegisterCustomerlabel.Text = "ZIP Code:";
+            // 
+            // stateRegisterCustomerlabel
+            // 
+            this.stateRegisterCustomerlabel.AutoSize = true;
+            this.stateRegisterCustomerlabel.Location = new System.Drawing.Point(386, 261);
+            this.stateRegisterCustomerlabel.Name = "stateRegisterCustomerlabel";
+            this.stateRegisterCustomerlabel.Size = new System.Drawing.Size(35, 13);
+            this.stateRegisterCustomerlabel.TabIndex = 12;
+            this.stateRegisterCustomerlabel.Text = "State:";
+            // 
+            // cityRegisterCustomerTextBox
+            // 
+            this.cityRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 258);
+            this.cityRegisterCustomerTextBox.Name = "cityRegisterCustomerTextBox";
+            this.cityRegisterCustomerTextBox.Size = new System.Drawing.Size(180, 20);
+            this.cityRegisterCustomerTextBox.TabIndex = 11;
+            this.cityRegisterCustomerTextBox.Tag = "";
+            this.cityRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.cityRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
+            // 
+            // cityRegisterCustomerlabel
+            // 
+            this.cityRegisterCustomerlabel.AutoSize = true;
+            this.cityRegisterCustomerlabel.Location = new System.Drawing.Point(137, 261);
+            this.cityRegisterCustomerlabel.Name = "cityRegisterCustomerlabel";
+            this.cityRegisterCustomerlabel.Size = new System.Drawing.Size(27, 13);
+            this.cityRegisterCustomerlabel.TabIndex = 10;
+            this.cityRegisterCustomerlabel.Text = "City:";
+            // 
+            // streetAddressRegisterCustomerTextBox
+            // 
+            this.streetAddressRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 205);
+            this.streetAddressRegisterCustomerTextBox.Name = "streetAddressRegisterCustomerTextBox";
+            this.streetAddressRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
+            this.streetAddressRegisterCustomerTextBox.TabIndex = 9;
+            this.streetAddressRegisterCustomerTextBox.Tag = "";
+            this.streetAddressRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.streetAddressRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
+            // 
+            // streetAddressRegisterCustomerlabel
+            // 
+            this.streetAddressRegisterCustomerlabel.AutoSize = true;
+            this.streetAddressRegisterCustomerlabel.Location = new System.Drawing.Point(85, 208);
+            this.streetAddressRegisterCustomerlabel.Name = "streetAddressRegisterCustomerlabel";
+            this.streetAddressRegisterCustomerlabel.Size = new System.Drawing.Size(79, 13);
+            this.streetAddressRegisterCustomerlabel.TabIndex = 8;
+            this.streetAddressRegisterCustomerlabel.Text = "Street Address:";
+            // 
+            // lastNameRegisterCustomerTextBox
+            // 
+            this.lastNameRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 156);
+            this.lastNameRegisterCustomerTextBox.Name = "lastNameRegisterCustomerTextBox";
+            this.lastNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
+            this.lastNameRegisterCustomerTextBox.TabIndex = 7;
+            this.lastNameRegisterCustomerTextBox.Tag = "";
+            this.lastNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.lastNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
+            // 
+            // lastNameRegisterCustomerLabel
+            // 
+            this.lastNameRegisterCustomerLabel.AutoSize = true;
+            this.lastNameRegisterCustomerLabel.Location = new System.Drawing.Point(103, 159);
+            this.lastNameRegisterCustomerLabel.Name = "lastNameRegisterCustomerLabel";
+            this.lastNameRegisterCustomerLabel.Size = new System.Drawing.Size(61, 13);
+            this.lastNameRegisterCustomerLabel.TabIndex = 6;
+            this.lastNameRegisterCustomerLabel.Text = "Last Name:";
+            // 
+            // middleNameRegisterCustomerTextBox
+            // 
+            this.middleNameRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 108);
+            this.middleNameRegisterCustomerTextBox.Name = "middleNameRegisterCustomerTextBox";
+            this.middleNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
+            this.middleNameRegisterCustomerTextBox.TabIndex = 5;
+            this.middleNameRegisterCustomerTextBox.Tag = "";
+            this.middleNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            // 
+            // firstNameRegisterCustomerTextBox
+            // 
+            this.firstNameRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 59);
+            this.firstNameRegisterCustomerTextBox.Name = "firstNameRegisterCustomerTextBox";
+            this.firstNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
+            this.firstNameRegisterCustomerTextBox.TabIndex = 3;
+            this.firstNameRegisterCustomerTextBox.Tag = "";
+            this.firstNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            this.firstNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
+            // 
+            // stateRegisterCustomerMaskedTextBox
+            // 
+            this.stateRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(427, 258);
+            this.stateRegisterCustomerMaskedTextBox.Mask = ">LL";
+            this.stateRegisterCustomerMaskedTextBox.Name = "stateRegisterCustomerMaskedTextBox";
+            this.stateRegisterCustomerMaskedTextBox.PromptChar = ' ';
+            this.stateRegisterCustomerMaskedTextBox.ResetOnSpace = false;
+            this.stateRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(34, 20);
+            this.stateRegisterCustomerMaskedTextBox.TabIndex = 13;
+            this.stateRegisterCustomerMaskedTextBox.Tag = "";
+            this.stateRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.letterMask_MaskInputRejected);
+            this.stateRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
+            this.stateRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
+            this.stateRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
+            // 
+            // middleNameRegisterCustomerLabel
+            // 
+            this.middleNameRegisterCustomerLabel.AutoSize = true;
+            this.middleNameRegisterCustomerLabel.Location = new System.Drawing.Point(92, 111);
+            this.middleNameRegisterCustomerLabel.Name = "middleNameRegisterCustomerLabel";
+            this.middleNameRegisterCustomerLabel.Size = new System.Drawing.Size(72, 13);
+            this.middleNameRegisterCustomerLabel.TabIndex = 4;
+            this.middleNameRegisterCustomerLabel.Text = "Middle Name:";
+            // 
+            // firstNameRegisterCustomerLabel
+            // 
+            this.firstNameRegisterCustomerLabel.AutoSize = true;
+            this.firstNameRegisterCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstNameRegisterCustomerLabel.Location = new System.Drawing.Point(104, 62);
+            this.firstNameRegisterCustomerLabel.Name = "firstNameRegisterCustomerLabel";
+            this.firstNameRegisterCustomerLabel.Size = new System.Drawing.Size(60, 13);
+            this.firstNameRegisterCustomerLabel.TabIndex = 0;
+            this.firstNameRegisterCustomerLabel.Text = "First Name:";
+            // 
+            // searchForCustomerIDTab
+            // 
+            this.searchForCustomerIDTab.CausesValidation = false;
+            this.searchForCustomerIDTab.Controls.Add(this.errorSearchCustomerLabel);
+            this.searchForCustomerIDTab.Controls.Add(this.phoneNumberSearchCustomerMaskedTextBox);
+            this.searchForCustomerIDTab.Controls.Add(this.searchResultsSearchCustomerListView);
+            this.searchForCustomerIDTab.Controls.Add(this.searchSearchCustomerButton);
+            this.searchForCustomerIDTab.Controls.Add(this.phoneNumberSearchCustomerLabel);
+            this.searchForCustomerIDTab.Controls.Add(this.lastNameSearchCustomerTextBox);
+            this.searchForCustomerIDTab.Controls.Add(this.lastNameSearchCustomerLabel);
+            this.searchForCustomerIDTab.Controls.Add(this.firstNameSearchCustomerTextBox);
+            this.searchForCustomerIDTab.Controls.Add(this.firstNameSearchCustomerLabel);
+            this.searchForCustomerIDTab.Location = new System.Drawing.Point(4, 22);
+            this.searchForCustomerIDTab.Name = "searchForCustomerIDTab";
+            this.searchForCustomerIDTab.Padding = new System.Windows.Forms.Padding(3);
+            this.searchForCustomerIDTab.Size = new System.Drawing.Size(738, 526);
+            this.searchForCustomerIDTab.TabIndex = 1;
+            this.searchForCustomerIDTab.Text = "Search For Customer ID";
+            this.searchForCustomerIDTab.UseVisualStyleBackColor = true;
             // 
             // phoneNumberSearchCustomerMaskedTextBox
             // 
@@ -442,6 +435,7 @@
             this.phoneNumberSearchCustomerMaskedTextBox.Name = "phoneNumberSearchCustomerMaskedTextBox";
             this.phoneNumberSearchCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
             this.phoneNumberSearchCustomerMaskedTextBox.TabIndex = 8;
+            this.phoneNumberSearchCustomerMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // searchResultsSearchCustomerListView
             // 
@@ -451,13 +445,15 @@
             this.searchResultsSearchCustomerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.membershipIDSearchCustomerColumnHeader,
             this.firstNameSearchCustomerColumnHeader,
+            this.middleNameSearchCustomerColumnHeader,
             this.lastNameSearchCustomerColumnHeader,
+            this.addressSearchCustomerColumnHeader,
             this.phoneNumberSearchCustomerColumnHeader});
             this.searchResultsSearchCustomerListView.FullRowSelect = true;
             this.searchResultsSearchCustomerListView.GridLines = true;
             this.searchResultsSearchCustomerListView.Location = new System.Drawing.Point(7, 97);
             this.searchResultsSearchCustomerListView.Name = "searchResultsSearchCustomerListView";
-            this.searchResultsSearchCustomerListView.Size = new System.Drawing.Size(725, 341);
+            this.searchResultsSearchCustomerListView.Size = new System.Drawing.Size(725, 423);
             this.searchResultsSearchCustomerListView.TabIndex = 7;
             this.searchResultsSearchCustomerListView.UseCompatibleStateImageBehavior = false;
             this.searchResultsSearchCustomerListView.View = System.Windows.Forms.View.Details;
@@ -465,22 +461,22 @@
             // membershipIDSearchCustomerColumnHeader
             // 
             this.membershipIDSearchCustomerColumnHeader.Text = "Membership ID";
-            this.membershipIDSearchCustomerColumnHeader.Width = 180;
+            this.membershipIDSearchCustomerColumnHeader.Width = 102;
             // 
             // firstNameSearchCustomerColumnHeader
             // 
             this.firstNameSearchCustomerColumnHeader.Text = "First Name";
-            this.firstNameSearchCustomerColumnHeader.Width = 180;
+            this.firstNameSearchCustomerColumnHeader.Width = 102;
             // 
             // lastNameSearchCustomerColumnHeader
             // 
             this.lastNameSearchCustomerColumnHeader.Text = "Last Name";
-            this.lastNameSearchCustomerColumnHeader.Width = 180;
+            this.lastNameSearchCustomerColumnHeader.Width = 102;
             // 
             // phoneNumberSearchCustomerColumnHeader
             // 
             this.phoneNumberSearchCustomerColumnHeader.Text = "Phone Number";
-            this.phoneNumberSearchCustomerColumnHeader.Width = 180;
+            this.phoneNumberSearchCustomerColumnHeader.Width = 102;
             // 
             // searchSearchCustomerButton
             // 
@@ -532,6 +528,31 @@
             this.firstNameSearchCustomerLabel.Size = new System.Drawing.Size(60, 13);
             this.firstNameSearchCustomerLabel.TabIndex = 0;
             this.firstNameSearchCustomerLabel.Text = "First Name:";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            // 
+            // errorSearchCustomerLabel
+            // 
+            this.errorSearchCustomerLabel.AutoSize = true;
+            this.errorSearchCustomerLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorSearchCustomerLabel.Location = new System.Drawing.Point(492, 30);
+            this.errorSearchCustomerLabel.Name = "errorSearchCustomerLabel";
+            this.errorSearchCustomerLabel.Size = new System.Drawing.Size(29, 13);
+            this.errorSearchCustomerLabel.TabIndex = 9;
+            this.errorSearchCustomerLabel.Text = "Error";
+            this.errorSearchCustomerLabel.Visible = false;
+            // 
+            // middleNameSearchCustomerColumnHeader
+            // 
+            this.middleNameSearchCustomerColumnHeader.Text = "Middle Name";
+            this.middleNameSearchCustomerColumnHeader.Width = 102;
+            // 
+            // addressSearchCustomerColumnHeader
+            // 
+            this.addressSearchCustomerColumnHeader.Text = "Address";
+            this.addressSearchCustomerColumnHeader.Width = 204;
             // 
             // Form1
             // 
@@ -601,6 +622,9 @@
         private System.Windows.Forms.ColumnHeader lastNameSearchCustomerColumnHeader;
         private System.Windows.Forms.ColumnHeader phoneNumberSearchCustomerColumnHeader;
         private System.Windows.Forms.MaskedTextBox phoneNumberSearchCustomerMaskedTextBox;
+        private System.Windows.Forms.Label errorSearchCustomerLabel;
+        private System.Windows.Forms.ColumnHeader middleNameSearchCustomerColumnHeader;
+        private System.Windows.Forms.ColumnHeader addressSearchCustomerColumnHeader;
     }
 }
 

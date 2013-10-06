@@ -12,7 +12,7 @@ namespace FurnitureRentalSystem
 {
     public partial class Form1 : Form
     {
-
+        private String EMPTY_PHONE = "(   )    -    ";
         private int customerID = 0;
 
 
@@ -128,7 +128,39 @@ namespace FurnitureRentalSystem
 
         private void searchSearchCustomerButton_Click(object sender, EventArgs e)
         {
+            bool canPerformSearch = this.ensureSearchCustomerFieldsAreCompleted();
+            if(canPerformSearch)
+            {
+                this.performCustomerSearch();
+            }
+        }
 
+        private bool ensureSearchCustomerFieldsAreCompleted()
+        {
+            if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
+            {
+                this.errorSearchCustomerLabel.Text = "Please fill out both the first and last name\n or enter a phone number.";
+                this.errorSearchCustomerLabel.Visible = true;
+                return false;
+            }
+            else
+            {
+                this.errorSearchCustomerLabel.Visible = false;
+                return true;
+            }
+            
+        }
+
+        private void performCustomerSearch()
+        {
+            if(!String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
+            {
+                MessageBox.Show("Use phone in search");
+            }
+            else 
+            {
+                MessageBox.Show("Use name for search");
+            }
         }
 
         private void keyPress(object sender, KeyPressEventArgs e)
