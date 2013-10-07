@@ -343,6 +343,32 @@ namespace FurnitureRentalSystem
             toolTip1.Hide(textBox);
         }
 
+        private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.nameSearchCustomerRadioButton.Checked)
+            {
+                this.phoneNumberSearchCustomerMaskedTextBox.Enabled = false;
+            }
+            else
+            {
+                this.phoneNumberSearchCustomerMaskedTextBox.Enabled = true;
+            }
+        }
+
+        private void phoneSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.phoneSearchCustomerRadioButton.Checked)
+            {
+                this.firstNameSearchCustomerTextBox.Enabled = false;
+                this.lastNameSearchCustomerTextBox.Enabled = false;
+            }
+            else
+            {
+                this.firstNameSearchCustomerTextBox.Enabled = true;
+                this.lastNameSearchCustomerTextBox.Enabled = true; 
+            }
+        }
+
        
 
         
