@@ -242,7 +242,6 @@
             this.phoneRegisterCustomerMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.phoneRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
             this.phoneRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.phoneRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
             this.phoneRegisterCustomerMaskedTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PhoneMaskedTextBox_KeyUp);
             this.phoneRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
             // 
@@ -267,7 +266,6 @@
             this.ssnRegisterCustomerMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.ssnRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
             this.ssnRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.ssnRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
             this.ssnRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
             // 
             // ssnRegisterCustomerLabel
@@ -291,7 +289,6 @@
             this.zipCodeRegisterCustomerMaskedTextBox.ValidatingType = typeof(int);
             this.zipCodeRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
             this.zipCodeRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.zipCodeRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
             this.zipCodeRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
             // 
             // zipCodeRegisterCustomerlabel
@@ -319,7 +316,6 @@
             this.cityRegisterCustomerTextBox.Size = new System.Drawing.Size(180, 20);
             this.cityRegisterCustomerTextBox.TabIndex = 11;
             this.cityRegisterCustomerTextBox.Tag = "";
-            this.cityRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.cityRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
             // 
             // cityRegisterCustomerlabel
@@ -338,7 +334,6 @@
             this.streetAddressRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
             this.streetAddressRegisterCustomerTextBox.TabIndex = 9;
             this.streetAddressRegisterCustomerTextBox.Tag = "";
-            this.streetAddressRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.streetAddressRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
             // 
             // streetAddressRegisterCustomerlabel
@@ -357,7 +352,6 @@
             this.lastNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
             this.lastNameRegisterCustomerTextBox.TabIndex = 7;
             this.lastNameRegisterCustomerTextBox.Tag = "";
-            this.lastNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.lastNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
             // 
             // lastNameRegisterCustomerLabel
@@ -376,7 +370,6 @@
             this.middleNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
             this.middleNameRegisterCustomerTextBox.TabIndex = 5;
             this.middleNameRegisterCustomerTextBox.Tag = "";
-            this.middleNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
             // firstNameRegisterCustomerTextBox
             // 
@@ -385,7 +378,6 @@
             this.firstNameRegisterCustomerTextBox.Size = new System.Drawing.Size(402, 20);
             this.firstNameRegisterCustomerTextBox.TabIndex = 3;
             this.firstNameRegisterCustomerTextBox.Tag = "";
-            this.firstNameRegisterCustomerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.firstNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
             // 
             // stateRegisterCustomerMaskedTextBox
@@ -400,7 +392,6 @@
             this.stateRegisterCustomerMaskedTextBox.Tag = "";
             this.stateRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.letterMask_MaskInputRejected);
             this.stateRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.stateRegisterCustomerMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaskedTextBox_KeyDown);
             this.stateRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
             // 
             // middleNameRegisterCustomerLabel
