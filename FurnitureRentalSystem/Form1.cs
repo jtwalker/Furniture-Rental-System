@@ -219,6 +219,7 @@ namespace FurnitureRentalSystem
                     control.Text = "";
                 }
             }
+            this.errorProvider.Clear();
             this.SetUpRegisterCustomerControls();
         }
 
@@ -368,17 +369,6 @@ namespace FurnitureRentalSystem
 
         //************************KeyDown event handlers************** 
 
-        private void MaskedTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            //toolTip1.Hide(maskedTextBox);
-        }
-
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            //toolTip1.Hide(textBox);
-        }
 
         private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
