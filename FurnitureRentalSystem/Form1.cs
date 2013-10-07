@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace FurnitureRentalSystem
 {
@@ -14,7 +15,7 @@ namespace FurnitureRentalSystem
     {
         private String EMPTY_PHONE = "(   )    -    ";
         private int customerID = 0;
-
+        private ErrorProvider errorProvider;
 
         public Form1()
         {
@@ -22,6 +23,9 @@ namespace FurnitureRentalSystem
             this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.lastNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.SetUpRegisterCustomerControls();
+            this.requiredLabel.Visible = false;
+
+            this.errorProvider = new ErrorProvider();
         }
 
 
@@ -36,14 +40,18 @@ namespace FurnitureRentalSystem
         {
             if (!maskedTextBox.MaskCompleted)
             {
-                toolTip1.ToolTipTitle = "Invalid Data";
-                toolTip1.Show("The field must be completed.", maskedTextBox, 0, 20, 5000);
+                //toolTip1.ToolTipTitle = "Invalid Data";
+                //toolTip1.Show("The field must be completed.", maskedTextBox, 0, 20, 5000);
+               
+                //maskedTextBox.BackColor = Color.Red;
+
                 maskedTextBox.Tag = false;
-                maskedTextBox.BackColor = Color.Red;
+                this.errorProvider.SetError(maskedTextBox, "The field must be completed.");
             }
             else
             {
-                maskedTextBox.BackColor = System.Drawing.SystemColors.Window;
+                //maskedTextBox.BackColor = System.Drawing.SystemColors.Window;
+                this.errorProvider.SetError(maskedTextBox, "");
                 maskedTextBox.Tag = true;
             }
             ValidateAll();
@@ -233,12 +241,38 @@ namespace FurnitureRentalSystem
         private void textBoxEmpty_Validating(object sender, CancelEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            toolTip1.SetToolTip(textBox, "text");
+            //toolTip1.SetToolTip(textBox, "text");
+
+            String controlName = textBox.Name;
+            controlName = controlName.TrimEnd("TextBox".ToCharArray());
+            Debug.WriteLine("control name trimmed: " + controlName);
+            controlName += "LabelError";
+
             if (textBox.Text.Length == 0)
             {
-                toolTip1.ToolTipTitle = "Invalid Data";
-                toolTip1.Show("The field must be completed.", textBox, 0, 20, 5000);
-                textBox.BackColor = Color.Red;
+                //foreach (Control control in this.registerCustomerTab.Controls)
+                //{
+                //    Debug.WriteLine("control name: " + control.Name);
+                //    Debug.WriteLine("controlName: " + controlName);
+                   
+                //    if(control.Name.Equals(controlName))
+                //    {
+                //        Debug.WriteLine("Names are equal");
+                //        Label label = (Label)control;
+
+                //        label.Text = "The field must be completed.";
+                //        control.Visible = true; 
+                //    }
+
+
+                //}
+
+                //toolTip1.ToolTipTitle = "Invalid Data";
+                //toolTip1.Show("The field must be completed.", textBox, 0, 20, 5000);
+                //textBox.BackColor = Color.Red;
+
+
+                this.errorProvider.SetError(textBox, "The field must be completed.");
                 
                 textBox.Tag = false;
             }
@@ -246,6 +280,7 @@ namespace FurnitureRentalSystem
             {
                 textBox.BackColor = System.Drawing.SystemColors.Window;
                 textBox.Tag = true;
+                this.errorProvider.SetError(textBox, "");
             }
 
             ValidateAll();
@@ -255,7 +290,7 @@ namespace FurnitureRentalSystem
         private void maskedTextBox_Validating(object sender, CancelEventArgs e)
         {
             MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            toolTip1.SetToolTip(maskedTextBox, "text");
+            //toolTip1.SetToolTip(maskedTextBox, "text");
 
             this.CheckMaskedTextMaskIsComplete(maskedTextBox);
         }
@@ -264,7 +299,7 @@ namespace FurnitureRentalSystem
         private void PhoneMaskedTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            toolTip1.SetToolTip(maskedTextBox, "text");
+            //toolTip1.SetToolTip(maskedTextBox, "text");
 
             if (maskedTextBox.MaskCompleted)
             {
@@ -278,7 +313,7 @@ namespace FurnitureRentalSystem
         private void numericMask_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            toolTip1.SetToolTip(maskedTextBox, "text");
+            //toolTip1.SetToolTip(maskedTextBox, "text");
             //if (maskedTextBox.MaskFull)
             //{
             //    toolTip1.ToolTipTitle = "Input Rejected - Too Much Data";
@@ -296,15 +331,16 @@ namespace FurnitureRentalSystem
 
             if (!maskedTextBox.MaskFull && e.Position != maskedTextBox.Mask.Length)
             {
-                toolTip1.ToolTipTitle = "Input Rejected";
-                toolTip1.Show("You can only add numeric characters (0-9) into this field.", maskedTextBox, 0, 20, 5000);
+                //toolTip1.ToolTipTitle = "Input Rejected";
+                //toolTip1.Show("You can only add numeric characters (0-9) into this field.", maskedTextBox, 0, 20, 5000);
+                this.errorProvider.SetError(maskedTextBox, "You can only add numeric characters (0-9) into this field.");
             }
         }
 
         private void letterMask_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            toolTip1.SetToolTip(maskedTextBox, "text");
+            //toolTip1.SetToolTip(maskedTextBox, "text");
             //if (maskedTextBox.MaskFull)
             //{
             //    toolTip1.ToolTipTitle = "Input Rejected - Too Much Data";
@@ -322,8 +358,9 @@ namespace FurnitureRentalSystem
 
             if (!maskedTextBox.MaskFull && e.Position != maskedTextBox.Mask.Length)
             {
-                toolTip1.ToolTipTitle = "Input Rejected";
-                toolTip1.Show("You can only add letter characters into this field.", maskedTextBox, 0, 20, 5000);
+                //toolTip1.ToolTipTitle = "Input Rejected";
+                //toolTip1.Show("You can only add letter characters into this field.", maskedTextBox, 0, 20, 5000);
+                this.errorProvider.SetError(maskedTextBox, "You can only add letter characters into this field.");
             }
         }
 
@@ -334,13 +371,13 @@ namespace FurnitureRentalSystem
         private void MaskedTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            toolTip1.Hide(maskedTextBox);
+            //toolTip1.Hide(maskedTextBox);
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            toolTip1.Hide(textBox);
+            //toolTip1.Hide(textBox);
         }
 
         private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -369,6 +406,7 @@ namespace FurnitureRentalSystem
             }
         }
 
+       
        
 
         
