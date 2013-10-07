@@ -140,6 +140,10 @@ namespace FurnitureRentalSystem
                 {
                     this.placeCustomerInList(i);
                 }
+                else if (i == numberOfCustomers && this.searchResultsSearchCustomerListView.Items.Count == 0)
+                {
+                    this.noResultsFound();
+                }
             }
             
         }
@@ -153,7 +157,18 @@ namespace FurnitureRentalSystem
                 {
                     this.placeCustomerInList(i);
                 }
+                else if (i == numberOfCustomers && this.searchResultsSearchCustomerListView.Items.Count == 0)
+                {
+                    this.noResultsFound();
+                }
             }
+        }
+
+        private void noResultsFound()
+        {
+            this.searchResultsSearchCustomerListView.Items.Clear();
+            ListViewItem listViewItem = new ListViewItem("No Customer Found", 0);
+            this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
         }
 
         private void placeCustomerInList(int customerIndex)
