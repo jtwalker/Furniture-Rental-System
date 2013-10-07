@@ -13,9 +13,14 @@ namespace FurnitureRentalSystem
 {
     public partial class Form1 : Form
     {
-        private String EMPTY_PHONE = "(   )    -    ";
+        //private String EMPTY_PHONE = "(   )    -    ";
+        private int PHONE_INDEX = 5;
+        private int NUMBER_OF_CUSTOMER_DETAILS = 6;
+        private int FIRST_NAME_INDEX = 1;
+        private int LAST_NAME_INDEX = 3;
         private int customerID = 0;
         private ErrorProvider errorProvider;
+        private String[,] customers;
 
         public Form1()
         {
@@ -23,7 +28,7 @@ namespace FurnitureRentalSystem
             this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.lastNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.SetUpRegisterCustomerControls();
-
+            this.createFakeCustomers();
             this.errorProvider = new ErrorProvider();
         }
 
@@ -85,9 +90,75 @@ namespace FurnitureRentalSystem
             this.registerCustomerButton.Enabled = false;
         }
 
-   
+        private void createFakeCustomers()
+        {
+            this.customers = new String[4,6] { { "01", "Justin", "Tyler", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"  },
+                                               {"02", "Jennifer", "", "Holland", "456 There Road, Carrollton, GA 30116", "7704567890" },
+                                               {"03", "Jonathan", "Kyle", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567" }, 
+                                               {"04", "Jennifer", "Something", "Holland", "987 Somewhere Else Parkway", "7700000000" },};
+        }
 
+        private bool ensureSearchCustomerFieldsAreCompleted()
+        {
+            if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
+            {
+                this.errorSearchCustomerLabel.Text = "Please fill out both the first and last name\n or enter a phone number.";
+                this.errorSearchCustomerLabel.Visible = true;
+                return false;
+            }
+            else
+            {
+                this.errorSearchCustomerLabel.Visible = false;
+                return true;
+            }
+        }
 
+        private void performCustomerSearch()
+        {
+            if (this.phoneSearchCustomerRadioButton.Checked)
+            {
+                this.usePhoneNumberInCustomerSearch();
+            }
+            else
+            {
+                this.useNameInCustomerSearch();
+            }
+        }
+
+        private void usePhoneNumberInCustomerSearch()
+        {
+            int numberOfCustomers = this.customers.Length / 6 - 1;
+            for(int i=0; i<=numberOfCustomers; i++)
+            {
+                if (this.customers[i, PHONE_INDEX] == this.phoneNumberSearchCustomerMaskedTextBox.Text)
+                {
+                    this.placeCustomerInList(i);
+                }
+            }
+            
+        }
+
+        private void useNameInCustomerSearch()
+        {
+            int numberOfCustomers = this.customers.Length / 6 - 1;
+            for (int i = 0; i <= numberOfCustomers; i++)
+            {
+                if (this.customers[i, FIRST_NAME_INDEX].ToLower() == this.firstNameSearchCustomerTextBox.Text.ToLower() && this.customers[i, LAST_NAME_INDEX].ToLower() == this.lastNameSearchCustomerTextBox.Text.ToLower())
+                {
+                    this.placeCustomerInList(i);
+                }
+            }
+        }
+
+        private void placeCustomerInList(int customerIndex)
+        {
+            ListViewItem listViewItem = new ListViewItem(this.customers[customerIndex,0], 0);
+            for (int i = 1; i < NUMBER_OF_CUSTOMER_DETAILS; i++)
+            {
+                listViewItem.SubItems.Add(this.customers[customerIndex, i]);
+            }
+            this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
+        }
 
         //************************Click event handlers*************************
 
@@ -135,38 +206,11 @@ namespace FurnitureRentalSystem
 
         private void searchSearchCustomerButton_Click(object sender, EventArgs e)
         {
+            this.searchResultsSearchCustomerListView.Items.Clear();
             bool canPerformSearch = this.ensureSearchCustomerFieldsAreCompleted();
             if(canPerformSearch)
             {
                 this.performCustomerSearch();
-            }
-        }
-
-        private bool ensureSearchCustomerFieldsAreCompleted()
-        {
-            if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
-            {
-                this.errorSearchCustomerLabel.Text = "Please fill out both the first and last name\n or enter a phone number.";
-                this.errorSearchCustomerLabel.Visible = true;
-                return false;
-            }
-            else
-            {
-                this.errorSearchCustomerLabel.Visible = false;
-                return true;
-            }
-            
-        }
-
-        private void performCustomerSearch()
-        {
-            if(!String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
-            {
-                MessageBox.Show("Use phone in search");
-            }
-            else 
-            {
-                MessageBox.Show("Use name for search");
             }
         }
 
