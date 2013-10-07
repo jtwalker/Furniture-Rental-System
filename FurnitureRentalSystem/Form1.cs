@@ -13,11 +13,10 @@ namespace FurnitureRentalSystem
 {
     public partial class Form1 : Form
     {
-        //private String EMPTY_PHONE = "(   )    -    ";
-        private int PHONE_INDEX = 5;
-        private int NUMBER_OF_CUSTOMER_DETAILS = 6;
-        private int FIRST_NAME_INDEX = 1;
-        private int LAST_NAME_INDEX = 3;
+        private readonly int PHONE_INDEX = 5;
+        private readonly int NUMBER_OF_CUSTOMER_DETAILS = 6;
+        private readonly int FIRST_NAME_INDEX = 1;
+        private readonly int LAST_NAME_INDEX = 3;
         private int customerID = 0;
         private ErrorProvider errorProvider;
         private String[,] customers;
