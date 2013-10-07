@@ -23,7 +23,6 @@ namespace FurnitureRentalSystem
             this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.lastNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.SetUpRegisterCustomerControls();
-            this.requiredLabel.Visible = false;
 
             this.errorProvider = new ErrorProvider();
         }
