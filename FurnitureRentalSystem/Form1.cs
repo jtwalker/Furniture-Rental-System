@@ -91,17 +91,24 @@ namespace FurnitureRentalSystem
 
         private void createFakeCustomers()
         {
-            this.customers = new String[4,6] { { "01", "Justin", "Tyler", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"  },
-                                               {"02", "Jennifer", "", "Holland", "456 There Road, Carrollton, GA 30116", "7704567890" },
-                                               {"03", "Jonathan", "Kyle", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567" }, 
-                                               {"04", "Jennifer", "Something", "Holland", "987 Somewhere Else Parkway", "7700000000" },};
+            this.customers = new String[4,6] { {"01", "Justin", "Tyler", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"},
+                                               {"02", "Jennifer", "", "Holland", "456 There Road, Carrollton, GA 30116", "7704567890"},
+                                               {"03", "Jonathan", "Kyle", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"}, 
+                                               {"04", "Jennifer", "Something", "Holland", "987 Somewhere Else Parkway", "7700000000" } };
         }
 
         private bool ensureSearchCustomerFieldsAreCompleted()
         {
-            if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
+            //if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
+            if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && this.nameSearchCustomerRadioButton.Checked)
             {
-                this.errorSearchCustomerLabel.Text = "Please fill out both the first and last name\n or enter a phone number.";
+                this.errorSearchCustomerLabel.Text = "Please fill out both First and Last Name.";
+                this.errorSearchCustomerLabel.Visible = true;
+                return false;
+            }
+            else if(String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text) && this.phoneSearchCustomerRadioButton.Checked)
+            {
+                this.errorSearchCustomerLabel.Text = "Please enter a valid Phone Number.";
                 this.errorSearchCustomerLabel.Visible = true;
                 return false;
             }
@@ -157,6 +164,16 @@ namespace FurnitureRentalSystem
                 listViewItem.SubItems.Add(this.customers[customerIndex, i]);
             }
             this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
+        }
+
+        private void clearSearchCustomerFields()
+        {
+            this.firstNameSearchCustomerTextBox.Text = "";
+            this.lastNameSearchCustomerTextBox.Text = "";
+            this.phoneNumberSearchCustomerMaskedTextBox.Text = "";
+
+            this.errorSearchCustomerLabel.Visible = false;
+            this.errorProvider.Clear();
         }
 
         //************************Click event handlers*************************
@@ -414,6 +431,7 @@ namespace FurnitureRentalSystem
 
         private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            this.clearSearchCustomerFields();
             if (this.nameSearchCustomerRadioButton.Checked)
             {
                 this.phoneNumberSearchCustomerMaskedTextBox.Enabled = false;
@@ -426,6 +444,7 @@ namespace FurnitureRentalSystem
 
         private void phoneSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            this.clearSearchCustomerFields();
             if (this.phoneSearchCustomerRadioButton.Checked)
             {
                 this.firstNameSearchCustomerTextBox.Enabled = false;

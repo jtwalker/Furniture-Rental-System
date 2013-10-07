@@ -486,9 +486,15 @@
             this.phoneNumberSearchCustomerMaskedTextBox.Location = new System.Drawing.Point(410, 23);
             this.phoneNumberSearchCustomerMaskedTextBox.Mask = "(999) 000-0000";
             this.phoneNumberSearchCustomerMaskedTextBox.Name = "phoneNumberSearchCustomerMaskedTextBox";
+            this.phoneNumberSearchCustomerMaskedTextBox.PromptChar = ' ';
             this.phoneNumberSearchCustomerMaskedTextBox.Size = new System.Drawing.Size(100, 20);
             this.phoneNumberSearchCustomerMaskedTextBox.TabIndex = 8;
             this.phoneNumberSearchCustomerMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.phoneNumberSearchCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.numericMask_MaskInputRejected);
+            this.phoneNumberSearchCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
+            this.phoneNumberSearchCustomerMaskedTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PhoneMaskedTextBox_KeyUp);
+            //this.phoneNumberSearchCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
+
             // 
             // searchResultsSearchCustomerListView
             // 
