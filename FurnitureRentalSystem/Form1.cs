@@ -89,6 +89,8 @@ namespace FurnitureRentalSystem
             this.registerCustomerButton.Enabled = false;
         }
 
+        //************************Search Customer ID Methods*************************
+
         private void createFakeCustomers()
         {
             this.customers = new String[4,6] { {"01", "Justin", "Tyler", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"},
@@ -99,7 +101,6 @@ namespace FurnitureRentalSystem
 
         private bool ensureSearchCustomerFieldsAreCompleted()
         {
-            //if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text))
             if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && this.nameSearchCustomerRadioButton.Checked)
             {
                 this.errorSearchCustomerLabel.Text = "Please fill out both First and Last Name.";
@@ -250,7 +251,6 @@ namespace FurnitureRentalSystem
             int asciiCode = Convert.ToInt32(e.KeyChar);
             if (!(asciiCode >= 65 && asciiCode <= 90) && !(asciiCode >= 97 && asciiCode <= 122) && !(asciiCode == 8) && !(asciiCode == 45) && !(asciiCode == 39))
             {
-                //MessageBox.Show("Not allowed!");
                 e.Handled = true;
             }
         }
@@ -442,7 +442,6 @@ namespace FurnitureRentalSystem
 
 
         //************************KeyDown event handlers************** 
-
 
         private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
