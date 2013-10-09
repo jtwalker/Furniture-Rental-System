@@ -34,3 +34,12 @@ C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\
 C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Form1.resources
 C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Properties.Resources.resources
 C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csproj.GenerateResource.Cache
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe.config
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.exe
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.pdb
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.pdb
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csprojResolveAssemblyReference.cache
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Form1.resources
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Properties.Resources.resources
+C:\Users\Family\Desktop\FurnitureRentalStore\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csproj.GenerateResource.Cache
