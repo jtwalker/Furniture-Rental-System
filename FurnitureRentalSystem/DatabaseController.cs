@@ -70,7 +70,7 @@ namespace FurnitureRentalSystem
         public String AddCustomer(String fname, String mname, String lname, String phone, 
             String ssn, String street, String city, String stateAbbrev, String zipCode)
         {
-            String insert = "Inserted";
+            String customerID = "Inserted";
 
             String insertCustomerSQL = "INSERT INTO CUSTOMER(fname, mname, lname, phone, ssn, "
              + "street, city, stateAbbrev, zipCode) VALUES (@fname, @mname, @lname, @phone, @ssn, "
@@ -93,20 +93,20 @@ namespace FurnitureRentalSystem
                 cmd.Parameters.AddWithValue("@zipCode", zipCode);
 
                 cmd.ExecuteNonQuery();
-                
-             
+
+                customerID = cmd.LastInsertedId.ToString();    
 
             }
             catch (MySqlException ex)
             {
                 this.HandleMySqlException(ex);
-                insert = ex.Message;
+                customerID = ex.Message;
             }
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.Message);
                 Debug.WriteLine(ex.Message);
-                insert = ex.Message;
+                customerID = ex.Message;
             }
             finally
             {
@@ -114,9 +114,13 @@ namespace FurnitureRentalSystem
                     conn.Close();
             }
 
-            return insert;
+
+
+            return customerID;
 
         }
+
+        
 
         private void HandleMySqlException(MySqlException ex)
         {

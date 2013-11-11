@@ -227,16 +227,16 @@ namespace FurnitureRentalSystem
                             "\n  State: " + state +
                             "\n  ZIP Code: " + zipCode +
                             "\n  SSN: " + ssn +
-                            "\n  phone: " + phone +
-                            "\n\n Customer ID: " + customerID;
+                            "\n  phone: " + phone;
 
 
-            MessageBox.Show(message, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
+            //MessageBox.Show(message, "Entered Info", MessageBoxButtons.OK, MessageBoxIcon.None);
             //this.customerID++;
 
             DatabaseController dbc = new DatabaseController();
-            String success = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
-            MessageBox.Show(success, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
+
+            String customerID = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
+            MessageBox.Show(firstName + " " + lastName + "\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
             this.ResetAllControls();
 
         }
