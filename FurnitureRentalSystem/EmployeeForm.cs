@@ -14,23 +14,15 @@ namespace FurnitureRentalSystem
 {
     public partial class EmployeeForm : Form
     {
-        private readonly int PHONE_INDEX = 5;
-        private readonly int NUMBER_OF_CUSTOMER_DETAILS = 6;
-        private readonly int FIRST_NAME_INDEX = 1;
-        private readonly int LAST_NAME_INDEX = 3;
         private ErrorProvider errorProvider;
         private LoginInformation loginInformation;
-        private String[,] customers;
         private ArrayList stateAbbrevs;
 
         public EmployeeForm(LoginInformation loginInformation)
         {
             InitializeComponent();
-            this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
-            this.lastNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.populateStateComboBox();
             this.SetUpRegisterCustomerControls();
-            this.createFakeCustomers();
             this.errorProvider = new ErrorProvider();
             this.loginInformation = loginInformation;
         }
@@ -101,15 +93,7 @@ namespace FurnitureRentalSystem
         }
 
         //************************Search Customer ID Methods*************************
-
-        private void createFakeCustomers()
-        {
-            this.customers = new String[4,6] { {"01", "Justin", "Tyler", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"},
-                                               {"02", "Jennifer", "", "Holland", "456 There Road, Carrollton, GA 30116", "7704567890"},
-                                               {"03", "Jonathan", "Kyle", "Walker", "123 Somewhere Dr, Villa Rica, GA 30180", "7701234567"}, 
-                                               {"04", "Jennifer", "Something", "Holland", "987 Somewhere Else Parkway", "7700000000" } };
-        }
-
+        
         private bool ensureSearchCustomerFieldsAreCompleted()
         {
             if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && this.nameSearchCustomerRadioButton.Checked)
@@ -133,47 +117,23 @@ namespace FurnitureRentalSystem
 
         private void performCustomerSearch()
         {
-            if (this.phoneSearchCustomerRadioButton.Checked)
+            DatabaseController dbc = new DatabaseController();
+            String fname = this.firstNameSearchCustomerTextBox.Text;
+            String lname = this.lastNameSearchCustomerTextBox.Text;
+            String phone = this.phoneNumberSearchCustomerMaskedTextBox.Text;
+            String query = String.Format("SELECT id, fname, mname, lname, CONCAT(street, ', ', city, ', ', stateAbbrev, ' ', zipCode) AS address, phone FROM CUSTOMER WHERE (fname='{0}' AND lname='{1}') OR phone='{2}'", fname, lname, phone);
+            ArrayList customers = dbc.getCustomers(query);
+
+            if (customers.Count != 0)
             {
-                this.usePhoneNumberInCustomerSearch();
+                this.placeCustomersInList(customers);
             }
             else
             {
-                this.useNameInCustomerSearch();
+                this.noResultsFound();
             }
-        }
 
-        private void usePhoneNumberInCustomerSearch()
-        {
-            int numberOfCustomers = this.customers.Length / 6 - 1;
-            for(int i=0; i<=numberOfCustomers; i++)
-            {
-                if (this.customers[i, PHONE_INDEX] == this.phoneNumberSearchCustomerMaskedTextBox.Text)
-                {
-                    this.placeCustomerInList(i);
-                }
-                else if (i == numberOfCustomers && this.searchResultsSearchCustomerListView.Items.Count == 0)
-                {
-                    this.noResultsFound();
-                }
-            }
-            
-        }
-
-        private void useNameInCustomerSearch()
-        {
-            int numberOfCustomers = this.customers.Length / 6 - 1;
-            for (int i = 0; i <= numberOfCustomers; i++)
-            {
-                if (this.customers[i, FIRST_NAME_INDEX].ToLower() == this.firstNameSearchCustomerTextBox.Text.ToLower() && this.customers[i, LAST_NAME_INDEX].ToLower() == this.lastNameSearchCustomerTextBox.Text.ToLower())
-                {
-                    this.placeCustomerInList(i);
-                }
-                else if (i == numberOfCustomers && this.searchResultsSearchCustomerListView.Items.Count == 0)
-                {
-                    this.noResultsFound();
-                }
-            }
+            this.resizeListViewColumns(this.searchResultsSearchCustomerListView);
         }
 
         private void noResultsFound()
@@ -183,14 +143,35 @@ namespace FurnitureRentalSystem
             this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
         }
 
-        private void placeCustomerInList(int customerIndex)
+        private void placeCustomersInList(ArrayList customers)
         {
-            ListViewItem listViewItem = new ListViewItem(this.customers[customerIndex,0], 0);
-            for (int i = 1; i < NUMBER_OF_CUSTOMER_DETAILS; i++)
+            int numberOfColumns = this.searchResultsSearchCustomerListView.Columns.Count;
+            int counter = 0;
+            ListViewItem listViewItem = new ListViewItem();
+
+            while (counter < customers.Count)
             {
-                listViewItem.SubItems.Add(this.customers[customerIndex, i]);
+                if (counter == 0)
+                {
+                    listViewItem = new ListViewItem(Convert.ToString(customers[counter]), 0);
+                    counter++;
+                }
+                else if (counter % numberOfColumns == 0)
+                {
+                    this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
+                    listViewItem = new ListViewItem(Convert.ToString(customers[counter]), 0);
+                    counter++;
+                }
+                else
+                {
+                    listViewItem.SubItems.Add(Convert.ToString(customers[counter]));
+                    counter++;
+                }
+                if (counter == customers.Count)
+                {
+                    this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
+                }
             }
-            this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
         }
 
         private void clearSearchCustomerFields()
@@ -201,6 +182,14 @@ namespace FurnitureRentalSystem
 
             this.errorSearchCustomerLabel.Visible = false;
             this.errorProvider.Clear();
+        }
+
+        private void resizeListViewColumns(ListView lv)
+        {
+            foreach (ColumnHeader column in lv.Columns)
+            {
+                column.Width = -2;
+            }
         }
 
         //************************Click event handlers*************************

@@ -165,7 +165,50 @@ namespace FurnitureRentalSystem
             return userData;
         }
 
-        
+        public ArrayList getCustomers(string query)
+        {
+            ArrayList customers = new ArrayList();
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        customers.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return customers;
+        }
 
         private void HandleMySqlException(MySqlException ex)
         {
