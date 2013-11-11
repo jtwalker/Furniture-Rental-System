@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace FurnitureRentalSystem
 {
-    public partial class Form1 : Form
+    public partial class EmployeeForm : Form
     {
         private readonly int PHONE_INDEX = 5;
         private readonly int NUMBER_OF_CUSTOMER_DETAILS = 6;
@@ -21,7 +21,7 @@ namespace FurnitureRentalSystem
         private ErrorProvider errorProvider;
         private String[,] customers;
 
-        public Form1()
+        public EmployeeForm()
         {
             InitializeComponent();
             this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
