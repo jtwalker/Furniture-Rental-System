@@ -16,13 +16,28 @@ namespace FurnitureRentalSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            loginForm login = new loginForm();
+            LoginInformation loginInformation = new LoginInformation();
+            loginForm login = new loginForm(loginInformation);
             DialogResult result = login.ShowDialog();
             login.Dispose();
             if (result != DialogResult.Cancel)
             {
-                Application.Run(new EmployeeForm());
+                //Application.Run(new EmployeeForm(loginInformation));
+                determineForm(loginInformation);
+            }
+        }
+
+        private static void determineForm(LoginInformation loginInformation)
+        {
+            bool isAdmin = loginInformation.getIsAdmin();
+
+            if (isAdmin)
+            {
+                Application.Run(new AdminForm(loginInformation));
+            }
+            else
+            {
+                Application.Run(new EmployeeForm(loginInformation));
             }
         }
     }

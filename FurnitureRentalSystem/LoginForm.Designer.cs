@@ -33,6 +33,7 @@
             this.userNameLoginTextBox = new System.Windows.Forms.TextBox();
             this.passwordLoginTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
+            this.errorLoginFormLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userNameLoginLabel
@@ -59,6 +60,8 @@
             this.userNameLoginTextBox.Name = "userNameLoginTextBox";
             this.userNameLoginTextBox.Size = new System.Drawing.Size(100, 20);
             this.userNameLoginTextBox.TabIndex = 2;
+            this.userNameLoginTextBox.Validated += new System.EventHandler(textBox_Validated);
+            this.userNameLoginTextBox.Enter += new System.EventHandler(textBox_Entered);
             // 
             // passwordLoginTextBox
             // 
@@ -67,6 +70,8 @@
             this.passwordLoginTextBox.PasswordChar = '*';
             this.passwordLoginTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordLoginTextBox.TabIndex = 3;
+            this.passwordLoginTextBox.Validated += new System.EventHandler(textBox_Validated);
+            this.passwordLoginTextBox.Enter += new System.EventHandler(textBox_Entered);
             // 
             // loginButton
             // 
@@ -78,11 +83,23 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
+            // errorLoginFormLabel
+            // 
+            this.errorLoginFormLabel.AutoSize = true;
+            this.errorLoginFormLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLoginFormLabel.Location = new System.Drawing.Point(6, 107);
+            this.errorLoginFormLabel.Name = "errorLoginFormLabel";
+            this.errorLoginFormLabel.Size = new System.Drawing.Size(100, 39);
+            this.errorLoginFormLabel.TabIndex = 5;
+            this.errorLoginFormLabel.Text = "There was an error\r\nwith your Username\r\nor Password.\r\n";
+            this.errorLoginFormLabel.Visible = false;
+            // 
             // loginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(221, 155);
+            this.Controls.Add(this.errorLoginFormLabel);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordLoginTextBox);
             this.Controls.Add(this.userNameLoginTextBox);
@@ -102,5 +119,6 @@
         private System.Windows.Forms.TextBox userNameLoginTextBox;
         private System.Windows.Forms.TextBox passwordLoginTextBox;
         private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Label errorLoginFormLabel;
     }
 }

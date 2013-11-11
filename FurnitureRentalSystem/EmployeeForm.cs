@@ -19,9 +19,11 @@ namespace FurnitureRentalSystem
         private readonly int FIRST_NAME_INDEX = 1;
         private readonly int LAST_NAME_INDEX = 3;
         private ErrorProvider errorProvider;
+        private LoginInformation loginInformation;
         private String[,] customers;
         private ArrayList stateAbbrevs;
-        public EmployeeForm()
+
+        public EmployeeForm(LoginInformation loginInformation)
         {
             InitializeComponent();
             this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
@@ -30,7 +32,7 @@ namespace FurnitureRentalSystem
             this.SetUpRegisterCustomerControls();
             this.createFakeCustomers();
             this.errorProvider = new ErrorProvider();
-            
+            this.loginInformation = loginInformation;
         }
 
 
