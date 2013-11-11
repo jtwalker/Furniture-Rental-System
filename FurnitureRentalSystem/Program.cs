@@ -22,7 +22,7 @@ namespace FurnitureRentalSystem
             login.Dispose();
             if (result != DialogResult.Cancel)
             {
-                Application.Run(new Form1());
+                Application.Run(new EmployeeForm());
             }
         }
     }

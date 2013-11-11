@@ -1,6 +1,6 @@
 ﻿namespace FurnitureRentalSystem
 {
-    partial class Form1
+    partial class EmployeeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -56,7 +56,6 @@
             this.lastNameRegisterCustomerLabel = new System.Windows.Forms.Label();
             this.middleNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameRegisterCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.stateRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.middleNameRegisterCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameRegisterCustomerLabel = new System.Windows.Forms.Label();
             this.searchForCustomerIDTab = new System.Windows.Forms.TabPage();
@@ -78,6 +77,7 @@
             this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
+            this.stateRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -381,20 +381,6 @@
             this.firstNameRegisterCustomerTextBox.Tag = "";
             this.firstNameRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
             // 
-            // stateRegisterCustomerMaskedTextBox
-            // 
-            this.stateRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(427, 258);
-            this.stateRegisterCustomerMaskedTextBox.Mask = ">LL";
-            this.stateRegisterCustomerMaskedTextBox.Name = "stateRegisterCustomerMaskedTextBox";
-            this.stateRegisterCustomerMaskedTextBox.PromptChar = ' ';
-            this.stateRegisterCustomerMaskedTextBox.ResetOnSpace = false;
-            this.stateRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(34, 20);
-            this.stateRegisterCustomerMaskedTextBox.TabIndex = 13;
-            this.stateRegisterCustomerMaskedTextBox.Tag = "";
-            this.stateRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.letterMask_MaskInputRejected);
-            this.stateRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.stateRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
-            // 
             // middleNameRegisterCustomerLabel
             // 
             this.middleNameRegisterCustomerLabel.AutoSize = true;
@@ -597,7 +583,21 @@
             this.firstNameSearchCustomerLabel.TabIndex = 0;
             this.firstNameSearchCustomerLabel.Text = "First Name:";
             // 
-            // Form1
+            // stateRegisterCustomerMaskedTextBox
+            // 
+            this.stateRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(427, 258);
+            this.stateRegisterCustomerMaskedTextBox.Mask = ">LL";
+            this.stateRegisterCustomerMaskedTextBox.Name = "stateRegisterCustomerMaskedTextBox";
+            this.stateRegisterCustomerMaskedTextBox.PromptChar = ' ';
+            this.stateRegisterCustomerMaskedTextBox.ResetOnSpace = false;
+            this.stateRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(34, 20);
+            this.stateRegisterCustomerMaskedTextBox.TabIndex = 13;
+            this.stateRegisterCustomerMaskedTextBox.Tag = "";
+            this.stateRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.letterMask_MaskInputRejected);
+            this.stateRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
+            this.stateRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
+            // 
+            // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -605,7 +605,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "EmployeeForm";
             this.Text = "Furniture Rental System";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -650,7 +650,6 @@
         private System.Windows.Forms.Label lastNameRegisterCustomerLabel;
         private System.Windows.Forms.TextBox middleNameRegisterCustomerTextBox;
         private System.Windows.Forms.TextBox firstNameRegisterCustomerTextBox;
-        private System.Windows.Forms.MaskedTextBox stateRegisterCustomerMaskedTextBox;
         private System.Windows.Forms.Label middleNameRegisterCustomerLabel;
         private System.Windows.Forms.Label firstNameRegisterCustomerLabel;
         private System.Windows.Forms.Button clearButton;
@@ -673,6 +672,7 @@
         private System.Windows.Forms.RadioButton nameSearchCustomerRadioButton;
         private System.Windows.Forms.GroupBox searchMethodSearchCustomerGroupBox;
         private System.Windows.Forms.Label requiredLabel;
+        private System.Windows.Forms.MaskedTextBox stateRegisterCustomerMaskedTextBox;
     }
 }
 
