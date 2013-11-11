@@ -567,6 +567,7 @@
             this.lastNameSearchCustomerTextBox.Name = "lastNameSearchCustomerTextBox";
             this.lastNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
             this.lastNameSearchCustomerTextBox.TabIndex = 5;
+            this.lastNameSearchCustomerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(keyPress);
             // 
             // lastNameSearchCustomerLabel
             // 
@@ -583,6 +584,7 @@
             this.firstNameSearchCustomerTextBox.Name = "firstNameSearchCustomerTextBox";
             this.firstNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
             this.firstNameSearchCustomerTextBox.TabIndex = 4;
+            this.firstNameSearchCustomerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(keyPress);
             // 
             // firstNameSearchCustomerLabel
             // 
