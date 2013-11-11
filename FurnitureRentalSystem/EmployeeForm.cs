@@ -38,7 +38,7 @@ namespace FurnitureRentalSystem
         private void populateStateComboBox()
         {
             DatabaseController dbc = new DatabaseController();
-            stateAbbrevs = dbc.getStateAbbrevs();
+            stateAbbrevs = dbc.GetStateAbbrevs();
 
             foreach (String abbrev in stateAbbrevs)
             {
@@ -76,7 +76,6 @@ namespace FurnitureRentalSystem
                           (bool)(this.streetAddressRegisterCustomerTextBox.Tag) &&
                           (bool)(this.cityRegisterCustomerTextBox.Tag) &&
                           (bool)(this.stateAbbrevComboBox.Tag) &&
-                          //(bool)(this.stateRegisterCustomerMaskedTextBox.Tag) &&
                           (bool)(this.zipCodeRegisterCustomerMaskedTextBox.Tag) &&
                           (bool)(this.ssnRegisterCustomerMaskedTextBox.Tag) &&
                           (bool)(this.phoneRegisterCustomerMaskedTextBox.Tag));
@@ -92,7 +91,7 @@ namespace FurnitureRentalSystem
             this.cityRegisterCustomerTextBox.Tag = false;
 
             this.stateAbbrevComboBox.Tag = false;
-            //this.stateRegisterCustomerMaskedTextBox.Tag = false;
+
             this.zipCodeRegisterCustomerMaskedTextBox.Tag = false;
             this.ssnRegisterCustomerMaskedTextBox.Tag = false;
             this.phoneRegisterCustomerMaskedTextBox.Tag = false;
@@ -218,7 +217,7 @@ namespace FurnitureRentalSystem
             String ssn = this.ssnRegisterCustomerMaskedTextBox.Text;
             String phone = this.phoneRegisterCustomerMaskedTextBox.Text;
 
-            //TODO: add variables to some data structure
+            
             String message = "Customer registered:\n" +
                             " First Name: " + firstName +
                             "\n  Middle Name: " + middleName +
@@ -230,8 +229,14 @@ namespace FurnitureRentalSystem
                             "\n  SSN: " + ssn +
                             "\n  phone: " + phone +
                             "\n\n Customer ID: " + customerID;
+
+
             MessageBox.Show(message, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
-            this.customerID++;
+            //this.customerID++;
+
+            DatabaseController dbc = new DatabaseController();
+            String success = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
+            MessageBox.Show(success, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
             this.ResetAllControls();
 
         }

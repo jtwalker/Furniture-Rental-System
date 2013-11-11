@@ -45,3 +45,4 @@ C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.exe
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.pdb
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.EmployeeForm.resources
+C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csprojResolveAssemblyReference.cache

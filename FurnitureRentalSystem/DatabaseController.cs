@@ -23,7 +23,7 @@ namespace FurnitureRentalSystem
 
 
 
-        public ArrayList getStateAbbrevs()
+        public ArrayList GetStateAbbrevs()
         {
 
             ArrayList stateAbbrevs = new ArrayList();
@@ -67,11 +67,63 @@ namespace FurnitureRentalSystem
             return stateAbbrevs;
         }
 
+        public String AddCustomer(String fname, String mname, String lname, String phone, 
+            String ssn, String street, String city, String stateAbbrev, String zipCode)
+        {
+            String insert = "Inserted";
+
+            String insertCustomerSQL = "INSERT INTO CUSTOMER(fname, mname, lname, phone, ssn, "
+             + "street, city, stateAbbrev, zipCode) VALUES (@fname, @mname, @lname, @phone, @ssn, "
+             + "@street, @city, @stateAbbrev, @zipCode)";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                cmd = new MySqlCommand(insertCustomerSQL, conn);
+                cmd.Parameters.AddWithValue("@fname", fname);
+                cmd.Parameters.AddWithValue("@mname", mname);
+                cmd.Parameters.AddWithValue("@lname", lname);
+                cmd.Parameters.AddWithValue("@phone", phone); 
+                cmd.Parameters.AddWithValue("@ssn", ssn);
+                cmd.Parameters.AddWithValue("@street", street);
+                cmd.Parameters.AddWithValue("@city", city);
+                cmd.Parameters.AddWithValue("@stateAbbrev", stateAbbrev);
+                cmd.Parameters.AddWithValue("@zipCode", zipCode);
+
+                cmd.ExecuteNonQuery();
+                
+             
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+                insert = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+                insert = ex.Message;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return insert;
+
+        }
+
         private void HandleMySqlException(MySqlException ex)
         {
             switch (ex.Number)
             {
                 case 0:
+
                     Debug.WriteLine("Cannot connect to server.  Contact administrator");
                     //Console.WriteLine("Cannot connect to server.  Contact administrator");
                     break;
