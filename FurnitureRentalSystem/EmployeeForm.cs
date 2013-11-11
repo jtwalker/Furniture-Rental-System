@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Collections;
 
 namespace FurnitureRentalSystem
 {
@@ -20,17 +21,30 @@ namespace FurnitureRentalSystem
         private int customerID = 0;
         private ErrorProvider errorProvider;
         private String[,] customers;
-
+        private ArrayList stateAbbrevs;
         public EmployeeForm()
         {
             InitializeComponent();
             this.firstNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
             this.lastNameSearchCustomerTextBox.KeyPress += new KeyPressEventHandler(keyPress);
+            this.populateStateComboBox();
             this.SetUpRegisterCustomerControls();
             this.createFakeCustomers();
             this.errorProvider = new ErrorProvider();
+            
         }
 
+
+        private void populateStateComboBox()
+        {
+            DatabaseController dbc = new DatabaseController();
+            stateAbbrevs = dbc.getStateAbbrevs();
+
+            foreach (String abbrev in stateAbbrevs)
+            {
+                this.stateAbbrevComboBox.Items.Add(abbrev);
+            }
+        }
 
 
 
@@ -61,7 +75,8 @@ namespace FurnitureRentalSystem
                           (bool)(this.lastNameRegisterCustomerTextBox.Tag) &&
                           (bool)(this.streetAddressRegisterCustomerTextBox.Tag) &&
                           (bool)(this.cityRegisterCustomerTextBox.Tag) &&
-                          (bool)(this.stateRegisterCustomerMaskedTextBox.Tag) &&
+                          (bool)(this.stateAbbrevComboBox.Tag) &&
+                          //(bool)(this.stateRegisterCustomerMaskedTextBox.Tag) &&
                           (bool)(this.zipCodeRegisterCustomerMaskedTextBox.Tag) &&
                           (bool)(this.ssnRegisterCustomerMaskedTextBox.Tag) &&
                           (bool)(this.phoneRegisterCustomerMaskedTextBox.Tag));
@@ -76,7 +91,8 @@ namespace FurnitureRentalSystem
             this.streetAddressRegisterCustomerTextBox.Tag = false;
             this.cityRegisterCustomerTextBox.Tag = false;
 
-            this.stateRegisterCustomerMaskedTextBox.Tag = false;
+            this.stateAbbrevComboBox.Tag = false;
+            //this.stateRegisterCustomerMaskedTextBox.Tag = false;
             this.zipCodeRegisterCustomerMaskedTextBox.Tag = false;
             this.ssnRegisterCustomerMaskedTextBox.Tag = false;
             this.phoneRegisterCustomerMaskedTextBox.Tag = false;
@@ -197,7 +213,7 @@ namespace FurnitureRentalSystem
             String lastName = this.lastNameRegisterCustomerTextBox.Text;
             String streetAddress = this.streetAddressRegisterCustomerTextBox.Text;
             String city = this.cityRegisterCustomerTextBox.Text;
-            String state = this.streetAddressRegisterCustomerTextBox.Text;
+            String state = this.stateAbbrevComboBox.SelectedItem.ToString();
             String zipCode = this.zipCodeRegisterCustomerMaskedTextBox.Text;
             String ssn = this.ssnRegisterCustomerMaskedTextBox.Text;
             String phone = this.phoneRegisterCustomerMaskedTextBox.Text;
@@ -392,6 +408,23 @@ namespace FurnitureRentalSystem
                 this.lastNameSearchCustomerTextBox.Enabled = true; 
             }
         }
+
+        private void stateAbbrevComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem))
+            {
+                this.errorProvider.SetError(this.stateAbbrevComboBox, "Must make selection.");
+            }
+            else
+            {
+                this.errorProvider.SetError(this.stateAbbrevComboBox, "");
+            }
+
+            this.stateAbbrevComboBox.Tag = this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem);
+            
+            this.ValidateAll();
+        }
+
 
        
        
