@@ -16,13 +16,14 @@ namespace FurnitureRentalSystem
     {
 
         private ErrorProvider errorProvider;
+        private LoginInformation loginInformation;
+        private const int NO_RESULTS = 0;
 
-        public loginForm()
+        public loginForm(LoginInformation loginInformation)
         {
             InitializeComponent();
             this.errorProvider = new ErrorProvider();
-            this.userNameLoginTextBox.Validated += new EventHandler(textBox_Validated);
-            this.passwordLoginTextBox.Validated += new EventHandler(textBox_Validated);
+            this.loginInformation = loginInformation;
         }
 
         private void textBox_Validated(object sender, EventArgs e)
@@ -38,13 +39,41 @@ namespace FurnitureRentalSystem
             }
         }
 
+        private void textBox_Entered(object sender, EventArgs e)
+        {
+            if (this.errorLoginFormLabel.Visible)
+            {
+                this.errorLoginFormLabel.Visible = false;
+            }
+        }
+
         private void loginButton_Click(object sender, EventArgs e)
         {
             this.ValidateChildren();
 
             if (this.userNameLoginTextBox.TextLength > 0 && this.passwordLoginTextBox.TextLength > 0)
             {
+                this.validateLogin(this.userNameLoginTextBox.Text, this.passwordLoginTextBox.Text);
+            }
+        }
+
+        private void validateLogin(string username, string password)
+        {
+            DatabaseController dbc = new DatabaseController();
+            string query = String.Format("SELECT id, fname, lname, isAdmin FROM EMPLOYEE WHERE login='{0}' AND BINARY password='{1}'", username, password);
+            ArrayList userData = dbc.getLogin(query);
+
+            if (userData.Count != NO_RESULTS)
+            {
+                this.loginInformation.setEmployeeID(Convert.ToInt32(userData[0]));
+                this.loginInformation.setUsername(username);
+                this.loginInformation.setName(userData[1] + " " + userData[2]);
+                this.loginInformation.setIsAdmin(Convert.ToInt32(userData[3]));
                 this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.errorLoginFormLabel.Visible = true;
             }
         }
     }

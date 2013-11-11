@@ -39,7 +39,7 @@ namespace FurnitureRentalSystem
 
                 while (reader.Read())
                 {
-                    Debug.WriteLine(reader["abbrev"]);
+                    //Debug.WriteLine(reader["abbrev"]);
                     stateAbbrevs.Add(reader["abbrev"]);
                 }
 
@@ -118,6 +118,51 @@ namespace FurnitureRentalSystem
 
             return customerID;
 
+        }
+
+        public ArrayList getLogin(string query)
+        {
+            ArrayList userData = new ArrayList();
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        userData.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return userData;
         }
 
         
