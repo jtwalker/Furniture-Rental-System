@@ -38,6 +38,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.registerCustomerTab = new System.Windows.Forms.TabPage();
+            this.stateAbbrevComboBox = new System.Windows.Forms.ComboBox();
             this.requiredLabel = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
             this.registerCustomerButton = new System.Windows.Forms.Button();
@@ -77,7 +78,6 @@
             this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.stateRegisterCustomerMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -172,6 +172,7 @@
             // registerCustomerTab
             // 
             this.registerCustomerTab.CausesValidation = false;
+            this.registerCustomerTab.Controls.Add(this.stateAbbrevComboBox);
             this.registerCustomerTab.Controls.Add(this.requiredLabel);
             this.registerCustomerTab.Controls.Add(this.clearButton);
             this.registerCustomerTab.Controls.Add(this.registerCustomerButton);
@@ -190,7 +191,6 @@
             this.registerCustomerTab.Controls.Add(this.lastNameRegisterCustomerLabel);
             this.registerCustomerTab.Controls.Add(this.middleNameRegisterCustomerTextBox);
             this.registerCustomerTab.Controls.Add(this.firstNameRegisterCustomerTextBox);
-            this.registerCustomerTab.Controls.Add(this.stateRegisterCustomerMaskedTextBox);
             this.registerCustomerTab.Controls.Add(this.middleNameRegisterCustomerLabel);
             this.registerCustomerTab.Controls.Add(this.firstNameRegisterCustomerLabel);
             this.registerCustomerTab.Location = new System.Drawing.Point(4, 22);
@@ -200,6 +200,16 @@
             this.registerCustomerTab.TabIndex = 0;
             this.registerCustomerTab.Text = "Register Customer";
             this.registerCustomerTab.UseVisualStyleBackColor = true;
+            // 
+            // stateAbbrevComboBox
+            // 
+            this.stateAbbrevComboBox.FormattingEnabled = true;
+            this.stateAbbrevComboBox.Location = new System.Drawing.Point(393, 258);
+            this.stateAbbrevComboBox.Name = "stateAbbrevComboBox";
+            this.stateAbbrevComboBox.Size = new System.Drawing.Size(50, 21);
+            this.stateAbbrevComboBox.TabIndex = 13;
+            this.stateAbbrevComboBox.SelectedIndexChanged += new System.EventHandler(this.stateAbbrevComboBox_SelectedIndexChanged);
+            this.stateAbbrevComboBox.Leave += new System.EventHandler(this.stateAbbrevComboBox_SelectedIndexChanged);
             // 
             // requiredLabel
             // 
@@ -304,7 +314,7 @@
             // stateRegisterCustomerlabel
             // 
             this.stateRegisterCustomerlabel.AutoSize = true;
-            this.stateRegisterCustomerlabel.Location = new System.Drawing.Point(386, 261);
+            this.stateRegisterCustomerlabel.Location = new System.Drawing.Point(356, 261);
             this.stateRegisterCustomerlabel.Name = "stateRegisterCustomerlabel";
             this.stateRegisterCustomerlabel.Size = new System.Drawing.Size(39, 13);
             this.stateRegisterCustomerlabel.TabIndex = 12;
@@ -314,7 +324,7 @@
             // 
             this.cityRegisterCustomerTextBox.Location = new System.Drawing.Point(187, 258);
             this.cityRegisterCustomerTextBox.Name = "cityRegisterCustomerTextBox";
-            this.cityRegisterCustomerTextBox.Size = new System.Drawing.Size(180, 20);
+            this.cityRegisterCustomerTextBox.Size = new System.Drawing.Size(163, 20);
             this.cityRegisterCustomerTextBox.TabIndex = 11;
             this.cityRegisterCustomerTextBox.Tag = "";
             this.cityRegisterCustomerTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxEmpty_Validating);
@@ -583,20 +593,6 @@
             this.firstNameSearchCustomerLabel.TabIndex = 0;
             this.firstNameSearchCustomerLabel.Text = "First Name:";
             // 
-            // stateRegisterCustomerMaskedTextBox
-            // 
-            this.stateRegisterCustomerMaskedTextBox.Location = new System.Drawing.Point(427, 258);
-            this.stateRegisterCustomerMaskedTextBox.Mask = ">LL";
-            this.stateRegisterCustomerMaskedTextBox.Name = "stateRegisterCustomerMaskedTextBox";
-            this.stateRegisterCustomerMaskedTextBox.PromptChar = ' ';
-            this.stateRegisterCustomerMaskedTextBox.ResetOnSpace = false;
-            this.stateRegisterCustomerMaskedTextBox.Size = new System.Drawing.Size(34, 20);
-            this.stateRegisterCustomerMaskedTextBox.TabIndex = 13;
-            this.stateRegisterCustomerMaskedTextBox.Tag = "";
-            this.stateRegisterCustomerMaskedTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.letterMask_MaskInputRejected);
-            this.stateRegisterCustomerMaskedTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.maskedTextBox_MouseClick);
-            this.stateRegisterCustomerMaskedTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox_Validating);
-            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,7 +668,7 @@
         private System.Windows.Forms.RadioButton nameSearchCustomerRadioButton;
         private System.Windows.Forms.GroupBox searchMethodSearchCustomerGroupBox;
         private System.Windows.Forms.Label requiredLabel;
-        private System.Windows.Forms.MaskedTextBox stateRegisterCustomerMaskedTextBox;
+        private System.Windows.Forms.ComboBox stateAbbrevComboBox;
     }
 }
 

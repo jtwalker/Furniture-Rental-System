@@ -39,9 +39,9 @@ C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\bin\Debug
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.pdb
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\bin\Debug\mysql.data.dll
-C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Form1.resources
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.loginForm.resources
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Properties.Resources.resources
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csproj.GenerateResource.Cache
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.exe
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.pdb
+C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.EmployeeForm.resources
