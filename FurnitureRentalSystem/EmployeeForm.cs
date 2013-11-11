@@ -18,7 +18,6 @@ namespace FurnitureRentalSystem
         private readonly int NUMBER_OF_CUSTOMER_DETAILS = 6;
         private readonly int FIRST_NAME_INDEX = 1;
         private readonly int LAST_NAME_INDEX = 3;
-        private int customerID = 0;
         private ErrorProvider errorProvider;
         private String[,] customers;
         private ArrayList stateAbbrevs;
@@ -217,18 +216,16 @@ namespace FurnitureRentalSystem
             String ssn = this.ssnRegisterCustomerMaskedTextBox.Text;
             String phone = this.phoneRegisterCustomerMaskedTextBox.Text;
 
-            
-            String message = "Customer registered:\n" +
-                            " First Name: " + firstName +
-                            "\n  Middle Name: " + middleName +
-                            "\n  Last Name: " + lastName +
-                            "\n  Street Address: " + streetAddress +
-                            "\n  City: " + city +
-                            "\n  State: " + state +
-                            "\n  ZIP Code: " + zipCode +
-                            "\n  SSN: " + ssn +
-                            "\n  phone: " + phone;
-
+            //String message = "Customer registered:\n" +
+            //                " First Name: " + firstName +
+            //                "\n  Middle Name: " + middleName +
+            //                "\n  Last Name: " + lastName +
+            //                "\n  Street Address: " + streetAddress +
+            //                "\n  City: " + city +
+            //                "\n  State: " + state +
+            //                "\n  ZIP Code: " + zipCode +
+            //                "\n  SSN: " + ssn +
+            //                "\n  phone: " + phone;
 
             //MessageBox.Show(message, "Entered Info", MessageBoxButtons.OK, MessageBoxIcon.None);
             //this.customerID++;
@@ -236,7 +233,7 @@ namespace FurnitureRentalSystem
             DatabaseController dbc = new DatabaseController();
 
             String customerID = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
-            MessageBox.Show(firstName + " " + lastName + "\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
+            MessageBox.Show(firstName + " " + lastName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
             this.ResetAllControls();
 
         }
