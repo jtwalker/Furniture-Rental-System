@@ -21,6 +21,7 @@ namespace FurnitureRentalSystem
         public EmployeeForm(LoginInformation loginInformation)
         {
             InitializeComponent();
+            this.AcceptButton = this.registerCustomerButton;
             this.populateStateComboBox();
             this.SetUpRegisterCustomerControls();
             this.errorProvider = new ErrorProvider();
@@ -287,6 +288,19 @@ namespace FurnitureRentalSystem
             }
             this.errorProvider.Clear();
             this.SetUpRegisterCustomerControls();
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl.SelectedIndex)
+            {
+                case 0:
+                    this.AcceptButton = this.registerCustomerButton;
+                    break;
+                case 1:
+                    this.AcceptButton = this.searchSearchCustomerButton;
+                    break;
+            }
         }
 
 

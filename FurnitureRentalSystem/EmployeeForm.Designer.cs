@@ -178,6 +178,7 @@
             this.tabControl.Size = new System.Drawing.Size(746, 552);
             this.tabControl.TabIndex = 0;
             this.tabControl.TabStop = false;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // registerCustomerTab
             // 
