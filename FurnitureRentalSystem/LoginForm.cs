@@ -22,6 +22,7 @@ namespace FurnitureRentalSystem
         public loginForm(LoginInformation loginInformation)
         {
             InitializeComponent();
+            this.AcceptButton = this.loginButton;
             this.errorProvider = new ErrorProvider();
             this.loginInformation = loginInformation;
         }
