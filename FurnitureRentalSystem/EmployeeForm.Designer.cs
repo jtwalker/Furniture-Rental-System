@@ -30,6 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +79,7 @@
             this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
+            this.loggedInLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -100,10 +102,18 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.loggedInLabel_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -567,7 +577,7 @@
             this.lastNameSearchCustomerTextBox.Name = "lastNameSearchCustomerTextBox";
             this.lastNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
             this.lastNameSearchCustomerTextBox.TabIndex = 5;
-            this.lastNameSearchCustomerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(keyPress);
+            this.lastNameSearchCustomerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress);
             // 
             // lastNameSearchCustomerLabel
             // 
@@ -584,7 +594,7 @@
             this.firstNameSearchCustomerTextBox.Name = "firstNameSearchCustomerTextBox";
             this.firstNameSearchCustomerTextBox.Size = new System.Drawing.Size(100, 20);
             this.firstNameSearchCustomerTextBox.TabIndex = 4;
-            this.firstNameSearchCustomerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(keyPress);
+            this.firstNameSearchCustomerTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPress);
             // 
             // firstNameSearchCustomerLabel
             // 
@@ -595,11 +605,23 @@
             this.firstNameSearchCustomerLabel.TabIndex = 0;
             this.firstNameSearchCustomerLabel.Text = "First Name:";
             // 
+            // loggedInLabel
+            // 
+            this.loggedInLabel.AutoSize = true;
+            this.loggedInLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.loggedInLabel.Location = new System.Drawing.Point(717, 24);
+            this.loggedInLabel.Name = "loggedInLabel";
+            this.loggedInLabel.Size = new System.Drawing.Size(54, 13);
+            this.loggedInLabel.TabIndex = 23;
+            this.loggedInLabel.Text = "Logged in";
+            this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(771, 591);
+            this.Controls.Add(this.loggedInLabel);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -671,6 +693,8 @@
         private System.Windows.Forms.GroupBox searchMethodSearchCustomerGroupBox;
         private System.Windows.Forms.Label requiredLabel;
         private System.Windows.Forms.ComboBox stateAbbrevComboBox;
+        private System.Windows.Forms.Label loggedInLabel;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
 
