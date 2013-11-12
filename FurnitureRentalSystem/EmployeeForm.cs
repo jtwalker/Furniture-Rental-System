@@ -25,6 +25,7 @@ namespace FurnitureRentalSystem
             this.SetUpRegisterCustomerControls();
             this.errorProvider = new ErrorProvider();
             this.loginInformation = loginInformation;
+            this.loggedInLabel.Text = String.Format("You are logged in as: {0}. Click to logout.", this.loginInformation.getName());
         }
 
 
@@ -416,6 +417,11 @@ namespace FurnitureRentalSystem
             this.stateAbbrevComboBox.Tag = this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem);
             
             this.ValidateAll();
+        }
+
+        private void loggedInLabel_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
 
 
