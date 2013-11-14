@@ -123,8 +123,7 @@ namespace FurnitureRentalSystem
             String fname = this.firstNameSearchCustomerTextBox.Text;
             String lname = this.lastNameSearchCustomerTextBox.Text;
             String phone = this.phoneNumberSearchCustomerMaskedTextBox.Text;
-            String query = String.Format("SELECT id, fname, mname, lname, CONCAT(street, ', ', city, ', ', stateAbbrev, ' ', zipCode) AS address, phone FROM CUSTOMER WHERE (fname='{0}' AND lname='{1}') OR phone='{2}'", fname, lname, phone);
-            ArrayList customers = dbc.getCustomers(query);
+            ArrayList customers = dbc.getCustomers(fname, lname, phone);
 
             if (customers.Count != 0)
             {

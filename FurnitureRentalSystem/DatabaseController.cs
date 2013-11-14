@@ -165,17 +165,22 @@ namespace FurnitureRentalSystem
             return userData;
         }
 
-        public ArrayList getCustomers(string query)
+        public ArrayList getCustomers(String fname, String lname, String phone)
         {
             ArrayList customers = new ArrayList();
+            String query = "SELECT id, fname, mname, lname, CONCAT(street, ', ', city, ', ', stateAbbrev, ' ', zipCode) AS address, phone FROM CUSTOMER WHERE (fname=@fname AND lname=@lname) OR phone=@phone";
 
             try
             {
                 conn = new MySqlConnection(conStr);
+
                 conn.Open();
 
                 MySqlDataReader reader;
                 cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@fname", fname);
+                cmd.Parameters.AddWithValue("@lname", lname);
+                cmd.Parameters.AddWithValue("@phone", phone);
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
