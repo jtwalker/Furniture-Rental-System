@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using FurnitureRentalSystem.Model;
+
+
 namespace FurnitureRentalSystem
 {
     public partial class AdminForm : Form

@@ -83,3 +83,4 @@ C:\Users\jwalke21\Desktop\New folder\FurnitureRentalSystem\obj\Debug\FurnitureRe
 C:\Users\jwalke21\Desktop\New folder\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.loginForm.resources
 C:\Users\jwalke21\Desktop\New folder\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Properties.Resources.resources
 C:\Users\jwalke21\Desktop\New folder\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csproj.GenerateResource.Cache
+C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.AdminForm.resources
