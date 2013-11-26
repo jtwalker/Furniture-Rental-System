@@ -33,69 +33,65 @@ namespace FurnitureRentalSystem
         }
 
 
-        private void populateStateComboBox()
-        {
-            DatabaseAccess dbc = new DatabaseAccess();
-            stateAbbrevs = dbc.GetStateAbbrevs();
 
-            foreach (String abbrev in stateAbbrevs)
+
+        //******************************Menu Item Event Handlers**************************
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String aboutMessage = "Furniture Rental System\nVersion 0.1\nCreated By: Justin Walker and Jennifer Holland";
+            MessageBox.Show(aboutMessage, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void registerCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(registerCustomerTab);
+        }
+
+        private void searchForCustomerIDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            tabControl.SelectTab(searchForCustomerIDTab);
+        }
+
+
+
+
+        //****************************Tab Control Event Handlers***************************
+              
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl.SelectedIndex)
             {
-                this.stateAbbrevComboBox.Items.Add(abbrev);
+                case 0:
+                    this.AcceptButton = this.registerCustomerButton;
+                    break;
+                case 1:
+                    this.AcceptButton = this.searchSearchCustomerButton;
+                    break;
             }
         }
 
 
-
-        //*************************private helper methods********************
-
-       
-
-
-        private void CheckMaskedTextMaskIsComplete(MaskedTextBox maskedTextBox)
+        //***************************Login Label Event Handlers*******************
+        private void loggedInLabel_Click(object sender, EventArgs e)
         {
-            if (!maskedTextBox.MaskCompleted)
-            {
-               
-                maskedTextBox.Tag = false;
-                this.errorProvider.SetError(maskedTextBox, "The field must be completed.");
-            }
-            else
-            {
-                this.errorProvider.SetError(maskedTextBox, "");
-                maskedTextBox.Tag = true;
-            }
-            ValidateAll();
+            Application.Restart();
         }
 
-        private void ValidateAll()
-        {
-            bool enable = ((bool)(this.firstNameRegisterCustomerTextBox.Tag) &&
-                          (bool)(this.lastNameRegisterCustomerTextBox.Tag) &&
-                          (bool)(this.streetAddressRegisterCustomerTextBox.Tag) &&
-                          (bool)(this.cityRegisterCustomerTextBox.Tag) &&
-                          (bool)(this.stateAbbrevComboBox.Tag) &&
-                          (bool)(this.zipCodeRegisterCustomerMaskedTextBox.Tag) &&
-                          (bool)(this.ssnRegisterCustomerMaskedTextBox.Tag) &&
-                          (bool)(this.phoneRegisterCustomerMaskedTextBox.Tag));
 
-            this.registerCustomerButton.Enabled = enable;
-        }
 
-        private void SetUpRegisterCustomerControls()
-        {
-            this.firstNameRegisterCustomerTextBox.Tag = false;
-            this.lastNameRegisterCustomerTextBox.Tag = false;
-            this.streetAddressRegisterCustomerTextBox.Tag = false;
-            this.cityRegisterCustomerTextBox.Tag = false;
 
-            this.stateAbbrevComboBox.Tag = false;
 
-            this.zipCodeRegisterCustomerMaskedTextBox.Tag = false;
-            this.ssnRegisterCustomerMaskedTextBox.Tag = false;
-            this.phoneRegisterCustomerMaskedTextBox.Tag = false;
-
-            this.registerCustomerButton.Enabled = false;
-        }
+        //***************************************************************************************************************
+        //*******************************************SEARCH CUSTOMER TAB **********************************************
+        //***************************************************************************************************************
+   
 
         //************************Search Customer ID Methods*************************
         
@@ -196,54 +192,9 @@ namespace FurnitureRentalSystem
             }
         }
 
+
+
         //************************Click event handlers*************************
-
-        private void registerCustomerButton_Click(object sender, EventArgs e)
-        {
-
-            String firstName = this.firstNameRegisterCustomerTextBox.Text;
-            String middleName = this.middleNameRegisterCustomerTextBox.Text;
-            String lastName = this.lastNameRegisterCustomerTextBox.Text;
-            String streetAddress = this.streetAddressRegisterCustomerTextBox.Text;
-            String city = this.cityRegisterCustomerTextBox.Text;
-            String state = this.stateAbbrevComboBox.SelectedItem.ToString();
-            String zipCode = this.zipCodeRegisterCustomerMaskedTextBox.Text;
-            String ssn = this.ssnRegisterCustomerMaskedTextBox.Text;
-            String phone = this.phoneRegisterCustomerMaskedTextBox.Text;
-
-            //String message = "Customer registered:\n" +
-            //                " First Name: " + firstName +
-            //                "\n  Middle Name: " + middleName +
-            //                "\n  Last Name: " + lastName +
-            //                "\n  Street Address: " + streetAddress +
-            //                "\n  City: " + city +
-            //                "\n  State: " + state +
-            //                "\n  ZIP Code: " + zipCode +
-            //                "\n  SSN: " + ssn +
-            //                "\n  phone: " + phone;
-
-            //MessageBox.Show(message, "Entered Info", MessageBoxButtons.OK, MessageBoxIcon.None);
-            //this.customerID++;
-
-            DatabaseAccess dbc = new DatabaseAccess();
-
-            String customerID = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
-            MessageBox.Show(firstName + " " + lastName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
-            this.ResetAllControls();
-
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String aboutMessage = "Furniture Rental System\nVersion 0.1\nCreated By: Justin Walker and Jennifer Holland";
-            MessageBox.Show(aboutMessage, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void searchSearchCustomerButton_Click(object sender, EventArgs e)
         {
             this.searchResultsSearchCustomerListView.Items.Clear();
@@ -263,58 +214,98 @@ namespace FurnitureRentalSystem
             }
         }
 
-        private void registerCustomerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectTab(registerCustomerTab);
-        }
 
-        private void searchForCustomerIDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        //************************KeyDown event handlers************** 
 
-            tabControl.SelectTab(searchForCustomerIDTab);
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
+        private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            this.ResetAllControls();
-        }
-
-        private void ResetAllControls()
-        {
-            foreach (Control control in this.registerCustomerTab.Controls)
+            this.clearSearchCustomerFields();
+            if (this.nameSearchCustomerRadioButton.Checked)
             {
-                if (control is TextBox || control is MaskedTextBox)
-                {
-                    control.Text = "";
-                }
+                this.phoneNumberSearchCustomerMaskedTextBox.Enabled = false;
             }
-            this.errorProvider.Clear();
-            this.SetUpRegisterCustomerControls();
-        }
-
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (tabControl.SelectedIndex)
+            else
             {
-                case 0:
-                    this.AcceptButton = this.registerCustomerButton;
-                    break;
-                case 1:
-                    this.AcceptButton = this.searchSearchCustomerButton;
-                    break;
+                this.phoneNumberSearchCustomerMaskedTextBox.Enabled = true;
             }
         }
 
-
-
-
-        //************MouseClick event handlers******************************
-
-        private void maskedTextBox_MouseClick(object sender, MouseEventArgs e)
+        private void phoneSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            MaskedTextBox mTextBox = (MaskedTextBox)sender;
+            this.clearSearchCustomerFields();
+            if (this.phoneSearchCustomerRadioButton.Checked)
+            {
+                this.firstNameSearchCustomerTextBox.Enabled = false;
+                this.lastNameSearchCustomerTextBox.Enabled = false;
+            }
+            else
+            {
+                this.firstNameSearchCustomerTextBox.Enabled = true;
+                this.lastNameSearchCustomerTextBox.Enabled = true; 
+            }
+        }
 
-            mTextBox.SelectionStart = 0;
+      
+
+    
+
+
+
+
+
+
+
+
+
+
+       //***************************************************************************************************************
+       //*******************************************REGISTER CUSTOMER TAB **********************************************
+       //***************************************************************************************************************
+
+
+
+
+        //**********************Select ComboBox Item Event Handlers******************************
+
+        private void stateAbbrevComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem))
+            {
+                this.errorProvider.SetError(this.stateAbbrevComboBox, "Must make selection.");
+            }
+            else
+            {
+                this.errorProvider.SetError(this.stateAbbrevComboBox, "");
+            }
+
+            this.stateAbbrevComboBox.Tag = this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem);
+
+            this.ValidateAll();
+        }
+
+
+
+
+        //**********************MaskInputRejected event handlers************************
+
+        private void numericMask_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
+
+            if (!maskedTextBox.MaskFull && e.Position != maskedTextBox.Mask.Length)
+            {
+                this.errorProvider.SetError(maskedTextBox, "You can only add numeric characters (0-9) into this field.");
+            }
+        }
+
+        private void letterMask_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
+
+            if (!maskedTextBox.MaskFull && e.Position != maskedTextBox.Mask.Length)
+            {
+                this.errorProvider.SetError(maskedTextBox, "You can only add letter characters into this field.");
+            }
         }
 
 
@@ -364,86 +355,135 @@ namespace FurnitureRentalSystem
             }
         }
 
+        //************MouseClick event handlers******************************
 
-        //**********************MaskInputRejected event handlers************************
-
-        private void numericMask_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void maskedTextBox_MouseClick(object sender, MouseEventArgs e)
         {
-            MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-      
-            if (!maskedTextBox.MaskFull && e.Position != maskedTextBox.Mask.Length)
-            {
-                this.errorProvider.SetError(maskedTextBox, "You can only add numeric characters (0-9) into this field.");
-            }
-        }
+            MaskedTextBox mTextBox = (MaskedTextBox)sender;
 
-        private void letterMask_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-            MaskedTextBox maskedTextBox = (MaskedTextBox)sender;
-            
-            if (!maskedTextBox.MaskFull && e.Position != maskedTextBox.Mask.Length)
-            {
-                this.errorProvider.SetError(maskedTextBox, "You can only add letter characters into this field.");
-            }
+            mTextBox.SelectionStart = 0;
         }
 
 
 
-        //************************KeyDown event handlers************** 
 
-        private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
+        //************************Click event handlers*************************
+
+        private void registerCustomerButton_Click(object sender, EventArgs e)
         {
-            this.clearSearchCustomerFields();
-            if (this.nameSearchCustomerRadioButton.Checked)
+
+            String firstName = this.firstNameRegisterCustomerTextBox.Text;
+            String middleName = this.middleNameRegisterCustomerTextBox.Text;
+            String lastName = this.lastNameRegisterCustomerTextBox.Text;
+            String streetAddress = this.streetAddressRegisterCustomerTextBox.Text;
+            String city = this.cityRegisterCustomerTextBox.Text;
+            String state = this.stateAbbrevComboBox.SelectedItem.ToString();
+            String zipCode = this.zipCodeRegisterCustomerMaskedTextBox.Text;
+            String ssn = this.ssnRegisterCustomerMaskedTextBox.Text;
+            String phone = this.phoneRegisterCustomerMaskedTextBox.Text;
+
+            //String message = "Customer registered:\n" +
+            //                " First Name: " + firstName +
+            //                "\n  Middle Name: " + middleName +
+            //                "\n  Last Name: " + lastName +
+            //                "\n  Street Address: " + streetAddress +
+            //                "\n  City: " + city +
+            //                "\n  State: " + state +
+            //                "\n  ZIP Code: " + zipCode +
+            //                "\n  SSN: " + ssn +
+            //                "\n  phone: " + phone;
+
+            //MessageBox.Show(message, "Entered Info", MessageBoxButtons.OK, MessageBoxIcon.None);
+            //this.customerID++;
+
+            DatabaseAccess dbc = new DatabaseAccess();
+
+            String customerID = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
+            MessageBox.Show(firstName + " " + lastName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
+            this.ResetAllControls();
+
+        }
+
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.ResetAllControls();
+        }
+
+
+
+        //*************************private helper methods********************
+
+        private void CheckMaskedTextMaskIsComplete(MaskedTextBox maskedTextBox)
+        {
+            if (!maskedTextBox.MaskCompleted)
             {
-                this.phoneNumberSearchCustomerMaskedTextBox.Enabled = false;
+
+                maskedTextBox.Tag = false;
+                this.errorProvider.SetError(maskedTextBox, "The field must be completed.");
             }
             else
             {
-                this.phoneNumberSearchCustomerMaskedTextBox.Enabled = true;
+                this.errorProvider.SetError(maskedTextBox, "");
+                maskedTextBox.Tag = true;
             }
+            ValidateAll();
         }
 
-        private void phoneSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void ValidateAll()
         {
-            this.clearSearchCustomerFields();
-            if (this.phoneSearchCustomerRadioButton.Checked)
-            {
-                this.firstNameSearchCustomerTextBox.Enabled = false;
-                this.lastNameSearchCustomerTextBox.Enabled = false;
-            }
-            else
-            {
-                this.firstNameSearchCustomerTextBox.Enabled = true;
-                this.lastNameSearchCustomerTextBox.Enabled = true; 
-            }
+            bool enable = ((bool)(this.firstNameRegisterCustomerTextBox.Tag) &&
+                          (bool)(this.lastNameRegisterCustomerTextBox.Tag) &&
+                          (bool)(this.streetAddressRegisterCustomerTextBox.Tag) &&
+                          (bool)(this.cityRegisterCustomerTextBox.Tag) &&
+                          (bool)(this.stateAbbrevComboBox.Tag) &&
+                          (bool)(this.zipCodeRegisterCustomerMaskedTextBox.Tag) &&
+                          (bool)(this.ssnRegisterCustomerMaskedTextBox.Tag) &&
+                          (bool)(this.phoneRegisterCustomerMaskedTextBox.Tag));
+
+            this.registerCustomerButton.Enabled = enable;
         }
 
-        private void stateAbbrevComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetUpRegisterCustomerControls()
         {
-            if (!this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem))
-            {
-                this.errorProvider.SetError(this.stateAbbrevComboBox, "Must make selection.");
-            }
-            else
-            {
-                this.errorProvider.SetError(this.stateAbbrevComboBox, "");
-            }
+            this.firstNameRegisterCustomerTextBox.Tag = false;
+            this.lastNameRegisterCustomerTextBox.Tag = false;
+            this.streetAddressRegisterCustomerTextBox.Tag = false;
+            this.cityRegisterCustomerTextBox.Tag = false;
 
-            this.stateAbbrevComboBox.Tag = this.stateAbbrevs.Contains(this.stateAbbrevComboBox.SelectedItem);
-            
-            this.ValidateAll();
+            this.stateAbbrevComboBox.Tag = false;
+
+            this.zipCodeRegisterCustomerMaskedTextBox.Tag = false;
+            this.ssnRegisterCustomerMaskedTextBox.Tag = false;
+            this.phoneRegisterCustomerMaskedTextBox.Tag = false;
+
+            this.registerCustomerButton.Enabled = false;
         }
 
-        private void loggedInLabel_Click(object sender, EventArgs e)
+
+        private void populateStateComboBox()
         {
-            Application.Restart();
+            DatabaseAccess dbc = new DatabaseAccess();
+            stateAbbrevs = dbc.GetStateAbbrevs();
+
+            foreach (String abbrev in stateAbbrevs)
+            {
+                this.stateAbbrevComboBox.Items.Add(abbrev);
+            }
         }
 
-
-       
-       
-
+        private void ResetAllControls()
+        {
+            foreach (Control control in this.registerCustomerTab.Controls)
+            {
+                if (control is TextBox || control is MaskedTextBox)
+                {
+                    control.Text = "";
+                }
+            }
+            this.errorProvider.Clear();
+            this.SetUpRegisterCustomerControls();
+        }
         
     }
            
