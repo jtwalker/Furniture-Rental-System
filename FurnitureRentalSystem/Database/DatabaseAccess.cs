@@ -9,9 +9,9 @@ using System.Diagnostics;
 using System.Collections;
 
 
-namespace FurnitureRentalSystem
+namespace FurnitureRentalSystem.Database
 {
-    public class DatabaseController
+    public class DatabaseAccess
     {
 
 

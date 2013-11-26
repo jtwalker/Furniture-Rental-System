@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 
+using FurnitureRentalSystem.Model;
+using FurnitureRentalSystem.Database;
+
 namespace FurnitureRentalSystem
 {
     public partial class loginForm : Form
@@ -60,7 +63,7 @@ namespace FurnitureRentalSystem
 
         private void validateLogin(string username, string password)
         {
-            DatabaseController dbc = new DatabaseController();
+            DatabaseAccess dbc = new DatabaseAccess();
             string query = String.Format("SELECT id, fname, lname, isAdmin FROM EMPLOYEE WHERE login='{0}' AND BINARY password='{1}'", username, password);
             ArrayList userData = dbc.getLogin(query);
 

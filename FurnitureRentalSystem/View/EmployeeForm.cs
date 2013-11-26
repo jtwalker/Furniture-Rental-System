@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Collections;
 
+using FurnitureRentalSystem.Model;
+using FurnitureRentalSystem.Database;
+
 namespace FurnitureRentalSystem
 {
     public partial class EmployeeForm : Form
@@ -32,7 +35,7 @@ namespace FurnitureRentalSystem
 
         private void populateStateComboBox()
         {
-            DatabaseController dbc = new DatabaseController();
+            DatabaseAccess dbc = new DatabaseAccess();
             stateAbbrevs = dbc.GetStateAbbrevs();
 
             foreach (String abbrev in stateAbbrevs)
@@ -119,7 +122,7 @@ namespace FurnitureRentalSystem
 
         private void performCustomerSearch()
         {
-            DatabaseController dbc = new DatabaseController();
+            DatabaseAccess dbc = new DatabaseAccess();
             String fname = this.firstNameSearchCustomerTextBox.Text;
             String lname = this.lastNameSearchCustomerTextBox.Text;
             String phone = this.phoneNumberSearchCustomerMaskedTextBox.Text;
@@ -222,7 +225,7 @@ namespace FurnitureRentalSystem
             //MessageBox.Show(message, "Entered Info", MessageBoxButtons.OK, MessageBoxIcon.None);
             //this.customerID++;
 
-            DatabaseController dbc = new DatabaseController();
+            DatabaseAccess dbc = new DatabaseAccess();
 
             String customerID = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
             MessageBox.Show(firstName + " " + lastName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
