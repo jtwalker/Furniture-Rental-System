@@ -64,8 +64,7 @@ namespace FurnitureRentalSystem
         private void validateLogin(string username, string password)
         {
             DatabaseAccess dbc = new DatabaseAccess();
-            string query = String.Format("SELECT id, fname, lname, isAdmin FROM EMPLOYEE WHERE login='{0}' AND BINARY password='{1}'", username, password);
-            ArrayList userData = dbc.getLogin(query);
+            ArrayList userData = dbc.getLogin(username, password);
 
             if (userData.Count != NO_RESULTS)
             {

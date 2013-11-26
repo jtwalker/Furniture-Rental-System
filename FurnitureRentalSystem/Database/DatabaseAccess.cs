@@ -120,9 +120,10 @@ namespace FurnitureRentalSystem.Database
 
         }
 
-        public ArrayList getLogin(string query)
+        public ArrayList getLogin(string username, string password)
         {
             ArrayList userData = new ArrayList();
+            string loginQuerySQL = "SELECT id, fname, lname, isAdmin FROM EMPLOYEE WHERE login=@username AND BINARY password=@password";
 
             try
             {
@@ -130,7 +131,9 @@ namespace FurnitureRentalSystem.Database
                 conn.Open();
 
                 MySqlDataReader reader;
-                cmd = new MySqlCommand(query, conn);
+                cmd = new MySqlCommand(loginQuerySQL, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
