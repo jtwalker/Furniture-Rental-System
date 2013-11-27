@@ -84,8 +84,94 @@ namespace FurnitureRentalSystem
             Application.Restart();
         }
 
+        //***************************************************************************************************************
+        //*******************************************SEARCH FURNITURE TAB **********************************************
+        //***************************************************************************************************************
 
+        //************************Search Furniture Methods***************************
 
+        private bool ensureSearchFurnitureFieldsAreCompleted()
+        {
+            if (String.IsNullOrEmpty(this.searchFurnitureCriteriaTextBox.Text))
+            {
+                this.errorSearchFurnitureLabel.Text = "Please provide search criteria.";
+                this.errorSearchFurnitureLabel.Visible = true;
+                return false;
+            }
+            else
+            {
+                this.errorSearchFurnitureLabel.Visible = false;
+                return true;
+            }
+        }
+
+        private void performFurnitureSearch()
+        {
+            DatabaseAccess dbAccess = new DatabaseAccess();
+            string searchCriteria = this.searchFurnitureCriteriaTextBox.Text;
+            ArrayList results = dbAccess.searchFurniture(searchCriteria);
+
+            if (results.Count != 0)
+            {
+                this.placeResultsInList(results);
+            }
+            else
+            {
+                this.noFurnitureFound();
+            }
+
+            this.resizeListViewColumns(this.searchResultsSearchFurnitureListView);
+        }
+
+        private void placeResultsInList(ArrayList results)
+        {
+            int numberOfColumns = this.searchResultsSearchFurnitureListView.Columns.Count;
+            int counter = 0;
+            ListViewItem listViewItem = new ListViewItem();
+
+            while (counter < results.Count)
+            {
+                if (counter == 0)
+                {
+                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
+                    counter++;
+                }
+                else if (counter % numberOfColumns == 0)
+                {
+                    this.searchResultsSearchFurnitureListView.Items.Add(listViewItem);
+                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
+                    counter++;
+                }
+                else
+                {
+                    listViewItem.SubItems.Add(Convert.ToString(results[counter]));
+                    counter++;
+                }
+                if (counter == results.Count)
+                {
+                    this.searchResultsSearchFurnitureListView.Items.Add(listViewItem);
+                }
+            }
+        }
+
+        private void noFurnitureFound()
+        {
+            this.searchResultsSearchFurnitureListView.Items.Clear();
+            ListViewItem listViewItem = new ListViewItem("No Results Found", 0);
+            this.searchResultsSearchFurnitureListView.Items.Add(listViewItem);
+        }
+
+        //************************Click Event Handlers*******************************
+
+        private void searchSearchFurnitureButton_Click(object sender, EventArgs e)
+        {
+            this.searchResultsSearchFurnitureListView.Items.Clear();
+            bool canPerformSearch = this.ensureSearchFurnitureFieldsAreCompleted();
+            if (canPerformSearch)
+            {
+                this.performFurnitureSearch();
+            }
+        }
 
 
         //***************************************************************************************************************
