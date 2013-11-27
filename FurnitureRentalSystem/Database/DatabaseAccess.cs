@@ -218,6 +218,54 @@ namespace FurnitureRentalSystem.Database
             return customers;
         }
 
+        public ArrayList searchFurniture(string searchCriteria)
+        {
+            ArrayList results = new ArrayList();
+            string query = "SELECT number, description, totalNumber, dailyRentalFee, dailyRentalRate, category, style FROM FURNITURE_ITEM WHERE number=@criteria OR category=@criteria OR style=@criteria";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@criteria", searchCriteria);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        results.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return results;
+        }
+
         private void HandleMySqlException(MySqlException ex)
         {
             switch (ex.Number)
