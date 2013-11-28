@@ -84,6 +84,8 @@ namespace FurnitureRentalSystem
             Application.Restart();
         }
 
+
+
         //***************************************************************************************************************
         //*******************************************SEARCH FURNITURE TAB **********************************************
         //***************************************************************************************************************
@@ -113,53 +115,16 @@ namespace FurnitureRentalSystem
 
             if (results.Count != 0)
             {
-                this.placeResultsInList(results);
+                this.placeSearchResultsInList(results, this.searchResultsSearchFurnitureListView);
             }
             else
             {
-                this.noFurnitureFound();
+                this.noResultsFound(this.searchResultsSearchFurnitureListView);
             }
 
             this.resizeListViewColumns(this.searchResultsSearchFurnitureListView);
         }
 
-        private void placeResultsInList(ArrayList results)
-        {
-            int numberOfColumns = this.searchResultsSearchFurnitureListView.Columns.Count;
-            int counter = 0;
-            ListViewItem listViewItem = new ListViewItem();
-
-            while (counter < results.Count)
-            {
-                if (counter == 0)
-                {
-                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
-                    counter++;
-                }
-                else if (counter % numberOfColumns == 0)
-                {
-                    this.searchResultsSearchFurnitureListView.Items.Add(listViewItem);
-                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
-                    counter++;
-                }
-                else
-                {
-                    listViewItem.SubItems.Add(Convert.ToString(results[counter]));
-                    counter++;
-                }
-                if (counter == results.Count)
-                {
-                    this.searchResultsSearchFurnitureListView.Items.Add(listViewItem);
-                }
-            }
-        }
-
-        private void noFurnitureFound()
-        {
-            this.searchResultsSearchFurnitureListView.Items.Clear();
-            ListViewItem listViewItem = new ListViewItem("No Results Found", 0);
-            this.searchResultsSearchFurnitureListView.Items.Add(listViewItem);
-        }
 
         //************************Click Event Handlers*******************************
 
@@ -172,6 +137,7 @@ namespace FurnitureRentalSystem
                 this.performFurnitureSearch();
             }
         }
+
 
 
         //***************************************************************************************************************
@@ -212,52 +178,14 @@ namespace FurnitureRentalSystem
 
             if (customers.Count != 0)
             {
-                this.placeCustomersInList(customers);
+                this.placeSearchResultsInList(customers, this.searchResultsSearchCustomerListView);
             }
             else
             {
-                this.noResultsFound();
+                this.noResultsFound(this.searchResultsSearchCustomerListView);
             }
 
             this.resizeListViewColumns(this.searchResultsSearchCustomerListView);
-        }
-
-        private void noResultsFound()
-        {
-            this.searchResultsSearchCustomerListView.Items.Clear();
-            ListViewItem listViewItem = new ListViewItem("No Customer Found", 0);
-            this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
-        }
-
-        private void placeCustomersInList(ArrayList customers)
-        {
-            int numberOfColumns = this.searchResultsSearchCustomerListView.Columns.Count;
-            int counter = 0;
-            ListViewItem listViewItem = new ListViewItem();
-
-            while (counter < customers.Count)
-            {
-                if (counter == 0)
-                {
-                    listViewItem = new ListViewItem(Convert.ToString(customers[counter]), 0);
-                    counter++;
-                }
-                else if (counter % numberOfColumns == 0)
-                {
-                    this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
-                    listViewItem = new ListViewItem(Convert.ToString(customers[counter]), 0);
-                    counter++;
-                }
-                else
-                {
-                    listViewItem.SubItems.Add(Convert.ToString(customers[counter]));
-                    counter++;
-                }
-                if (counter == customers.Count)
-                {
-                    this.searchResultsSearchCustomerListView.Items.Add(listViewItem);
-                }
-            }
         }
 
         private void clearSearchCustomerFields()
@@ -269,15 +197,6 @@ namespace FurnitureRentalSystem
             this.errorSearchCustomerLabel.Visible = false;
             this.errorProvider.Clear();
         }
-
-        private void resizeListViewColumns(ListView lv)
-        {
-            foreach (ColumnHeader column in lv.Columns)
-            {
-                column.Width = -2;
-            }
-        }
-
 
 
         //************************Click event handlers*************************
@@ -331,11 +250,61 @@ namespace FurnitureRentalSystem
             }
         }
 
-      
-
-    
 
 
+        //***************************************************************************************************************
+        //*******************************************SEARCH TABS SHARED **********************************************
+        //***************************************************************************************************************  
+ 
+
+        //**********************************************Search Methods*************************************************
+
+
+        private void placeSearchResultsInList(ArrayList results, ListView resultView)
+        {
+            int numberOfColumns = resultView.Columns.Count;
+            int counter = 0;
+            ListViewItem listViewItem = new ListViewItem();
+
+            while (counter < results.Count)
+            {
+                if (counter == 0)
+                {
+                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
+                    counter++;
+                }
+                else if (counter % numberOfColumns == 0)
+                {
+                    resultView.Items.Add(listViewItem);
+                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
+                    counter++;
+                }
+                else
+                {
+                    listViewItem.SubItems.Add(Convert.ToString(results[counter]));
+                    counter++;
+                }
+                if (counter == results.Count)
+                {
+                    resultView.Items.Add(listViewItem);
+                }
+            }
+        }
+
+        private void noResultsFound(ListView resultView)
+        {
+            resultView.Items.Clear();
+            ListViewItem noResultsViewItem = new ListViewItem("No Results Found", 0);
+            resultView.Items.Add(noResultsViewItem);
+        }
+
+        private void resizeListViewColumns(ListView lv)
+        {
+            foreach (ColumnHeader column in lv.Columns)
+            {
+                column.Width = -2;
+            }
+        }
 
 
 

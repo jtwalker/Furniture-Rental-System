@@ -79,13 +79,12 @@
             this.lastNameSearchCustomerLabel = new System.Windows.Forms.Label();
             this.firstNameSearchCustomerTextBox = new System.Windows.Forms.TextBox();
             this.firstNameSearchCustomerLabel = new System.Windows.Forms.Label();
-            this.loggedInLabel = new System.Windows.Forms.Label();
             this.searchFurnitureTab = new System.Windows.Forms.TabPage();
-            this.searchResultsSearchFurnitureListView = new System.Windows.Forms.ListView();
-            this.searchFurnitureSearchCriteriaLabel = new System.Windows.Forms.Label();
-            this.searchFurnitureCriteriaTextBox = new System.Windows.Forms.TextBox();
-            this.errorSearchFurnitureLabel = new System.Windows.Forms.Label();
             this.searchSearchFurnitureButton = new System.Windows.Forms.Button();
+            this.errorSearchFurnitureLabel = new System.Windows.Forms.Label();
+            this.searchFurnitureCriteriaTextBox = new System.Windows.Forms.TextBox();
+            this.searchFurnitureSearchCriteriaLabel = new System.Windows.Forms.Label();
+            this.searchResultsSearchFurnitureListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -93,6 +92,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.loggedInLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -621,17 +621,6 @@
             this.firstNameSearchCustomerLabel.TabIndex = 0;
             this.firstNameSearchCustomerLabel.Text = "First Name:";
             // 
-            // loggedInLabel
-            // 
-            this.loggedInLabel.AutoSize = true;
-            this.loggedInLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.loggedInLabel.Location = new System.Drawing.Point(717, 24);
-            this.loggedInLabel.Name = "loggedInLabel";
-            this.loggedInLabel.Size = new System.Drawing.Size(54, 13);
-            this.loggedInLabel.TabIndex = 23;
-            this.loggedInLabel.Text = "Logged in";
-            this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
-            // 
             // searchFurnitureTab
             // 
             this.searchFurnitureTab.Controls.Add(this.searchSearchFurnitureButton);
@@ -646,6 +635,44 @@
             this.searchFurnitureTab.TabIndex = 2;
             this.searchFurnitureTab.Text = "Search For Furniture";
             this.searchFurnitureTab.UseVisualStyleBackColor = true;
+            // 
+            // searchSearchFurnitureButton
+            // 
+            this.searchSearchFurnitureButton.Location = new System.Drawing.Point(219, 67);
+            this.searchSearchFurnitureButton.Name = "searchSearchFurnitureButton";
+            this.searchSearchFurnitureButton.Size = new System.Drawing.Size(75, 23);
+            this.searchSearchFurnitureButton.TabIndex = 13;
+            this.searchSearchFurnitureButton.Text = "Search";
+            this.searchSearchFurnitureButton.UseVisualStyleBackColor = true;
+            this.searchSearchFurnitureButton.Click += new System.EventHandler(this.searchSearchFurnitureButton_Click);
+            // 
+            // errorSearchFurnitureLabel
+            // 
+            this.errorSearchFurnitureLabel.AutoSize = true;
+            this.errorSearchFurnitureLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorSearchFurnitureLabel.Location = new System.Drawing.Point(355, 16);
+            this.errorSearchFurnitureLabel.Name = "errorSearchFurnitureLabel";
+            this.errorSearchFurnitureLabel.Size = new System.Drawing.Size(29, 13);
+            this.errorSearchFurnitureLabel.TabIndex = 12;
+            this.errorSearchFurnitureLabel.Text = "Error";
+            this.errorSearchFurnitureLabel.Visible = false;
+            // 
+            // searchFurnitureCriteriaTextBox
+            // 
+            this.searchFurnitureCriteriaTextBox.Location = new System.Drawing.Point(10, 38);
+            this.searchFurnitureCriteriaTextBox.Multiline = true;
+            this.searchFurnitureCriteriaTextBox.Name = "searchFurnitureCriteriaTextBox";
+            this.searchFurnitureCriteriaTextBox.Size = new System.Drawing.Size(284, 20);
+            this.searchFurnitureCriteriaTextBox.TabIndex = 11;
+            // 
+            // searchFurnitureSearchCriteriaLabel
+            // 
+            this.searchFurnitureSearchCriteriaLabel.AutoSize = true;
+            this.searchFurnitureSearchCriteriaLabel.Location = new System.Drawing.Point(10, 16);
+            this.searchFurnitureSearchCriteriaLabel.Name = "searchFurnitureSearchCriteriaLabel";
+            this.searchFurnitureSearchCriteriaLabel.Size = new System.Drawing.Size(187, 13);
+            this.searchFurnitureSearchCriteriaLabel.TabIndex = 10;
+            this.searchFurnitureSearchCriteriaLabel.Text = "Enter Item Number, Category, or Style:";
             // 
             // searchResultsSearchFurnitureListView
             // 
@@ -668,44 +695,6 @@
             this.searchResultsSearchFurnitureListView.TabIndex = 9;
             this.searchResultsSearchFurnitureListView.UseCompatibleStateImageBehavior = false;
             this.searchResultsSearchFurnitureListView.View = System.Windows.Forms.View.Details;
-            // 
-            // searchFurnitureSearchCriteriaLabel
-            // 
-            this.searchFurnitureSearchCriteriaLabel.AutoSize = true;
-            this.searchFurnitureSearchCriteriaLabel.Location = new System.Drawing.Point(10, 16);
-            this.searchFurnitureSearchCriteriaLabel.Name = "searchFurnitureSearchCriteriaLabel";
-            this.searchFurnitureSearchCriteriaLabel.Size = new System.Drawing.Size(187, 13);
-            this.searchFurnitureSearchCriteriaLabel.TabIndex = 10;
-            this.searchFurnitureSearchCriteriaLabel.Text = "Enter Item Number, Category, or Style:";
-            // 
-            // searchFurnitureCriteriaTextBox
-            // 
-            this.searchFurnitureCriteriaTextBox.Location = new System.Drawing.Point(10, 38);
-            this.searchFurnitureCriteriaTextBox.Multiline = true;
-            this.searchFurnitureCriteriaTextBox.Name = "searchFurnitureCriteriaTextBox";
-            this.searchFurnitureCriteriaTextBox.Size = new System.Drawing.Size(284, 20);
-            this.searchFurnitureCriteriaTextBox.TabIndex = 11;
-            // 
-            // errorSearchFurnitureLabel
-            // 
-            this.errorSearchFurnitureLabel.AutoSize = true;
-            this.errorSearchFurnitureLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorSearchFurnitureLabel.Location = new System.Drawing.Point(355, 16);
-            this.errorSearchFurnitureLabel.Name = "errorSearchFurnitureLabel";
-            this.errorSearchFurnitureLabel.Size = new System.Drawing.Size(29, 13);
-            this.errorSearchFurnitureLabel.TabIndex = 12;
-            this.errorSearchFurnitureLabel.Text = "Error";
-            this.errorSearchFurnitureLabel.Visible = false;
-            // 
-            // searchSearchFurnitureButton
-            // 
-            this.searchSearchFurnitureButton.Location = new System.Drawing.Point(219, 67);
-            this.searchSearchFurnitureButton.Name = "searchSearchFurnitureButton";
-            this.searchSearchFurnitureButton.Size = new System.Drawing.Size(75, 23);
-            this.searchSearchFurnitureButton.TabIndex = 13;
-            this.searchSearchFurnitureButton.Text = "Search";
-            this.searchSearchFurnitureButton.UseVisualStyleBackColor = true;
-            this.searchSearchFurnitureButton.Click += new System.EventHandler(this.searchSearchFurnitureButton_Click);
             // 
             // columnHeader1
             // 
@@ -741,6 +730,17 @@
             // 
             this.columnHeader7.Text = "Style";
             this.columnHeader7.Width = 75;
+            // 
+            // loggedInLabel
+            // 
+            this.loggedInLabel.AutoSize = true;
+            this.loggedInLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.loggedInLabel.Location = new System.Drawing.Point(717, 24);
+            this.loggedInLabel.Name = "loggedInLabel";
+            this.loggedInLabel.Size = new System.Drawing.Size(54, 13);
+            this.loggedInLabel.TabIndex = 23;
+            this.loggedInLabel.Text = "Logged in";
+            this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
             // 
             // EmployeeForm
             // 
