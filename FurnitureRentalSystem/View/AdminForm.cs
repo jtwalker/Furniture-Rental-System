@@ -44,19 +44,23 @@ namespace FurnitureRentalSystem
             {
                 this.setErrorMessage("Please enter a SQL statement.");
             }
-            else
+            else if(this.queryRadioButton.Checked)
             {
                 this.errorMessageLabel.Visible = false;
                 this.clearEverythingExceptSQL();
                 this.performQuery();
             }
+            else if (this.nonQueryRadioButton.Checked)
+            {
+                this.errorMessageLabel.Visible = false;
+                this.clearEverythingExceptSQL();
+                this.performNonQuery();
+            }
         }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            this.sqlStatementTextBox.Clear();
-            this.clearEverythingExceptSQL();
-            this.sqlStatementTextBox.Focus();
+            this.clearForm();
         }
 
         private void setErrorMessage(String errorMessage)
@@ -79,6 +83,13 @@ namespace FurnitureRentalSystem
             this.errorMessageLabel.Visible = false;
         }
 
+        private void clearForm()
+        {
+            this.sqlStatementTextBox.Clear();
+            this.clearEverythingExceptSQL();
+            this.sqlStatementTextBox.Focus();
+        }
+
         private void performQuery()
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
@@ -97,8 +108,12 @@ namespace FurnitureRentalSystem
             this.resizeListViewColumns(this.queryResultsListView);
         }
 
-        private void performNonQuery(string nonQuery)
+        private void performNonQuery()
         {
+            DatabaseAccess dbAccess = new DatabaseAccess();
+            string result = dbAccess.adminNonQuery(this.sqlStatementTextBox.Text);
+
+            MessageBox.Show(result);
         }
 
         private void setColumnHeaders()
@@ -152,6 +167,16 @@ namespace FurnitureRentalSystem
             resultView.Items.Clear();
             ListViewItem noResultsViewItem = new ListViewItem("No Results Found", 0);
             resultView.Items.Add(noResultsViewItem);
+        }
+
+        private void nonQueryRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.clearForm();
+        }
+
+        private void queryRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.clearForm();
         }
     }
 }
