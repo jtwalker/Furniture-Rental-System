@@ -40,8 +40,10 @@
             this.queryResultLabel = new System.Windows.Forms.Label();
             this.queryResultsListView = new System.Windows.Forms.ListView();
             this.clearButton = new System.Windows.Forms.Button();
-            this.searchBtn = new System.Windows.Forms.Button();
+            this.performBtn = new System.Windows.Forms.Button();
             this.errorMessageLabel = new System.Windows.Forms.Label();
+            this.queryRadioButton = new System.Windows.Forms.RadioButton();
+            this.nonQueryRadioButton = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,7 +106,7 @@
             // sqlStatementLabel
             // 
             this.sqlStatementLabel.AutoSize = true;
-            this.sqlStatementLabel.Location = new System.Drawing.Point(12, 24);
+            this.sqlStatementLabel.Location = new System.Drawing.Point(12, 30);
             this.sqlStatementLabel.Name = "sqlStatementLabel";
             this.sqlStatementLabel.Size = new System.Drawing.Size(82, 13);
             this.sqlStatementLabel.TabIndex = 4;
@@ -112,21 +114,21 @@
             // 
             // sqlStatementTextBox
             // 
-            this.sqlStatementTextBox.Location = new System.Drawing.Point(15, 40);
+            this.sqlStatementTextBox.Location = new System.Drawing.Point(15, 53);
             this.sqlStatementTextBox.Multiline = true;
             this.sqlStatementTextBox.Name = "sqlStatementTextBox";
             this.sqlStatementTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.sqlStatementTextBox.Size = new System.Drawing.Size(259, 67);
+            this.sqlStatementTextBox.Size = new System.Drawing.Size(259, 75);
             this.sqlStatementTextBox.TabIndex = 5;
             // 
             // queryResultLabel
             // 
             this.queryResultLabel.AutoSize = true;
-            this.queryResultLabel.Location = new System.Drawing.Point(12, 110);
+            this.queryResultLabel.Location = new System.Drawing.Point(12, 131);
             this.queryResultLabel.Name = "queryResultLabel";
-            this.queryResultLabel.Size = new System.Drawing.Size(76, 13);
+            this.queryResultLabel.Size = new System.Drawing.Size(45, 13);
             this.queryResultLabel.TabIndex = 6;
-            this.queryResultLabel.Text = "Query Results:";
+            this.queryResultLabel.Text = "Results:";
             // 
             // queryResultsListView
             // 
@@ -134,16 +136,16 @@
             this.queryResultsListView.AutoArrange = false;
             this.queryResultsListView.FullRowSelect = true;
             this.queryResultsListView.GridLines = true;
-            this.queryResultsListView.Location = new System.Drawing.Point(15, 126);
+            this.queryResultsListView.Location = new System.Drawing.Point(15, 147);
             this.queryResultsListView.Name = "queryResultsListView";
-            this.queryResultsListView.Size = new System.Drawing.Size(457, 224);
+            this.queryResultsListView.Size = new System.Drawing.Size(457, 203);
             this.queryResultsListView.TabIndex = 7;
             this.queryResultsListView.TabStop = false;
             this.queryResultsListView.UseCompatibleStateImageBehavior = false;
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(316, 97);
+            this.clearButton.Location = new System.Drawing.Point(303, 118);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 8;
@@ -151,33 +153,59 @@
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
-            // searchBtn
+            // performBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(397, 97);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(75, 23);
-            this.searchBtn.TabIndex = 9;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            this.performBtn.Location = new System.Drawing.Point(384, 118);
+            this.performBtn.Name = "performBtn";
+            this.performBtn.Size = new System.Drawing.Size(75, 23);
+            this.performBtn.TabIndex = 9;
+            this.performBtn.Text = "Perform";
+            this.performBtn.UseVisualStyleBackColor = true;
+            this.performBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // errorMessageLabel
             // 
             this.errorMessageLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorMessageLabel.Location = new System.Drawing.Point(280, 24);
+            this.errorMessageLabel.Location = new System.Drawing.Point(280, 30);
             this.errorMessageLabel.Name = "errorMessageLabel";
             this.errorMessageLabel.Size = new System.Drawing.Size(192, 70);
             this.errorMessageLabel.TabIndex = 10;
             this.errorMessageLabel.Text = "Error Message";
             this.errorMessageLabel.Visible = false;
             // 
+            // queryRadioButton
+            // 
+            this.queryRadioButton.AutoSize = true;
+            this.queryRadioButton.Checked = true;
+            this.queryRadioButton.Location = new System.Drawing.Point(120, 28);
+            this.queryRadioButton.Name = "queryRadioButton";
+            this.queryRadioButton.Size = new System.Drawing.Size(53, 17);
+            this.queryRadioButton.TabIndex = 11;
+            this.queryRadioButton.TabStop = true;
+            this.queryRadioButton.Text = "Query";
+            this.queryRadioButton.UseVisualStyleBackColor = true;
+            this.queryRadioButton.CheckedChanged += new System.EventHandler(this.queryRadioButton_CheckedChanged);
+            // 
+            // nonQueryRadioButton
+            // 
+            this.nonQueryRadioButton.AutoSize = true;
+            this.nonQueryRadioButton.Location = new System.Drawing.Point(179, 28);
+            this.nonQueryRadioButton.Name = "nonQueryRadioButton";
+            this.nonQueryRadioButton.Size = new System.Drawing.Size(73, 17);
+            this.nonQueryRadioButton.TabIndex = 12;
+            this.nonQueryRadioButton.Text = "NonQuery";
+            this.nonQueryRadioButton.UseVisualStyleBackColor = true;
+            this.nonQueryRadioButton.CheckedChanged += new System.EventHandler(this.nonQueryRadioButton_CheckedChanged);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 362);
+            this.Controls.Add(this.nonQueryRadioButton);
+            this.Controls.Add(this.queryRadioButton);
             this.Controls.Add(this.errorMessageLabel);
-            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.performBtn);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.queryResultsListView);
             this.Controls.Add(this.queryResultLabel);
@@ -208,8 +236,10 @@
         private System.Windows.Forms.Label queryResultLabel;
         private System.Windows.Forms.ListView queryResultsListView;
         private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button performBtn;
         private System.Windows.Forms.Label errorMessageLabel;
+        private System.Windows.Forms.RadioButton queryRadioButton;
+        private System.Windows.Forms.RadioButton nonQueryRadioButton;
 
     }
 }

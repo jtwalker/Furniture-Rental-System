@@ -355,6 +355,41 @@ namespace FurnitureRentalSystem.Database
             return columnHeaders;
         }
 
+        public string adminNonQuery(string adminSQL)
+        {
+            string result = "Failed";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                cmd = new MySqlCommand(adminSQL, conn);
+
+                cmd.ExecuteNonQuery();
+
+                result = "Completed";
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+                result = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                result = ex.Message;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return result;
+        }
+
         private void HandleMySqlException(MySqlException ex)
         {
             switch (ex.Number)
