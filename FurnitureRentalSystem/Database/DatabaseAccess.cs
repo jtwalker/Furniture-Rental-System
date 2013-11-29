@@ -14,7 +14,7 @@ namespace FurnitureRentalSystem.Database
     public class DatabaseAccess
     {
 
-
+        private const int COLUMN_NAME_INDEX = 0;
         private static String SELECT_ALL_STATES = "SELECT abbrev FROM STATE";
         private MySqlConnection conn;
         private MySqlCommand cmd;
@@ -264,6 +264,95 @@ namespace FurnitureRentalSystem.Database
             }
 
             return results;
+        }
+
+        public ArrayList adminQueryResults(string query)
+        {
+            ArrayList results = new ArrayList();
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        results.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return results;
+        }
+
+        public ArrayList adminQueryColumns(string query)
+        {
+            ArrayList columnHeaders = new ArrayList();
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                reader = cmd.ExecuteReader();
+
+                DataTable dataTable = reader.GetSchemaTable();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    columnHeaders.Add(row[COLUMN_NAME_INDEX]);
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return columnHeaders;
         }
 
         private void HandleMySqlException(MySqlException ex)

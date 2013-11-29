@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 using FurnitureRentalSystem.Model;
+using FurnitureRentalSystem.Database;
 
 
 namespace FurnitureRentalSystem
@@ -46,10 +48,7 @@ namespace FurnitureRentalSystem
             {
                 this.errorMessageLabel.Visible = false;
                 this.clearEverythingExceptSQL();
-                //this.printColumnNameTypes(this.sqlStatementTextBox.Text);
-                //this.queryDB(this.sqlStatementTextBox.Text);
-
-                resizeListViewColumns(queryResultsListView);
+                this.performQuery();
             }
         }
 
@@ -78,7 +77,81 @@ namespace FurnitureRentalSystem
         {
             this.queryResultsListView.Clear();
             this.errorMessageLabel.Visible = false;
-            //this.database.clear();
+        }
+
+        private void performQuery()
+        {
+            DatabaseAccess dbAccess = new DatabaseAccess();
+            ArrayList results = dbAccess.adminQueryResults(this.sqlStatementTextBox.Text);
+
+            if (results.Count != 0)
+            {
+                this.setColumnHeaders();
+                this.placeSearchResultsInList(results, this.queryResultsListView);
+            }
+            else
+            {
+                this.noResultsFound(this.queryResultsListView);
+            }
+
+            this.resizeListViewColumns(this.queryResultsListView);
+        }
+
+        private void performNonQuery(string nonQuery)
+        {
+        }
+
+        private void setColumnHeaders()
+        {
+            DatabaseAccess dbAccess = new DatabaseAccess();
+            ArrayList columnHeaders = dbAccess.adminQueryColumns(this.sqlStatementTextBox.Text);
+
+            queryResultsListView.Columns.Clear();
+
+            foreach (string column in columnHeaders)
+            {
+                this.queryResultsListView.Columns.Add(column);
+            }
+
+            queryResultsListView.View = View.Details;
+        }
+
+        private void placeSearchResultsInList(ArrayList results, ListView resultView)
+        {
+            int numberOfColumns = resultView.Columns.Count;
+            int counter = 0;
+            ListViewItem listViewItem = new ListViewItem();
+
+            while (counter < results.Count)
+            {
+                if (counter == 0)
+                {
+                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
+                    counter++;
+                }
+                else if (counter % numberOfColumns == 0)
+                {
+                    resultView.Items.Add(listViewItem);
+                    listViewItem = new ListViewItem(Convert.ToString(results[counter]), 0);
+                    counter++;
+                }
+                else
+                {
+                    listViewItem.SubItems.Add(Convert.ToString(results[counter]));
+                    counter++;
+                }
+                if (counter == results.Count)
+                {
+                    resultView.Items.Add(listViewItem);
+                }
+            }
+        }
+
+        private void noResultsFound(ListView resultView)
+        {
+            resultView.Items.Clear();
+            ListViewItem noResultsViewItem = new ListViewItem("No Results Found", 0);
+            resultView.Items.Add(noResultsViewItem);
         }
     }
 }
