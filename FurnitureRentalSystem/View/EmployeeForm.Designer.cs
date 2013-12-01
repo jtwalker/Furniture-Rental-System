@@ -104,6 +104,8 @@
             this.rentCustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.loggedInLabel = new System.Windows.Forms.Label();
+            this.searchForFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rentFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -154,7 +156,9 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registerCustomerToolStripMenuItem,
-            this.searchForCustomerIDToolStripMenuItem});
+            this.searchForCustomerIDToolStripMenuItem,
+            this.searchForFurnitureToolStripMenuItem,
+            this.rentFurnitureToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -889,6 +893,22 @@
             this.loggedInLabel.Text = "Logged in";
             this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
             // 
+            // searchForFurnitureToolStripMenuItem
+            // 
+            this.searchForFurnitureToolStripMenuItem.Name = "searchForFurnitureToolStripMenuItem";
+            this.searchForFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.searchForFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.searchForFurnitureToolStripMenuItem.Text = "Search For Furniture";
+            this.searchForFurnitureToolStripMenuItem.Click += new System.EventHandler(this.searchForFurnitureToolStripMenuItem_Click);
+            // 
+            // rentFurnitureToolStripMenuItem
+            // 
+            this.rentFurnitureToolStripMenuItem.Name = "rentFurnitureToolStripMenuItem";
+            this.rentFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.rentFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.rentFurnitureToolStripMenuItem.Text = "Rent Furniture";
+            this.rentFurnitureToolStripMenuItem.Click += new System.EventHandler(this.rentFurnitureToolStripMenuItem_Click);
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -997,6 +1017,8 @@
         private System.Windows.Forms.Button rentAddItemButton;
         private System.Windows.Forms.Label rentQuantityLabel;
         private System.Windows.Forms.ComboBox rentQuantityComboBox;
+        private System.Windows.Forms.ToolStripMenuItem searchForFurnitureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rentFurnitureToolStripMenuItem;
     }
 }
 

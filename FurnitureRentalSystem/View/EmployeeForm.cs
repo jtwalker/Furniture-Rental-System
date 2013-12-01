@@ -43,7 +43,6 @@ namespace FurnitureRentalSystem
 
             this.dataGridView1.DataSource = rentalInfoTable;
 
-
         }
 
 
@@ -73,6 +72,15 @@ namespace FurnitureRentalSystem
             tabControl.SelectTab(searchForCustomerIDTab);
         }
 
+        private void searchForFurnitureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(searchFurnitureTab);
+        }
+
+        private void rentFurnitureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(rentFurnitureTab);
+        }
 
 
 
@@ -88,6 +96,7 @@ namespace FurnitureRentalSystem
                 case 1:
                     this.AcceptButton = this.searchSearchCustomerButton;
                     break;
+              
             }
         }
 
@@ -583,6 +592,7 @@ namespace FurnitureRentalSystem
 
                 this.rentCustomerNameTextBox.Text = customerInfo[0] + " " + customerInfo[1];
                 this.SetUpFurnitureNumberComboBox();
+                this.rentFurnitureNumberCombBox.Focus();
             }
             else
             {
@@ -610,7 +620,7 @@ namespace FurnitureRentalSystem
 
             //MessageBox.Show(((e.KeyCode == Keys.Return) || (e.KeyCode == Keys.Enter)).ToString(), "Key Press", MessageBoxButtons.OK, MessageBoxIcon.None);
 
-            if ((e.KeyCode == Keys.Return) || (e.KeyCode == Keys.Enter))
+            if ((e.KeyCode == Keys.Return) || (e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Tab))
             {
                 this.HandleCustomerIDValidation();
             }
@@ -719,31 +729,18 @@ namespace FurnitureRentalSystem
 
         private void rentButton_Click(object sender, EventArgs e)
         {
-            //DataTable rentalInfoTable = new DataTable();
-            //rentalInfoTable.Columns.Add("number", typeof(string));
-            //rentalInfoTable.Columns.Add(""escription", typeof(string));
-            //rentalInfoTable.Columns.Add("quantity", typeof(int));
-
-            //foreach (DataGridViewRow row in this.dataGridView1.Rows)
-            //{
-            //    Debug.WriteLine("ROW:" + row.Cells[0].Value + " " +  row.Cells[1].Value +" "+  row.Cells[2].Value);
-                
-            //    rentalInfoTable.Rows.Add(row);
-
-
-            //}
-
-
             string custID = this.rentCustomerIDTextBox.Text;
             int customerID = Convert.ToInt32(custID);
             int empID = this.loginInformation.getEmployeeID();
 
 
             DatabaseAccess dba = new DatabaseAccess();
-            dba.AddRental(customerID, empID, rentalInfoTable);
+            string rentalID = dba.AddRental(customerID, empID, rentalInfoTable);
 
 
         }
+
+     
 
 
 
