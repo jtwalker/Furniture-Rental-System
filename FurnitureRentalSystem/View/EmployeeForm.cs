@@ -20,16 +20,20 @@ namespace FurnitureRentalSystem
         private ErrorProvider errorProvider;
         private LoginInformation loginInformation;
         private ArrayList stateAbbrevs;
+        private ErrorProvider rentErrorProvider;
 
         public EmployeeForm(LoginInformation loginInformation)
         {
             InitializeComponent();
             this.AcceptButton = this.registerCustomerButton;
-            this.populateStateComboBox();
+            this.PopulateStateComboBox();
             this.SetUpRegisterCustomerControls();
             this.errorProvider = new ErrorProvider();
             this.loginInformation = loginInformation;
             this.loggedInLabel.Text = String.Format("You are logged in as: {0}. Click to logout.", this.loginInformation.getName());
+
+            this.rentErrorProvider = new ErrorProvider();
+
         }
 
 
@@ -516,7 +520,7 @@ namespace FurnitureRentalSystem
         }
 
 
-        private void populateStateComboBox()
+        private void PopulateStateComboBox()
         {
             DatabaseAccess dbc = new DatabaseAccess();
             stateAbbrevs = dbc.GetStateAbbrevs();
@@ -525,6 +529,8 @@ namespace FurnitureRentalSystem
             {
                 this.stateAbbrevComboBox.Items.Add(abbrev);
             }
+
+            
         }
 
         private void ResetAllControls()
@@ -539,6 +545,34 @@ namespace FurnitureRentalSystem
             this.errorProvider.Clear();
             this.SetUpRegisterCustomerControls();
         }
+
+        
+        //****************************************************************************
+        //****************************Rent Furniture Tab******************************
+        //****************************************************************************
+
+        private void customerIDValidation(object sender, CancelEventArgs e)
+        {
+            DatabaseAccess dba = new DatabaseAccess();
+            ArrayList customerInfo = dba.CustomerValidation(this.customerIDTextBox.Text);
+
+            if (customerInfo.Count == 2)
+            {
+                this.errorProvider.SetError(this.customerIDTextBox, "");
+                this.rentCustomerNameTextBox.Visible = true;
+
+            
+                this.rentCustomerNameTextBox.Text = customerInfo[0] + " " + customerInfo[1];
+            }
+            else
+            {
+                this.errorProvider.SetError(this.customerIDTextBox, "Invalid Customer ID");
+            }
+
+
+        }
+
+        
         
     }
            

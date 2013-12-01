@@ -67,6 +67,110 @@ namespace FurnitureRentalSystem.Database
             return stateAbbrevs;
         }
 
+
+        public ArrayList GetFurnitureItemNumbers()
+        {
+
+            ArrayList furnitureIDs = new ArrayList();
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                String selectAllFurnitureIDs = "SELECT number FROM FURNITURE_ITEM";
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(selectAllFurnitureIDs, conn);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    //Debug.WriteLine(reader["abbrev"]);
+                    furnitureIDs.Add(reader["number"]);
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return furnitureIDs;
+        }
+
+        public ArrayList CustomerValidation(String customerID)
+        {
+            ArrayList customer = new ArrayList();
+
+            String insertCustomerSQL = "SELECT fname, lname FROM CUSTOMER WHERE id=@customerID";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                MySqlDataReader reader;
+
+                cmd = new MySqlCommand(insertCustomerSQL, conn);
+                cmd.Parameters.AddWithValue("@customerID", customerID);
+
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            customer.Add((reader[i].ToString()));
+                        }
+                    }
+
+                    if (reader != null)
+                    {
+                        reader.Close();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+                //customer = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+                //customer = ex.Message;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return customer;
+
+        }
+
+
         public String AddCustomer(String fname, String mname, String lname, String phone, 
             String ssn, String street, String city, String stateAbbrev, String zipCode)
         {
