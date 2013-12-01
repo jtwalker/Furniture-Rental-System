@@ -92,14 +92,21 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.loggedInLabel = new System.Windows.Forms.Label();
             this.rentFurnitureTab = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.customerIDTextBox = new System.Windows.Forms.TextBox();
-            this.customerIDLable = new System.Windows.Forms.Label();
-            this.itemIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rentFurnitureNumberCombBox = new System.Windows.Forms.ComboBox();
+            this.rentAddItemButton = new System.Windows.Forms.Button();
+            this.rentQuantityLabel = new System.Windows.Forms.Label();
+            this.rentQuantityComboBox = new System.Windows.Forms.ComboBox();
+            this.rentFurnitureNumLabel = new System.Windows.Forms.Label();
+            this.rentButton = new System.Windows.Forms.Button();
             this.rentCustomerNameTextBox = new System.Windows.Forms.TextBox();
+            this.rentCustomerIDLabel = new System.Windows.Forms.Label();
+            this.rentCustomerIDTextBox = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.loggedInLabel = new System.Windows.Forms.Label();
+            this.itemIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.furnitureDescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -241,10 +248,12 @@
             // 
             this.stateAbbrevComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.stateAbbrevComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.stateAbbrevComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stateAbbrevComboBox.FormattingEnabled = true;
             this.stateAbbrevComboBox.Location = new System.Drawing.Point(393, 258);
             this.stateAbbrevComboBox.Name = "stateAbbrevComboBox";
             this.stateAbbrevComboBox.Size = new System.Drawing.Size(50, 21);
+            this.stateAbbrevComboBox.Sorted = true;
             this.stateAbbrevComboBox.TabIndex = 13;
             this.stateAbbrevComboBox.SelectedIndexChanged += new System.EventHandler(this.stateAbbrevComboBox_SelectedIndexChanged);
             this.stateAbbrevComboBox.Leave += new System.EventHandler(this.stateAbbrevComboBox_SelectedIndexChanged);
@@ -744,6 +753,138 @@
             this.columnHeader7.Text = "Style";
             this.columnHeader7.Width = 75;
             // 
+            // rentFurnitureTab
+            // 
+            this.rentFurnitureTab.CausesValidation = false;
+            this.rentFurnitureTab.Controls.Add(this.rentFurnitureNumberCombBox);
+            this.rentFurnitureTab.Controls.Add(this.rentAddItemButton);
+            this.rentFurnitureTab.Controls.Add(this.rentQuantityLabel);
+            this.rentFurnitureTab.Controls.Add(this.rentQuantityComboBox);
+            this.rentFurnitureTab.Controls.Add(this.rentFurnitureNumLabel);
+            this.rentFurnitureTab.Controls.Add(this.rentButton);
+            this.rentFurnitureTab.Controls.Add(this.rentCustomerNameTextBox);
+            this.rentFurnitureTab.Controls.Add(this.rentCustomerIDLabel);
+            this.rentFurnitureTab.Controls.Add(this.rentCustomerIDTextBox);
+            this.rentFurnitureTab.Controls.Add(this.dataGridView1);
+            this.rentFurnitureTab.Location = new System.Drawing.Point(4, 22);
+            this.rentFurnitureTab.Name = "rentFurnitureTab";
+            this.rentFurnitureTab.Padding = new System.Windows.Forms.Padding(3);
+            this.rentFurnitureTab.Size = new System.Drawing.Size(738, 526);
+            this.rentFurnitureTab.TabIndex = 3;
+            this.rentFurnitureTab.Text = "Rent Furniture";
+            this.rentFurnitureTab.UseVisualStyleBackColor = true;
+            // 
+            // rentFurnitureNumberCombBox
+            // 
+            this.rentFurnitureNumberCombBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.rentFurnitureNumberCombBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.rentFurnitureNumberCombBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rentFurnitureNumberCombBox.Enabled = false;
+            this.rentFurnitureNumberCombBox.FormattingEnabled = true;
+            this.rentFurnitureNumberCombBox.Location = new System.Drawing.Point(173, 105);
+            this.rentFurnitureNumberCombBox.Name = "rentFurnitureNumberCombBox";
+            this.rentFurnitureNumberCombBox.Size = new System.Drawing.Size(131, 21);
+            this.rentFurnitureNumberCombBox.TabIndex = 5;
+            this.rentFurnitureNumberCombBox.SelectionChangeCommitted += new System.EventHandler(this.rentFurnitureNumberCombBox_SelectionChangeCommitted);
+            this.rentFurnitureNumberCombBox.Validating += new System.ComponentModel.CancelEventHandler(this.rentFurnitureNumberCombBox_Validating);
+            // 
+            // rentAddItemButton
+            // 
+            this.rentAddItemButton.Enabled = false;
+            this.rentAddItemButton.Location = new System.Drawing.Point(502, 103);
+            this.rentAddItemButton.Name = "rentAddItemButton";
+            this.rentAddItemButton.Size = new System.Drawing.Size(75, 23);
+            this.rentAddItemButton.TabIndex = 8;
+            this.rentAddItemButton.Text = "AddItem";
+            this.rentAddItemButton.UseVisualStyleBackColor = true;
+            this.rentAddItemButton.Click += new System.EventHandler(this.rentAddItemButton_Click);
+            // 
+            // rentQuantityLabel
+            // 
+            this.rentQuantityLabel.AutoSize = true;
+            this.rentQuantityLabel.Enabled = false;
+            this.rentQuantityLabel.Location = new System.Drawing.Point(348, 108);
+            this.rentQuantityLabel.Name = "rentQuantityLabel";
+            this.rentQuantityLabel.Size = new System.Drawing.Size(49, 13);
+            this.rentQuantityLabel.TabIndex = 6;
+            this.rentQuantityLabel.Text = "Quantity:";
+            // 
+            // rentQuantityComboBox
+            // 
+            this.rentQuantityComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.rentQuantityComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.rentQuantityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rentQuantityComboBox.Enabled = false;
+            this.rentQuantityComboBox.FormattingEnabled = true;
+            this.rentQuantityComboBox.Location = new System.Drawing.Point(403, 105);
+            this.rentQuantityComboBox.Name = "rentQuantityComboBox";
+            this.rentQuantityComboBox.Size = new System.Drawing.Size(55, 21);
+            this.rentQuantityComboBox.TabIndex = 7;
+            this.rentQuantityComboBox.SelectionChangeCommitted += new System.EventHandler(this.rentQuantityComboBox_SelectionChangeCommitted);
+            // 
+            // rentFurnitureNumLabel
+            // 
+            this.rentFurnitureNumLabel.AutoSize = true;
+            this.rentFurnitureNumLabel.Enabled = false;
+            this.rentFurnitureNumLabel.Location = new System.Drawing.Point(75, 108);
+            this.rentFurnitureNumLabel.Name = "rentFurnitureNumLabel";
+            this.rentFurnitureNumLabel.Size = new System.Drawing.Size(91, 13);
+            this.rentFurnitureNumLabel.TabIndex = 4;
+            this.rentFurnitureNumLabel.Text = "Furniture Number:";
+            // 
+            // rentButton
+            // 
+            this.rentButton.Enabled = false;
+            this.rentButton.Location = new System.Drawing.Point(616, 482);
+            this.rentButton.Name = "rentButton";
+            this.rentButton.Size = new System.Drawing.Size(75, 23);
+            this.rentButton.TabIndex = 4;
+            this.rentButton.Text = "Rent";
+            this.rentButton.UseVisualStyleBackColor = true;
+            this.rentButton.Click += new System.EventHandler(this.rentButton_Click);
+            // 
+            // rentCustomerNameTextBox
+            // 
+            this.rentCustomerNameTextBox.Location = new System.Drawing.Point(343, 44);
+            this.rentCustomerNameTextBox.Name = "rentCustomerNameTextBox";
+            this.rentCustomerNameTextBox.Size = new System.Drawing.Size(234, 20);
+            this.rentCustomerNameTextBox.TabIndex = 3;
+            this.rentCustomerNameTextBox.TabStop = false;
+            this.rentCustomerNameTextBox.Visible = false;
+            // 
+            // rentCustomerIDLabel
+            // 
+            this.rentCustomerIDLabel.AutoSize = true;
+            this.rentCustomerIDLabel.Location = new System.Drawing.Point(98, 47);
+            this.rentCustomerIDLabel.Name = "rentCustomerIDLabel";
+            this.rentCustomerIDLabel.Size = new System.Drawing.Size(68, 13);
+            this.rentCustomerIDLabel.TabIndex = 2;
+            this.rentCustomerIDLabel.Text = "Customer ID:";
+            // 
+            // rentCustomerIDTextBox
+            // 
+            this.rentCustomerIDTextBox.Location = new System.Drawing.Point(172, 44);
+            this.rentCustomerIDTextBox.Name = "rentCustomerIDTextBox";
+            this.rentCustomerIDTextBox.Size = new System.Drawing.Size(132, 20);
+            this.rentCustomerIDTextBox.TabIndex = 1;
+            this.rentCustomerIDTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rentCustomerIDTextBox_KeyUp);
+            this.rentCustomerIDTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.customerIDValidation);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.itemIDColumn,
+            this.furnitureDescriptionColumn,
+            this.quantityColumn});
+            this.dataGridView1.Enabled = false;
+            this.dataGridView1.Location = new System.Drawing.Point(44, 202);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(600, 221);
+            this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
+            // 
             // loggedInLabel
             // 
             this.loggedInLabel.AutoSize = true;
@@ -755,68 +896,24 @@
             this.loggedInLabel.Text = "Logged in";
             this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
             // 
-            // rentFurnitureTab
-            // 
-            this.rentFurnitureTab.CausesValidation = false;
-            this.rentFurnitureTab.Controls.Add(this.rentCustomerNameTextBox);
-            this.rentFurnitureTab.Controls.Add(this.customerIDLable);
-            this.rentFurnitureTab.Controls.Add(this.customerIDTextBox);
-            this.rentFurnitureTab.Controls.Add(this.dataGridView1);
-            this.rentFurnitureTab.Location = new System.Drawing.Point(4, 22);
-            this.rentFurnitureTab.Name = "rentFurnitureTab";
-            this.rentFurnitureTab.Padding = new System.Windows.Forms.Padding(3);
-            this.rentFurnitureTab.Size = new System.Drawing.Size(738, 526);
-            this.rentFurnitureTab.TabIndex = 3;
-            this.rentFurnitureTab.Text = "Rent Furniture";
-            this.rentFurnitureTab.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.itemIDColumn,
-            this.quantityColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(44, 98);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(648, 325);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // customerIDTextBox
-            // 
-            this.customerIDTextBox.Location = new System.Drawing.Point(132, 32);
-            this.customerIDTextBox.Name = "customerIDTextBox";
-            this.customerIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.customerIDTextBox.TabIndex = 1;
-            this.customerIDTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.customerIDValidation);
-            // 
-            // customerIDLable
-            // 
-            this.customerIDLable.AutoSize = true;
-            this.customerIDLable.Location = new System.Drawing.Point(41, 35);
-            this.customerIDLable.Name = "customerIDLable";
-            this.customerIDLable.Size = new System.Drawing.Size(68, 13);
-            this.customerIDLable.TabIndex = 2;
-            this.customerIDLable.Text = "Customer ID:";
-            // 
             // itemIDColumn
             // 
             this.itemIDColumn.HeaderText = "Furniture ID";
             this.itemIDColumn.Name = "itemIDColumn";
+            this.itemIDColumn.ReadOnly = true;
             this.itemIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.itemIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // furnitureDescriptionColumn
+            // 
+            this.furnitureDescriptionColumn.HeaderText = "Furniture Description";
+            this.furnitureDescriptionColumn.Name = "furnitureDescriptionColumn";
+            this.furnitureDescriptionColumn.ReadOnly = true;
             // 
             // quantityColumn
             // 
             this.quantityColumn.HeaderText = "Quantity";
             this.quantityColumn.Name = "quantityColumn";
-            // 
-            // rentCustomerNameTextBox
-            // 
-            this.rentCustomerNameTextBox.Location = new System.Drawing.Point(273, 32);
-            this.rentCustomerNameTextBox.Name = "rentCustomerNameTextBox";
-            this.rentCustomerNameTextBox.Size = new System.Drawing.Size(252, 20);
-            this.rentCustomerNameTextBox.TabIndex = 3;
-            this.rentCustomerNameTextBox.Visible = false;
+            this.quantityColumn.ReadOnly = true;
             // 
             // EmployeeForm
             // 
@@ -916,12 +1013,19 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.TabPage rentFurnitureTab;
-        private System.Windows.Forms.Label customerIDLable;
-        private System.Windows.Forms.TextBox customerIDTextBox;
+        private System.Windows.Forms.Label rentCustomerIDLabel;
+        private System.Windows.Forms.TextBox rentCustomerIDTextBox;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn itemIDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
         private System.Windows.Forms.TextBox rentCustomerNameTextBox;
+        private System.Windows.Forms.Label rentFurnitureNumLabel;
+        private System.Windows.Forms.Button rentButton;
+        private System.Windows.Forms.ComboBox rentFurnitureNumberCombBox;
+        private System.Windows.Forms.Button rentAddItemButton;
+        private System.Windows.Forms.Label rentQuantityLabel;
+        private System.Windows.Forms.ComboBox rentQuantityComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemIDColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn furnitureDescriptionColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
     }
 }
 
