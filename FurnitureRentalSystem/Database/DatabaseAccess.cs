@@ -86,7 +86,7 @@ namespace FurnitureRentalSystem.Database
 
                 while (reader.Read())
                 {
-                    //Debug.WriteLine(reader["abbrev"]);
+                    Debug.WriteLine(reader["number"]);
                     furnitureIDs.Add(reader["number"]);
                 }
 
@@ -113,6 +113,107 @@ namespace FurnitureRentalSystem.Database
 
             return furnitureIDs;
         }
+
+
+        public int GetQuantityForFurnitureNumber(int furnitureNumber)
+        {
+
+            int quantity = 0;
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                String selectQuantity = "SELECT totalNumber FROM FURNITURE_ITEM WHERE number=@fnumber";
+
+                MySqlDataReader reader;
+
+                cmd = new MySqlCommand(selectQuantity, conn);
+                cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Debug.WriteLine(reader["totalNumber"]);
+                    quantity = (int) reader["totalNumber"];
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return quantity;
+        }
+
+        public string GetFurnitureDescription(int furnitureNumber)
+        {
+
+            string description = "";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                String selectQuantity = "SELECT description FROM FURNITURE_ITEM WHERE number=@fnumber";
+
+                MySqlDataReader reader;
+
+                cmd = new MySqlCommand(selectQuantity, conn);
+                cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Debug.WriteLine(reader["description"]);
+                    description = (string)reader["description"];
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return description;
+        }
+
+
 
         public ArrayList CustomerValidation(String customerID)
         {

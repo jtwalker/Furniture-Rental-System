@@ -22,6 +22,7 @@ namespace FurnitureRentalSystem
         private ArrayList stateAbbrevs;
         private ErrorProvider rentErrorProvider;
 
+
         public EmployeeForm(LoginInformation loginInformation)
         {
             InitializeComponent();
@@ -67,7 +68,7 @@ namespace FurnitureRentalSystem
 
 
         //****************************Tab Control Event Handlers***************************
-              
+
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl.SelectedIndex)
@@ -147,10 +148,10 @@ namespace FurnitureRentalSystem
         //***************************************************************************************************************
         //*******************************************SEARCH CUSTOMER TAB **********************************************
         //***************************************************************************************************************
-   
+
 
         //************************Search Customer ID Methods*************************
-        
+
         private bool ensureSearchCustomerFieldsAreCompleted()
         {
             if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && this.nameSearchCustomerRadioButton.Checked)
@@ -159,7 +160,7 @@ namespace FurnitureRentalSystem
                 this.errorSearchCustomerLabel.Visible = true;
                 return false;
             }
-            else if(String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text) && this.phoneSearchCustomerRadioButton.Checked)
+            else if (String.IsNullOrEmpty(this.phoneNumberSearchCustomerMaskedTextBox.Text) && this.phoneSearchCustomerRadioButton.Checked)
             {
                 this.errorSearchCustomerLabel.Text = "Please enter a valid Phone Number.";
                 this.errorSearchCustomerLabel.Visible = true;
@@ -208,7 +209,7 @@ namespace FurnitureRentalSystem
         {
             this.searchResultsSearchCustomerListView.Items.Clear();
             bool canPerformSearch = this.ensureSearchCustomerFieldsAreCompleted();
-            if(canPerformSearch)
+            if (canPerformSearch)
             {
                 this.performCustomerSearch();
             }
@@ -250,7 +251,7 @@ namespace FurnitureRentalSystem
             else
             {
                 this.firstNameSearchCustomerTextBox.Enabled = true;
-                this.lastNameSearchCustomerTextBox.Enabled = true; 
+                this.lastNameSearchCustomerTextBox.Enabled = true;
             }
         }
 
@@ -259,7 +260,7 @@ namespace FurnitureRentalSystem
         //***************************************************************************************************************
         //*******************************************SEARCH TABS SHARED **********************************************
         //***************************************************************************************************************  
- 
+
 
         //**********************************************Search Methods*************************************************
 
@@ -317,9 +318,9 @@ namespace FurnitureRentalSystem
 
 
 
-       //***************************************************************************************************************
-       //*******************************************REGISTER CUSTOMER TAB **********************************************
-       //***************************************************************************************************************
+        //***************************************************************************************************************
+        //*******************************************REGISTER CUSTOMER TAB **********************************************
+        //***************************************************************************************************************
 
 
 
@@ -530,7 +531,7 @@ namespace FurnitureRentalSystem
                 this.stateAbbrevComboBox.Items.Add(abbrev);
             }
 
-            
+
         }
 
         private void ResetAllControls()
@@ -546,34 +547,167 @@ namespace FurnitureRentalSystem
             this.SetUpRegisterCustomerControls();
         }
 
-        
+
         //****************************************************************************
         //****************************Rent Furniture Tab******************************
         //****************************************************************************
 
         private void customerIDValidation(object sender, CancelEventArgs e)
         {
-            DatabaseAccess dba = new DatabaseAccess();
-            ArrayList customerInfo = dba.CustomerValidation(this.customerIDTextBox.Text);
-
-            if (customerInfo.Count == 2)
-            {
-                this.errorProvider.SetError(this.customerIDTextBox, "");
-                this.rentCustomerNameTextBox.Visible = true;
-
-            
-                this.rentCustomerNameTextBox.Text = customerInfo[0] + " " + customerInfo[1];
-            }
-            else
-            {
-                this.errorProvider.SetError(this.customerIDTextBox, "Invalid Customer ID");
-            }
+            HandleCustomerIDValidation();
 
 
         }
 
-        
-        
-    }
+        private void HandleCustomerIDValidation()
+        {
+            DatabaseAccess dba = new DatabaseAccess();
+            ArrayList customerInfo = dba.CustomerValidation(this.rentCustomerIDTextBox.Text);
+
+            if (customerInfo.Count == 2)
+            {
+                this.errorProvider.SetError(this.rentCustomerIDTextBox, "");
+                this.rentCustomerNameTextBox.Visible = true;
+                this.rentFurnitureNumLabel.Enabled = true;
+                this.rentFurnitureNumberCombBox.Enabled = true;
+
+
+                this.rentCustomerNameTextBox.Text = customerInfo[0] + " " + customerInfo[1];
+                this.SetUpFurnitureNumberComboBox();
+            }
+            else
+            {
+                this.errorProvider.SetError(this.rentCustomerIDTextBox, "Invalid Customer ID");
+            }
+        }
+
+        private void SetUpFurnitureNumberComboBox()
+        {
+            DatabaseAccess dba = new DatabaseAccess();
+            ArrayList furnitureNums = dba.GetFurnitureItemNumbers();
+
+            this.rentFurnitureNumberCombBox.Items.Clear();
            
+            foreach (int number in furnitureNums)
+            {
+                this.rentFurnitureNumberCombBox.Items.Add(number);
+            }
+
+        }
+
+
+        private void rentCustomerIDTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            //MessageBox.Show(((e.KeyCode == Keys.Return) || (e.KeyCode == Keys.Enter)).ToString(), "Key Press", MessageBoxButtons.OK, MessageBoxIcon.None);
+
+            if ((e.KeyCode == Keys.Return) || (e.KeyCode == Keys.Enter))
+            {
+                this.HandleCustomerIDValidation();
+            }
+
+
+
+        }
+
+        private void rentFurnitureNumberCombBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            this.rentQuantityComboBox.Items.Clear();
+            this.ValidateFurnitureNumberSelection();
+
+        }
+
+        private void ValidateFurnitureNumberSelection()
+        {
+
+            DatabaseAccess dba = new DatabaseAccess();
+            int furnNum = (int)this.rentFurnitureNumberCombBox.SelectedItem;
+
+            int quantity = dba.GetQuantityForFurnitureNumber(furnNum);
+
+            if (quantity < 1)
+            {
+                this.errorProvider.SetError(this.rentFurnitureNumberCombBox, "Out of stock");
+                //this.rentQuantityComboBox.Enabled = false;
+                this.rentAddItemButton.Enabled = false;
+            }
+            else
+            {
+                this.errorProvider.SetError(this.rentFurnitureNumberCombBox, "");
+                this.SetUpQuantityComboBox(quantity);
+                this.rentQuantityComboBox.Enabled = true;
+                this.rentQuantityLabel.Enabled = true;
+            }
+
+        }
+
+        private void SetUpQuantityComboBox(int quantity)
+        {
+            for (int i = 1; i <= quantity; i++)
+            {
+                this.rentQuantityComboBox.Items.Add(i);
+            }
+        }
+
+        private void rentQuantityComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            this.rentAddItemButton.Enabled = true;
+        }
+
+        private void rentAddItemButton_Click(object sender, EventArgs e)
+        {
+            int furnitureNumber = (int)this.rentFurnitureNumberCombBox.SelectedItem;
+
+            DatabaseAccess dba = new DatabaseAccess();
+
+            string description = dba.GetFurnitureDescription(furnitureNumber);
+
+            dataGridView1.Rows.Add(new object[] { this.rentFurnitureNumberCombBox.SelectedItem, description, this.rentQuantityComboBox.SelectedItem });
+            this.rentFurnitureNumberCombBox.SelectedIndex = -1;
+            this.rentFurnitureNumberCombBox.Items.Remove(furnitureNumber);
+            this.rentQuantityComboBox.Items.Clear();
+
+            this.rentButton.Enabled = true;
+            this.dataGridView1.Enabled = true;
+        }
+
+        private void rentFurnitureNumberCombBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (this.rentFurnitureNumberCombBox.SelectedItem != null)
+            {
+                this.rentQuantityComboBox.Items.Clear();
+                this.ValidateFurnitureNumberSelection();
+            }
+            else
+            {
+                this.errorProvider.SetError(this.rentFurnitureNumberCombBox, "Must make selection");
+               // this.rentQuantityComboBox.Enabled = false;
+                this.rentAddItemButton.Enabled = false;
+            }
+        }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            ArrayList data = new ArrayList();
+
+            foreach (DataGridViewCell cell in e.Row.Cells)
+            {
+                data.Add(cell.Value);
+            }
+
+            this.rentFurnitureNumberCombBox.Items.Add(data[0]);
+            
+
+        }
+
+        private void rentButton_Click(object sender, EventArgs e)
+        {
+          
+
+        }
+
+
+
+    }
+
 }
