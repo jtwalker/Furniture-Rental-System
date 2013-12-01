@@ -271,6 +271,75 @@ namespace FurnitureRentalSystem.Database
 
         }
 
+        public String AddRental(int customerID, int employeeID, DataTable rentalInfo)
+        {
+
+            String rentalIdString = "";
+            long rentalID = 0;
+
+            String insertRentalSQL = "INSERT INTO RENTAL(customerID, employeeID, rentalDate) VALUES (@custID, @empID, @rentDate)";
+            String insertRentalItemSQL = "INSERT INTO RENTAL_ITEM(rentalID, furnitureNumber, dueDate, quantity) VALUES (@rentID, @furnNum, @dueDate, @quantity)";
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                cmd = new MySqlCommand(insertRentalSQL, conn);
+                cmd.Parameters.AddWithValue("@custID", customerID);
+                cmd.Parameters.AddWithValue("@empID", employeeID);
+                cmd.Parameters.AddWithValue("@rentDate", DateTime.Now.ToString("yyyy-MM-dd"));
+           
+
+                cmd.ExecuteNonQuery();
+
+                rentalID = cmd.LastInsertedId;
+
+                foreach (DataRow row in rentalInfo.Rows)
+                {
+
+                    cmd = new MySqlCommand(insertRentalItemSQL, conn);
+                    cmd.Parameters.AddWithValue("@rentID", rentalID);
+
+                    Debug.WriteLine("DBA - FurnNum: " + row.ItemArray[0]);
+                    cmd.Parameters.AddWithValue("@furnNum", row.ItemArray[0]);
+                    
+                    Debug.WriteLine("DBA - dueDate: " + DateTime.Now.AddDays(7).ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@dueDate", DateTime.Now.AddDays(7).ToString("yyyy-MM-dd"));
+
+                    Debug.WriteLine("DBA - @quantity: " + row.ItemArray[2]);
+                    cmd.Parameters.AddWithValue("@quantity", row.ItemArray[2]);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                rentalIdString = rentalID.ToString();
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+                rentalIdString = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+                rentalIdString = ex.Message;
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+
+
+            return rentalIdString;
+
+        }
+
+        
+
+
 
         public String AddCustomer(String fname, String mname, String lname, String phone, 
             String ssn, String street, String city, String stateAbbrev, String zipCode)

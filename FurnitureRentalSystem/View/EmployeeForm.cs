@@ -21,7 +21,7 @@ namespace FurnitureRentalSystem
         private LoginInformation loginInformation;
         private ArrayList stateAbbrevs;
         private ErrorProvider rentErrorProvider;
-
+        private DataTable rentalInfoTable;
 
         public EmployeeForm(LoginInformation loginInformation)
         {
@@ -34,6 +34,15 @@ namespace FurnitureRentalSystem
             this.loggedInLabel.Text = String.Format("You are logged in as: {0}. Click to logout.", this.loginInformation.getName());
 
             this.rentErrorProvider = new ErrorProvider();
+
+
+            rentalInfoTable = new DataTable();
+            rentalInfoTable.Columns.Add("FurnitureID", typeof(int));
+            rentalInfoTable.Columns.Add("Description", typeof(string));
+            rentalInfoTable.Columns.Add("Quantity", typeof(int));
+
+            this.dataGridView1.DataSource = rentalInfoTable;
+
 
         }
 
@@ -662,7 +671,15 @@ namespace FurnitureRentalSystem
 
             string description = dba.GetFurnitureDescription(furnitureNumber);
 
-            dataGridView1.Rows.Add(new object[] { this.rentFurnitureNumberCombBox.SelectedItem, description, this.rentQuantityComboBox.SelectedItem });
+            DataRow newRow = this.rentalInfoTable.NewRow();
+
+            newRow["FurnitureID"] = this.rentFurnitureNumberCombBox.SelectedItem;
+            newRow["Description"] = description;
+            newRow["Quantity"] = this.rentQuantityComboBox.SelectedItem;
+
+            this.rentalInfoTable.Rows.Add(newRow);
+
+            //dataGridView1.Rows.Add(new object[] { this.rentFurnitureNumberCombBox.SelectedItem, description, this.rentQuantityComboBox.SelectedItem });
             this.rentFurnitureNumberCombBox.SelectedIndex = -1;
             this.rentFurnitureNumberCombBox.Items.Remove(furnitureNumber);
             this.rentQuantityComboBox.Items.Clear();
@@ -702,7 +719,29 @@ namespace FurnitureRentalSystem
 
         private void rentButton_Click(object sender, EventArgs e)
         {
-          
+            //DataTable rentalInfoTable = new DataTable();
+            //rentalInfoTable.Columns.Add("number", typeof(string));
+            //rentalInfoTable.Columns.Add(""escription", typeof(string));
+            //rentalInfoTable.Columns.Add("quantity", typeof(int));
+
+            //foreach (DataGridViewRow row in this.dataGridView1.Rows)
+            //{
+            //    Debug.WriteLine("ROW:" + row.Cells[0].Value + " " +  row.Cells[1].Value +" "+  row.Cells[2].Value);
+                
+            //    rentalInfoTable.Rows.Add(row);
+
+
+            //}
+
+
+            string custID = this.rentCustomerIDTextBox.Text;
+            int customerID = Convert.ToInt32(custID);
+            int empID = this.loginInformation.getEmployeeID();
+
+
+            DatabaseAccess dba = new DatabaseAccess();
+            dba.AddRental(customerID, empID, rentalInfoTable);
+
 
         }
 
