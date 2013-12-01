@@ -104,9 +104,6 @@
             this.rentCustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.loggedInLabel = new System.Windows.Forms.Label();
-            this.itemIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.furnitureDescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -874,10 +871,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.itemIDColumn,
-            this.furnitureDescriptionColumn,
-            this.quantityColumn});
             this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(44, 202);
             this.dataGridView1.Name = "dataGridView1";
@@ -895,25 +888,6 @@
             this.loggedInLabel.TabIndex = 23;
             this.loggedInLabel.Text = "Logged in";
             this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
-            // 
-            // itemIDColumn
-            // 
-            this.itemIDColumn.HeaderText = "Furniture ID";
-            this.itemIDColumn.Name = "itemIDColumn";
-            this.itemIDColumn.ReadOnly = true;
-            this.itemIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // furnitureDescriptionColumn
-            // 
-            this.furnitureDescriptionColumn.HeaderText = "Furniture Description";
-            this.furnitureDescriptionColumn.Name = "furnitureDescriptionColumn";
-            this.furnitureDescriptionColumn.ReadOnly = true;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.HeaderText = "Quantity";
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.ReadOnly = true;
             // 
             // EmployeeForm
             // 
@@ -1023,9 +997,6 @@
         private System.Windows.Forms.Button rentAddItemButton;
         private System.Windows.Forms.Label rentQuantityLabel;
         private System.Windows.Forms.ComboBox rentQuantityComboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemIDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn furnitureDescriptionColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
     }
 }
 
