@@ -35,6 +35,9 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchForCustomerIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchForFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rentFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.returnFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -93,6 +96,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.rentFurnitureTab = new System.Windows.Forms.TabPage();
+            this.rentClearButton = new System.Windows.Forms.Button();
             this.rentFurnitureNumberCombBox = new System.Windows.Forms.ComboBox();
             this.rentAddItemButton = new System.Windows.Forms.Button();
             this.rentQuantityLabel = new System.Windows.Forms.Label();
@@ -103,10 +107,14 @@
             this.rentCustomerIDLabel = new System.Windows.Forms.Label();
             this.rentCustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.rentalInfoDataGridView = new System.Windows.Forms.DataGridView();
+            this.returnFurnitureTab = new System.Windows.Forms.TabPage();
+            this.returnReturnButton = new System.Windows.Forms.Button();
+            this.returnDataGridView = new System.Windows.Forms.DataGridView();
+            this.returnRentalIDComboBox = new System.Windows.Forms.ComboBox();
+            this.returnRentalIDLabel = new System.Windows.Forms.Label();
+            this.returnCustomerIdTextBox = new System.Windows.Forms.TextBox();
+            this.returnCustomerIdLabel = new System.Windows.Forms.Label();
             this.loggedInLabel = new System.Windows.Forms.Label();
-            this.searchForFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rentFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rentClearButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -115,6 +123,8 @@
             this.searchFurnitureTab.SuspendLayout();
             this.rentFurnitureTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rentalInfoDataGridView)).BeginInit();
+            this.returnFurnitureTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.returnDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -159,7 +169,8 @@
             this.registerCustomerToolStripMenuItem,
             this.searchForCustomerIDToolStripMenuItem,
             this.searchForFurnitureToolStripMenuItem,
-            this.rentFurnitureToolStripMenuItem});
+            this.rentFurnitureToolStripMenuItem,
+            this.returnFurnitureToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -179,6 +190,30 @@
             this.searchForCustomerIDToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.searchForCustomerIDToolStripMenuItem.Text = "Search For Customer ID";
             this.searchForCustomerIDToolStripMenuItem.Click += new System.EventHandler(this.searchForCustomerIDToolStripMenuItem_Click);
+            // 
+            // searchForFurnitureToolStripMenuItem
+            // 
+            this.searchForFurnitureToolStripMenuItem.Name = "searchForFurnitureToolStripMenuItem";
+            this.searchForFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.searchForFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.searchForFurnitureToolStripMenuItem.Text = "Search For Furniture";
+            this.searchForFurnitureToolStripMenuItem.Click += new System.EventHandler(this.searchForFurnitureToolStripMenuItem_Click);
+            // 
+            // rentFurnitureToolStripMenuItem
+            // 
+            this.rentFurnitureToolStripMenuItem.Name = "rentFurnitureToolStripMenuItem";
+            this.rentFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.rentFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.rentFurnitureToolStripMenuItem.Text = "Rent Furniture";
+            this.rentFurnitureToolStripMenuItem.Click += new System.EventHandler(this.rentFurnitureToolStripMenuItem_Click);
+            // 
+            // returnFurnitureToolStripMenuItem
+            // 
+            this.returnFurnitureToolStripMenuItem.Name = "returnFurnitureToolStripMenuItem";
+            this.returnFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.returnFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.returnFurnitureToolStripMenuItem.Text = "Return Furniture";
+            this.returnFurnitureToolStripMenuItem.Click += new System.EventHandler(this.returnFurnitureToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -205,6 +240,7 @@
             this.tabControl.Controls.Add(this.searchForCustomerIDTab);
             this.tabControl.Controls.Add(this.searchFurnitureTab);
             this.tabControl.Controls.Add(this.rentFurnitureTab);
+            this.tabControl.Controls.Add(this.returnFurnitureTab);
             this.tabControl.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tabControl.Location = new System.Drawing.Point(13, 27);
             this.tabControl.Name = "tabControl";
@@ -777,6 +813,17 @@
             this.rentFurnitureTab.Text = "Rent Furniture";
             this.rentFurnitureTab.UseVisualStyleBackColor = true;
             // 
+            // rentClearButton
+            // 
+            this.rentClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.rentClearButton.Location = new System.Drawing.Point(441, 459);
+            this.rentClearButton.Name = "rentClearButton";
+            this.rentClearButton.Size = new System.Drawing.Size(75, 23);
+            this.rentClearButton.TabIndex = 11;
+            this.rentClearButton.Text = "Clear";
+            this.rentClearButton.UseVisualStyleBackColor = true;
+            this.rentClearButton.Click += new System.EventHandler(this.rentClearButton_Click);
+            // 
             // rentFurnitureNumberCombBox
             // 
             this.rentFurnitureNumberCombBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -837,6 +884,7 @@
             // 
             // rentButton
             // 
+            this.rentButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.rentButton.Enabled = false;
             this.rentButton.Location = new System.Drawing.Point(557, 459);
             this.rentButton.Name = "rentButton";
@@ -874,19 +922,102 @@
             this.rentCustomerIDTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rentCustomerIDTextBox_KeyUp);
             this.rentCustomerIDTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.customerIDValidation);
             // 
-            // dataGridView1
+            // rentalInfoDataGridView
             // 
             this.rentalInfoDataGridView.AllowUserToAddRows = false;
+            this.rentalInfoDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rentalInfoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.rentalInfoDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.rentalInfoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rentalInfoDataGridView.Enabled = false;
             this.rentalInfoDataGridView.Location = new System.Drawing.Point(94, 161);
-            this.rentalInfoDataGridView.Name = "dataGridView1";
+            this.rentalInfoDataGridView.Name = "rentalInfoDataGridView";
             this.rentalInfoDataGridView.ReadOnly = true;
             this.rentalInfoDataGridView.Size = new System.Drawing.Size(538, 253);
             this.rentalInfoDataGridView.TabIndex = 10;
-            this.rentalInfoDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
+            this.rentalInfoDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.rentalInfoDataGridView_UserDeletingRow);
+            // 
+            // returnFurnitureTab
+            // 
+            this.returnFurnitureTab.CausesValidation = false;
+            this.returnFurnitureTab.Controls.Add(this.returnReturnButton);
+            this.returnFurnitureTab.Controls.Add(this.returnDataGridView);
+            this.returnFurnitureTab.Controls.Add(this.returnRentalIDComboBox);
+            this.returnFurnitureTab.Controls.Add(this.returnRentalIDLabel);
+            this.returnFurnitureTab.Controls.Add(this.returnCustomerIdTextBox);
+            this.returnFurnitureTab.Controls.Add(this.returnCustomerIdLabel);
+            this.returnFurnitureTab.Location = new System.Drawing.Point(4, 22);
+            this.returnFurnitureTab.Name = "returnFurnitureTab";
+            this.returnFurnitureTab.Padding = new System.Windows.Forms.Padding(3);
+            this.returnFurnitureTab.Size = new System.Drawing.Size(738, 526);
+            this.returnFurnitureTab.TabIndex = 4;
+            this.returnFurnitureTab.Text = "Return Furniture";
+            this.returnFurnitureTab.UseVisualStyleBackColor = true;
+            // 
+            // returnReturnButton
+            // 
+            this.returnReturnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnReturnButton.Location = new System.Drawing.Point(616, 473);
+            this.returnReturnButton.Name = "returnReturnButton";
+            this.returnReturnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnReturnButton.TabIndex = 5;
+            this.returnReturnButton.Text = "Return";
+            this.returnReturnButton.UseVisualStyleBackColor = true;
+            // 
+            // returnDataGridView
+            // 
+            this.returnDataGridView.AllowUserToAddRows = false;
+            this.returnDataGridView.AllowUserToDeleteRows = false;
+            this.returnDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.returnDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.returnDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.returnDataGridView.Location = new System.Drawing.Point(66, 101);
+            this.returnDataGridView.Name = "returnDataGridView";
+            this.returnDataGridView.Size = new System.Drawing.Size(625, 341);
+            this.returnDataGridView.TabIndex = 4;
+            // 
+            // returnRentalIDComboBox
+            // 
+            this.returnRentalIDComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnRentalIDComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.returnRentalIDComboBox.FormattingEnabled = true;
+            this.returnRentalIDComboBox.Location = new System.Drawing.Point(473, 43);
+            this.returnRentalIDComboBox.Name = "returnRentalIDComboBox";
+            this.returnRentalIDComboBox.Size = new System.Drawing.Size(121, 21);
+            this.returnRentalIDComboBox.TabIndex = 3;
+            this.returnRentalIDComboBox.SelectionChangeCommitted += new System.EventHandler(this.returnRentalIDComboBox_SelectionChangeCommitted);
+            // 
+            // returnRentalIDLabel
+            // 
+            this.returnRentalIDLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnRentalIDLabel.AutoSize = true;
+            this.returnRentalIDLabel.Location = new System.Drawing.Point(402, 46);
+            this.returnRentalIDLabel.Name = "returnRentalIDLabel";
+            this.returnRentalIDLabel.Size = new System.Drawing.Size(55, 13);
+            this.returnRentalIDLabel.TabIndex = 2;
+            this.returnRentalIDLabel.Text = "Rental ID:";
+            // 
+            // returnCustomerIdTextBox
+            // 
+            this.returnCustomerIdTextBox.Location = new System.Drawing.Point(147, 43);
+            this.returnCustomerIdTextBox.Name = "returnCustomerIdTextBox";
+            this.returnCustomerIdTextBox.Size = new System.Drawing.Size(135, 20);
+            this.returnCustomerIdTextBox.TabIndex = 1;
+            this.returnCustomerIdTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.returnCustomerIdTextBox_Validating);
+            // 
+            // returnCustomerIdLabel
+            // 
+            this.returnCustomerIdLabel.AutoSize = true;
+            this.returnCustomerIdLabel.Location = new System.Drawing.Point(73, 46);
+            this.returnCustomerIdLabel.Name = "returnCustomerIdLabel";
+            this.returnCustomerIdLabel.Size = new System.Drawing.Size(68, 13);
+            this.returnCustomerIdLabel.TabIndex = 0;
+            this.returnCustomerIdLabel.Text = "Customer ID:";
             // 
             // loggedInLabel
             // 
@@ -899,32 +1030,6 @@
             this.loggedInLabel.Text = "Logged in";
             this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
             // 
-            // searchForFurnitureToolStripMenuItem
-            // 
-            this.searchForFurnitureToolStripMenuItem.Name = "searchForFurnitureToolStripMenuItem";
-            this.searchForFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.searchForFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.searchForFurnitureToolStripMenuItem.Text = "Search For Furniture";
-            this.searchForFurnitureToolStripMenuItem.Click += new System.EventHandler(this.searchForFurnitureToolStripMenuItem_Click);
-            // 
-            // rentFurnitureToolStripMenuItem
-            // 
-            this.rentFurnitureToolStripMenuItem.Name = "rentFurnitureToolStripMenuItem";
-            this.rentFurnitureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.rentFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.rentFurnitureToolStripMenuItem.Text = "Rent Furniture";
-            this.rentFurnitureToolStripMenuItem.Click += new System.EventHandler(this.rentFurnitureToolStripMenuItem_Click);
-            // 
-            // rentClearButton
-            // 
-            this.rentClearButton.Location = new System.Drawing.Point(441, 459);
-            this.rentClearButton.Name = "rentClearButton";
-            this.rentClearButton.Size = new System.Drawing.Size(75, 23);
-            this.rentClearButton.TabIndex = 11;
-            this.rentClearButton.Text = "Clear";
-            this.rentClearButton.UseVisualStyleBackColor = true;
-            this.rentClearButton.Click += new System.EventHandler(this.rentClearButton_Click);
-            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -934,6 +1039,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(787, 629);
             this.Name = "EmployeeForm";
             this.Text = "Furniture Rental System";
             this.menuStrip1.ResumeLayout(false);
@@ -950,6 +1056,9 @@
             this.rentFurnitureTab.ResumeLayout(false);
             this.rentFurnitureTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rentalInfoDataGridView)).EndInit();
+            this.returnFurnitureTab.ResumeLayout(false);
+            this.returnFurnitureTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.returnDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1036,6 +1145,14 @@
         private System.Windows.Forms.ToolStripMenuItem searchForFurnitureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rentFurnitureToolStripMenuItem;
         private System.Windows.Forms.Button rentClearButton;
+        private System.Windows.Forms.ToolStripMenuItem returnFurnitureToolStripMenuItem;
+        private System.Windows.Forms.TabPage returnFurnitureTab;
+        private System.Windows.Forms.Button returnReturnButton;
+        private System.Windows.Forms.DataGridView returnDataGridView;
+        private System.Windows.Forms.ComboBox returnRentalIDComboBox;
+        private System.Windows.Forms.Label returnRentalIDLabel;
+        private System.Windows.Forms.TextBox returnCustomerIdTextBox;
+        private System.Windows.Forms.Label returnCustomerIdLabel;
     }
 }
 
