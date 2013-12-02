@@ -451,8 +451,10 @@ namespace FurnitureRentalSystem.Database
         public void GetRentalInfo(int rentalID, DataTable table)
         {
 
-            string loginQuerySQL = "SELECT number, description, (IFNULL(r.quantity, 0) - IFNULL(i.quantity, 0)) as quantityNotReturned, dailyRentalRate, dailyRentalFee, dueDate " + 
-                                    "FROM (RENTAL_ITEM as r left join FURNITURE_ITEM on number = furnitureNumber) left join ITEM_RETURN as i on r.id = rentalItemId " +
+            string loginQuerySQL = "SELECT number, description, r.id as rentalItemID, (IFNULL(r.quantity, 0) - IFNULL(i.quantity, 0)) as quantityNotReturned, " +
+                                    "dailyRentalRate, dailyRentalFee, rentalDate, dueDate " +
+                                    "FROM (RENTAL_ITEM as r left join FURNITURE_ITEM on number = furnitureNumber) left join RENTAL as n on n.rentalID = r.rentalID " + 
+                                    "left join ITEM_RETURN as i on r.id = rentalItemId " +
                                     "WHERE r.rentalID = @rentalID";
 
             try
@@ -474,6 +476,9 @@ namespace FurnitureRentalSystem.Database
                     Debug.WriteLine("TBL - desc: " + reader["description"].ToString());
                     string desc = reader.IsDBNull(0) ? "NA" : reader["description"].ToString();
 
+                    Debug.WriteLine("TBL - RentalItemId: " + reader["rentalItemID"]);
+                    int rentalItemID = (int)reader["rentalItemID"];
+
                     Debug.WriteLine("TBL - qtyNotRtrn: " + reader["quantityNotReturned"]);
                     int qtyNotReturned = Convert.ToInt32(reader["quantityNotReturned"]);
 
@@ -482,6 +487,9 @@ namespace FurnitureRentalSystem.Database
 
                     Debug.WriteLine("TBL - fee: " + reader["dailyRentalFee"].ToString());
                     decimal fee =  Convert.ToDecimal(reader["dailyRentalFee"]);
+
+                    Debug.WriteLine("TBL - rentalDate: " + reader["rentalDate"]);
+                    DateTime rentalDate = (DateTime)reader["rentalDate"];
 
                     Debug.WriteLine("TBL - dueDate: " + reader["dueDate"]);
                     DateTime dueDate = (DateTime)reader["dueDate"];
@@ -495,9 +503,11 @@ namespace FurnitureRentalSystem.Database
              
                     newRow["FurnitureID"] = furnId;
                     newRow["Description"] = desc;
+                    newRow["RentalItemID"] = rentalItemID;
                     newRow["QuantityNotReturned"] = qtyNotReturned;
                     newRow["DailyRate"] = rate;
                     newRow["DailyFee"] = fee;
+                    newRow["RentalDate"] = rentalDate;
                     newRow["DueDate"] = dueDate;
                     newRow["QuantityToReturn"] = quantityToReturn;
                     newRow["AmountDue"] = amountDue;

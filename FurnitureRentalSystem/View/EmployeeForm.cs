@@ -837,10 +837,6 @@ namespace FurnitureRentalSystem
             returnInfoTable.Rows.Clear();
             dba.GetRentalInfo(rentalID, returnInfoTable);
          
-
-            
-
-           
         
         }
 
@@ -849,14 +845,119 @@ namespace FurnitureRentalSystem
             returnInfoTable = new DataTable();
             returnInfoTable.Columns.Add("FurnitureID", typeof(int));
             returnInfoTable.Columns.Add("Description", typeof(string));
+            returnInfoTable.Columns.Add("RentalItemID", typeof(int));
             returnInfoTable.Columns.Add("QuantityNotReturned", typeof(int));
             returnInfoTable.Columns.Add("DailyRate", typeof(decimal));
             returnInfoTable.Columns.Add("DailyFee", typeof(decimal));
+            returnInfoTable.Columns.Add("RentalDate", typeof(DateTime));
             returnInfoTable.Columns.Add("DueDate", typeof(DateTime));
             returnInfoTable.Columns.Add("QuantityToReturn", typeof(int));
             returnInfoTable.Columns.Add("AmountDue", typeof(decimal));
 
             this.returnDataGridView.DataSource = returnInfoTable;
+
+            this.returnDataGridView.Columns[0].ReadOnly = true;
+            this.returnDataGridView.Columns[1].ReadOnly = true;
+            this.returnDataGridView.Columns[2].ReadOnly = true;
+            this.returnDataGridView.Columns[3].ReadOnly = true;
+            this.returnDataGridView.Columns[4].ReadOnly = true;
+            this.returnDataGridView.Columns[5].ReadOnly = true;
+            this.returnDataGridView.Columns[6].ReadOnly = true;
+            this.returnDataGridView.Columns[7].ReadOnly = true;
+            this.returnDataGridView.Columns[9].ReadOnly = true;
+
+        }
+
+        private void returnDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            
+            string columnName = returnInfoTable.Columns[e.ColumnIndex].ColumnName;
+            int value = 0;
+           
+            if (!columnName.Equals("QuantityToReturn")) return;
+
+            try
+            {
+               value = Convert.ToInt32(e.FormattedValue);
+            }
+            catch (Exception ex)
+            {
+                returnInfoTable.Rows[e.RowIndex].RowError =
+                    "Quantity must be an integer";
+                e.Cancel = true;
+                this.returnReturnButton.Enabled = false;
+            }
+
+           
+            int maxValue = Convert.ToInt32(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(3));
+
+             
+            if (value > maxValue || value < 0)
+            {
+                returnInfoTable.Rows[e.RowIndex].RowError =
+                    "Quantity must be between 0 and "+ maxValue+ ".";
+                e.Cancel = true;
+                this.returnReturnButton.Enabled = false;
+            }
+        }
+
+        private void returnDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Clear the row error in case the user presses ESC.   
+            returnInfoTable.Rows[e.RowIndex].RowError = String.Empty;
+
+            DateTime today = DateTime.Now;
+            Debug.WriteLine("Today: " + today);
+            decimal amount;
+            int numberReturning = Convert.ToInt32(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(8));
+            DateTime rentalDate = Convert.ToDateTime(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(6));
+            DateTime dueDate = Convert.ToDateTime(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(7));
+            
+            int days = (today - rentalDate).Days;
+            decimal rate = Convert.ToDecimal(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(4));
+
+            if (today.Date <= dueDate.Date)
+            {
+                amount = rate * days * numberReturning;
+            }
+            else
+            {
+                days = (dueDate - rentalDate).Days;
+                int overdays = (today - dueDate).Days;
+                
+                decimal fee = Convert.ToDecimal(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(5));
+
+                amount = (days * rate* numberReturning) + (overdays * fee* numberReturning);
+            }
+
+            Debug.WriteLine("amount: " + amount);
+            Debug.WriteLine("amount shown: " + this.returnInfoTable.Rows[e.RowIndex][9]);
+            Debug.WriteLine("e.RowIndesx: " + e.RowIndex);
+            this.returnInfoTable.Rows[e.RowIndex][9]= amount;
+            Debug.WriteLine("amount after: " + this.returnInfoTable.Rows[e.RowIndex][9]);
+
+            this.returnReturnButton.Enabled = true;
+        }
+
+        private void returnClearButton_Click(object sender, EventArgs e)
+        {
+            this.returnReturnButton.Enabled = false;
+            this.returnRentalIDComboBox.Items.Clear();
+            this.returnCustomerIdTextBox.Text = String.Empty;
+            this.returnInfoTable.Rows.Clear();
+        }
+
+        private void returnReturnButton_Click(object sender, EventArgs e)
+        {
+            /**
+            int employeeID = loginInformation.getEmployeeID();
+            int rentalID = Convert.ToInt32(this.returnRentalIDComboBox.SelectedItem);
+
+            DataTable data = new DataTable();
+            data.Columns.Add("furnitureNumber", typeof(int));
+            data.Columns.Add("quantityReturned", typeof(int));
+            **/
+
         }
 
 
