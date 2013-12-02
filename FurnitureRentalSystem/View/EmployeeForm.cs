@@ -40,9 +40,10 @@ namespace FurnitureRentalSystem
             rentalInfoTable.Columns.Add("FurnitureID", typeof(int));
             rentalInfoTable.Columns.Add("Description", typeof(string));
             rentalInfoTable.Columns.Add("Quantity", typeof(int));
+            rentalInfoTable.Columns.Add("DailyRate", typeof(decimal));
+            rentalInfoTable.Columns.Add("DailyFee", typeof(decimal));
 
             this.dataGridView1.DataSource = rentalInfoTable;
-
         }
 
 
@@ -679,14 +680,19 @@ namespace FurnitureRentalSystem
 
             DatabaseAccess dba = new DatabaseAccess();
 
-            string description = dba.GetFurnitureDescription(furnitureNumber);
+            string[] data = dba.GetFurnitureDescription(furnitureNumber);
+            string description = data[0];
+            string dailyRate = data[1];
+            string dailyFee = data[2];
+
 
             DataRow newRow = this.rentalInfoTable.NewRow();
 
             newRow["FurnitureID"] = this.rentFurnitureNumberCombBox.SelectedItem;
             newRow["Description"] = description;
             newRow["Quantity"] = this.rentQuantityComboBox.SelectedItem;
-
+            newRow["DailyRate"] = Convert.ToDecimal(dailyRate);
+            newRow["DailyFee"] = Convert.ToDecimal(dailyFee);
             this.rentalInfoTable.Rows.Add(newRow);
 
             //dataGridView1.Rows.Add(new object[] { this.rentFurnitureNumberCombBox.SelectedItem, description, this.rentQuantityComboBox.SelectedItem });
@@ -733,15 +739,36 @@ namespace FurnitureRentalSystem
             int customerID = Convert.ToInt32(custID);
             int empID = this.loginInformation.getEmployeeID();
 
-
             DatabaseAccess dba = new DatabaseAccess();
             string rentalID = dba.AddRental(customerID, empID, rentalInfoTable);
+            this.setUpRentForm();
+        }
 
+
+        private void setUpRentForm()
+        {
+            this.rentFurnitureNumberCombBox.Items.Clear();
+            this.rentFurnitureNumberCombBox.Enabled = false;
+            this.errorProvider.SetError(this.rentFurnitureNumberCombBox, "");
+
+            this.rentCustomerIDTextBox.Text = "";
+            this.rentCustomerNameTextBox.Text = "";
+
+
+            this.rentQuantityComboBox.Items.Clear();
+            this.rentQuantityComboBox.Enabled = false;
+            
+            this.rentalInfoTable.Rows.Clear();
+            this.dataGridView1.Enabled = false;
+
+            this.rentCustomerIDTextBox.Focus();
 
         }
 
-     
-
+        private void rentClearButton_Click(object sender, EventArgs e)
+        {
+            this.setUpRentForm();
+        }
 
 
     }
