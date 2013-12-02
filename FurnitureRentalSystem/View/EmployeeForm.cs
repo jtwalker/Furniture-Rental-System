@@ -450,7 +450,22 @@ namespace FurnitureRentalSystem
 
         private void registerCustomerButton_Click(object sender, EventArgs e)
         {
+            Customer customer = new Customer();
 
+
+            customer.FName = this.firstNameRegisterCustomerTextBox.Text;
+            customer.MName = this.middleNameRegisterCustomerTextBox.Text;
+            customer.LName = this.lastNameRegisterCustomerTextBox.Text;
+            customer.StreetAddress = this.streetAddressRegisterCustomerTextBox.Text;
+            customer.City = this.cityRegisterCustomerTextBox.Text;
+            customer.State = this.stateAbbrevComboBox.SelectedItem.ToString();
+            customer.ZIPCode = this.zipCodeRegisterCustomerMaskedTextBox.Text;
+            customer.SSN = this.ssnRegisterCustomerMaskedTextBox.Text;
+            customer.Phone = this.phoneRegisterCustomerMaskedTextBox.Text;
+
+
+
+            /**
             String firstName = this.firstNameRegisterCustomerTextBox.Text;
             String middleName = this.middleNameRegisterCustomerTextBox.Text;
             String lastName = this.lastNameRegisterCustomerTextBox.Text;
@@ -460,7 +475,7 @@ namespace FurnitureRentalSystem
             String zipCode = this.zipCodeRegisterCustomerMaskedTextBox.Text;
             String ssn = this.ssnRegisterCustomerMaskedTextBox.Text;
             String phone = this.phoneRegisterCustomerMaskedTextBox.Text;
-
+            **/
             //String message = "Customer registered:\n" +
             //                " First Name: " + firstName +
             //                "\n  Middle Name: " + middleName +
@@ -477,8 +492,8 @@ namespace FurnitureRentalSystem
 
             DatabaseAccess dbc = new DatabaseAccess();
 
-            String customerID = dbc.AddCustomer(firstName, middleName, lastName, phone, ssn, streetAddress, city, state, zipCode);
-            MessageBox.Show(firstName + " " + lastName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
+            String customerID = dbc.AddCustomer(customer);
+            MessageBox.Show(customer.FName + " " + customer.LName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
             this.ResetAllControls();
 
         }
