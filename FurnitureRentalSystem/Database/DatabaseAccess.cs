@@ -609,7 +609,7 @@ namespace FurnitureRentalSystem.Database
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        userData.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                        userData.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
                     }
                 }
 
@@ -659,7 +659,7 @@ namespace FurnitureRentalSystem.Database
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        customers.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                        customers.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
                     }
                 }
 
@@ -707,7 +707,7 @@ namespace FurnitureRentalSystem.Database
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        results.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                        results.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
                     }
                 }
 
@@ -753,7 +753,7 @@ namespace FurnitureRentalSystem.Database
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        results.Add((reader.IsDBNull(i) || reader[i] == DBNull.Value ? "NULL" : reader[i].ToString()));
+                        results.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
                     }
                 }
 
