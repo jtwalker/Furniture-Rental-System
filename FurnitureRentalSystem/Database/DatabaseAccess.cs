@@ -150,12 +150,12 @@ namespace FurnitureRentalSystem.Database
                     reader.Close();
                 }
 
-                getRentedQuantity(furnitureNumber, ref selectRentedQuantity, ref reader);
+                GetRentalSumQuantity(furnitureNumber, ref rentalQuantity, selectRentedQuantity, ref reader);
 
-                getReturnedQuantity(furnitureNumber, ref selectReturnedQuantity, ref reader);
+                GetReturnedSumQuantity(furnitureNumber, ref returnQuantity, selectReturnedQuantity, ref reader);
 
 
-                totalNumber = totalNumber - Convert.ToInt32(selectRentedQuantity) + Convert.ToInt32(selectReturnedQuantity);
+                totalNumber = totalNumber - Convert.ToInt32(rentalQuantity) + Convert.ToInt32(returnQuantity);
                 Debug.WriteLine("Final total quantity: " + totalNumber);
             }
             catch (MySqlException ex)
@@ -176,7 +176,7 @@ namespace FurnitureRentalSystem.Database
             return totalNumber;
         }
 
-        private void getReturnedQuantity(int furnitureNumber, ref String selectReturnedQuantity, ref MySqlDataReader reader)
+        private void GetReturnedSumQuantity(int furnitureNumber, ref string returnQuantity, String selectReturnedQuantity, ref MySqlDataReader reader)
         {
             cmd = new MySqlCommand(selectReturnedQuantity, conn);
             cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
@@ -186,20 +186,20 @@ namespace FurnitureRentalSystem.Database
             while (reader.Read())
             {
                 Debug.WriteLine(reader["quantity"]);
-                selectReturnedQuantity = (reader.IsDBNull(0) ? null : reader["quantity"].ToString());
+                returnQuantity = (reader.IsDBNull(0) ? null : reader["quantity"].ToString());
             }
 
             if (reader != null)
             {
                 reader.Close();
             }
-            if (selectReturnedQuantity == null)
+            if (returnQuantity == null)
             {
-                selectReturnedQuantity = "0";
+                returnQuantity = "0";
             }
         }
 
-        private void getRentedQuantity(int furnitureNumber, ref String selectRentedQuantity, ref MySqlDataReader reader)
+        private void GetRentalSumQuantity(int furnitureNumber, ref string rentalQuantity, String selectRentedQuantity, ref MySqlDataReader reader)
         {
             cmd = new MySqlCommand(selectRentedQuantity, conn);
             cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
@@ -209,7 +209,7 @@ namespace FurnitureRentalSystem.Database
             while (reader.Read())
             {
                 Debug.WriteLine(reader["quantity"]);
-                selectRentedQuantity = (reader.IsDBNull(0) ? null : reader["quantity"].ToString());
+                rentalQuantity = (reader.IsDBNull(0) ? null : reader["quantity"].ToString());
             }
 
             if (reader != null)
@@ -217,9 +217,9 @@ namespace FurnitureRentalSystem.Database
                 reader.Close();
             }
 
-            if (selectRentedQuantity == null)
+            if (rentalQuantity == null)
             {
-                selectRentedQuantity = "0";
+                rentalQuantity = "0";
 
             }
         }
