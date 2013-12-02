@@ -102,7 +102,7 @@
             this.rentCustomerNameTextBox = new System.Windows.Forms.TextBox();
             this.rentCustomerIDLabel = new System.Windows.Forms.Label();
             this.rentCustomerIDTextBox = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.rentalInfoDataGridView = new System.Windows.Forms.DataGridView();
             this.loggedInLabel = new System.Windows.Forms.Label();
             this.searchForFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rentFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,7 +114,7 @@
             this.searchMethodSearchCustomerGroupBox.SuspendLayout();
             this.searchFurnitureTab.SuspendLayout();
             this.rentFurnitureTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rentalInfoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -768,7 +768,7 @@
             this.rentFurnitureTab.Controls.Add(this.rentCustomerNameTextBox);
             this.rentFurnitureTab.Controls.Add(this.rentCustomerIDLabel);
             this.rentFurnitureTab.Controls.Add(this.rentCustomerIDTextBox);
-            this.rentFurnitureTab.Controls.Add(this.dataGridView1);
+            this.rentFurnitureTab.Controls.Add(this.rentalInfoDataGridView);
             this.rentFurnitureTab.Location = new System.Drawing.Point(4, 22);
             this.rentFurnitureTab.Name = "rentFurnitureTab";
             this.rentFurnitureTab.Padding = new System.Windows.Forms.Padding(3);
@@ -876,17 +876,17 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(94, 161);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(538, 253);
-            this.dataGridView1.TabIndex = 10;
-            this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
+            this.rentalInfoDataGridView.AllowUserToAddRows = false;
+            this.rentalInfoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.rentalInfoDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.rentalInfoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rentalInfoDataGridView.Enabled = false;
+            this.rentalInfoDataGridView.Location = new System.Drawing.Point(94, 161);
+            this.rentalInfoDataGridView.Name = "dataGridView1";
+            this.rentalInfoDataGridView.ReadOnly = true;
+            this.rentalInfoDataGridView.Size = new System.Drawing.Size(538, 253);
+            this.rentalInfoDataGridView.TabIndex = 10;
+            this.rentalInfoDataGridView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             // 
             // loggedInLabel
             // 
@@ -949,7 +949,7 @@
             this.searchFurnitureTab.PerformLayout();
             this.rentFurnitureTab.ResumeLayout(false);
             this.rentFurnitureTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rentalInfoDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1025,7 +1025,7 @@
         private System.Windows.Forms.TabPage rentFurnitureTab;
         private System.Windows.Forms.Label rentCustomerIDLabel;
         private System.Windows.Forms.TextBox rentCustomerIDTextBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView rentalInfoDataGridView;
         private System.Windows.Forms.TextBox rentCustomerNameTextBox;
         private System.Windows.Forms.Label rentFurnitureNumLabel;
         private System.Windows.Forms.Button rentButton;

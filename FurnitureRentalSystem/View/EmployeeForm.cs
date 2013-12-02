@@ -43,7 +43,7 @@ namespace FurnitureRentalSystem
             rentalInfoTable.Columns.Add("DailyRate", typeof(decimal));
             rentalInfoTable.Columns.Add("DailyFee", typeof(decimal));
 
-            this.dataGridView1.DataSource = rentalInfoTable;
+            this.rentalInfoDataGridView.DataSource = rentalInfoTable;
         }
 
 
@@ -701,7 +701,7 @@ namespace FurnitureRentalSystem
             this.rentQuantityComboBox.Items.Clear();
 
             this.rentButton.Enabled = true;
-            this.dataGridView1.Enabled = true;
+            this.rentalInfoDataGridView.Enabled = true;
         }
 
         private void rentFurnitureNumberCombBox_Validating(object sender, CancelEventArgs e)
@@ -759,7 +759,7 @@ namespace FurnitureRentalSystem
             this.rentQuantityComboBox.Enabled = false;
             
             this.rentalInfoTable.Rows.Clear();
-            this.dataGridView1.Enabled = false;
+            this.rentalInfoDataGridView.Enabled = false;
 
             this.rentCustomerIDTextBox.Focus();
 
