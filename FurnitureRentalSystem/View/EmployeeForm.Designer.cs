@@ -115,6 +115,7 @@
             this.returnCustomerIdTextBox = new System.Windows.Forms.TextBox();
             this.returnCustomerIdLabel = new System.Windows.Forms.Label();
             this.loggedInLabel = new System.Windows.Forms.Label();
+            this.returnClearButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -151,7 +152,7 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.loggedInLabel_Click);
             // 
@@ -159,7 +160,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -226,7 +227,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -942,6 +943,7 @@
             // returnFurnitureTab
             // 
             this.returnFurnitureTab.CausesValidation = false;
+            this.returnFurnitureTab.Controls.Add(this.returnClearButton);
             this.returnFurnitureTab.Controls.Add(this.returnReturnButton);
             this.returnFurnitureTab.Controls.Add(this.returnDataGridView);
             this.returnFurnitureTab.Controls.Add(this.returnRentalIDComboBox);
@@ -959,12 +961,14 @@
             // returnReturnButton
             // 
             this.returnReturnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnReturnButton.Enabled = false;
             this.returnReturnButton.Location = new System.Drawing.Point(616, 473);
             this.returnReturnButton.Name = "returnReturnButton";
             this.returnReturnButton.Size = new System.Drawing.Size(75, 23);
             this.returnReturnButton.TabIndex = 5;
             this.returnReturnButton.Text = "Return";
             this.returnReturnButton.UseVisualStyleBackColor = true;
+            this.returnReturnButton.Click += new System.EventHandler(this.returnReturnButton_Click);
             // 
             // returnDataGridView
             // 
@@ -980,6 +984,8 @@
             this.returnDataGridView.Name = "returnDataGridView";
             this.returnDataGridView.Size = new System.Drawing.Size(625, 341);
             this.returnDataGridView.TabIndex = 4;
+            this.returnDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.returnDataGridView_CellEndEdit);
+            this.returnDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.returnDataGridView_CellValidating);
             // 
             // returnRentalIDComboBox
             // 
@@ -1029,6 +1035,17 @@
             this.loggedInLabel.TabIndex = 23;
             this.loggedInLabel.Text = "Logged in";
             this.loggedInLabel.Click += new System.EventHandler(this.loggedInLabel_Click);
+            // 
+            // returnClearButton
+            // 
+            this.returnClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.returnClearButton.Location = new System.Drawing.Point(519, 473);
+            this.returnClearButton.Name = "returnClearButton";
+            this.returnClearButton.Size = new System.Drawing.Size(75, 23);
+            this.returnClearButton.TabIndex = 6;
+            this.returnClearButton.Text = "Clear";
+            this.returnClearButton.UseVisualStyleBackColor = true;
+            this.returnClearButton.Click += new System.EventHandler(this.returnClearButton_Click);
             // 
             // EmployeeForm
             // 
@@ -1153,6 +1170,7 @@
         private System.Windows.Forms.Label returnRentalIDLabel;
         private System.Windows.Forms.TextBox returnCustomerIdTextBox;
         private System.Windows.Forms.Label returnCustomerIdLabel;
+        private System.Windows.Forms.Button returnClearButton;
     }
 }
 
