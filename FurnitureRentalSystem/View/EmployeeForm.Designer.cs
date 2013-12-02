@@ -106,6 +106,7 @@
             this.loggedInLabel = new System.Windows.Forms.Label();
             this.searchForFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rentFurnitureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rentClearButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.registerCustomerTab.SuspendLayout();
@@ -757,6 +758,7 @@
             // rentFurnitureTab
             // 
             this.rentFurnitureTab.CausesValidation = false;
+            this.rentFurnitureTab.Controls.Add(this.rentClearButton);
             this.rentFurnitureTab.Controls.Add(this.rentFurnitureNumberCombBox);
             this.rentFurnitureTab.Controls.Add(this.rentAddItemButton);
             this.rentFurnitureTab.Controls.Add(this.rentQuantityLabel);
@@ -782,9 +784,9 @@
             this.rentFurnitureNumberCombBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rentFurnitureNumberCombBox.Enabled = false;
             this.rentFurnitureNumberCombBox.FormattingEnabled = true;
-            this.rentFurnitureNumberCombBox.Location = new System.Drawing.Point(173, 105);
+            this.rentFurnitureNumberCombBox.Location = new System.Drawing.Point(188, 96);
             this.rentFurnitureNumberCombBox.Name = "rentFurnitureNumberCombBox";
-            this.rentFurnitureNumberCombBox.Size = new System.Drawing.Size(131, 21);
+            this.rentFurnitureNumberCombBox.Size = new System.Drawing.Size(157, 21);
             this.rentFurnitureNumberCombBox.TabIndex = 5;
             this.rentFurnitureNumberCombBox.SelectionChangeCommitted += new System.EventHandler(this.rentFurnitureNumberCombBox_SelectionChangeCommitted);
             this.rentFurnitureNumberCombBox.Validating += new System.ComponentModel.CancelEventHandler(this.rentFurnitureNumberCombBox_Validating);
@@ -792,9 +794,9 @@
             // rentAddItemButton
             // 
             this.rentAddItemButton.Enabled = false;
-            this.rentAddItemButton.Location = new System.Drawing.Point(502, 103);
+            this.rentAddItemButton.Location = new System.Drawing.Point(541, 94);
             this.rentAddItemButton.Name = "rentAddItemButton";
-            this.rentAddItemButton.Size = new System.Drawing.Size(75, 23);
+            this.rentAddItemButton.Size = new System.Drawing.Size(91, 23);
             this.rentAddItemButton.TabIndex = 8;
             this.rentAddItemButton.Text = "AddItem";
             this.rentAddItemButton.UseVisualStyleBackColor = true;
@@ -804,7 +806,7 @@
             // 
             this.rentQuantityLabel.AutoSize = true;
             this.rentQuantityLabel.Enabled = false;
-            this.rentQuantityLabel.Location = new System.Drawing.Point(348, 108);
+            this.rentQuantityLabel.Location = new System.Drawing.Point(386, 101);
             this.rentQuantityLabel.Name = "rentQuantityLabel";
             this.rentQuantityLabel.Size = new System.Drawing.Size(49, 13);
             this.rentQuantityLabel.TabIndex = 6;
@@ -817,9 +819,9 @@
             this.rentQuantityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rentQuantityComboBox.Enabled = false;
             this.rentQuantityComboBox.FormattingEnabled = true;
-            this.rentQuantityComboBox.Location = new System.Drawing.Point(403, 105);
+            this.rentQuantityComboBox.Location = new System.Drawing.Point(441, 96);
             this.rentQuantityComboBox.Name = "rentQuantityComboBox";
-            this.rentQuantityComboBox.Size = new System.Drawing.Size(55, 21);
+            this.rentQuantityComboBox.Size = new System.Drawing.Size(58, 21);
             this.rentQuantityComboBox.TabIndex = 7;
             this.rentQuantityComboBox.SelectionChangeCommitted += new System.EventHandler(this.rentQuantityComboBox_SelectionChangeCommitted);
             // 
@@ -827,7 +829,7 @@
             // 
             this.rentFurnitureNumLabel.AutoSize = true;
             this.rentFurnitureNumLabel.Enabled = false;
-            this.rentFurnitureNumLabel.Location = new System.Drawing.Point(75, 108);
+            this.rentFurnitureNumLabel.Location = new System.Drawing.Point(91, 101);
             this.rentFurnitureNumLabel.Name = "rentFurnitureNumLabel";
             this.rentFurnitureNumLabel.Size = new System.Drawing.Size(91, 13);
             this.rentFurnitureNumLabel.TabIndex = 4;
@@ -836,7 +838,7 @@
             // rentButton
             // 
             this.rentButton.Enabled = false;
-            this.rentButton.Location = new System.Drawing.Point(616, 482);
+            this.rentButton.Location = new System.Drawing.Point(557, 459);
             this.rentButton.Name = "rentButton";
             this.rentButton.Size = new System.Drawing.Size(75, 23);
             this.rentButton.TabIndex = 4;
@@ -846,9 +848,10 @@
             // 
             // rentCustomerNameTextBox
             // 
-            this.rentCustomerNameTextBox.Location = new System.Drawing.Point(343, 44);
+            this.rentCustomerNameTextBox.Location = new System.Drawing.Point(389, 45);
             this.rentCustomerNameTextBox.Name = "rentCustomerNameTextBox";
-            this.rentCustomerNameTextBox.Size = new System.Drawing.Size(234, 20);
+            this.rentCustomerNameTextBox.ReadOnly = true;
+            this.rentCustomerNameTextBox.Size = new System.Drawing.Size(243, 20);
             this.rentCustomerNameTextBox.TabIndex = 3;
             this.rentCustomerNameTextBox.TabStop = false;
             this.rentCustomerNameTextBox.Visible = false;
@@ -856,7 +859,7 @@
             // rentCustomerIDLabel
             // 
             this.rentCustomerIDLabel.AutoSize = true;
-            this.rentCustomerIDLabel.Location = new System.Drawing.Point(98, 47);
+            this.rentCustomerIDLabel.Location = new System.Drawing.Point(114, 48);
             this.rentCustomerIDLabel.Name = "rentCustomerIDLabel";
             this.rentCustomerIDLabel.Size = new System.Drawing.Size(68, 13);
             this.rentCustomerIDLabel.TabIndex = 2;
@@ -864,9 +867,9 @@
             // 
             // rentCustomerIDTextBox
             // 
-            this.rentCustomerIDTextBox.Location = new System.Drawing.Point(172, 44);
+            this.rentCustomerIDTextBox.Location = new System.Drawing.Point(188, 45);
             this.rentCustomerIDTextBox.Name = "rentCustomerIDTextBox";
-            this.rentCustomerIDTextBox.Size = new System.Drawing.Size(132, 20);
+            this.rentCustomerIDTextBox.Size = new System.Drawing.Size(163, 20);
             this.rentCustomerIDTextBox.TabIndex = 1;
             this.rentCustomerIDTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rentCustomerIDTextBox_KeyUp);
             this.rentCustomerIDTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.customerIDValidation);
@@ -874,11 +877,14 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(44, 202);
+            this.dataGridView1.Location = new System.Drawing.Point(94, 161);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(600, 221);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(538, 253);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             // 
@@ -908,6 +914,16 @@
             this.rentFurnitureToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.rentFurnitureToolStripMenuItem.Text = "Rent Furniture";
             this.rentFurnitureToolStripMenuItem.Click += new System.EventHandler(this.rentFurnitureToolStripMenuItem_Click);
+            // 
+            // rentClearButton
+            // 
+            this.rentClearButton.Location = new System.Drawing.Point(441, 459);
+            this.rentClearButton.Name = "rentClearButton";
+            this.rentClearButton.Size = new System.Drawing.Size(75, 23);
+            this.rentClearButton.TabIndex = 11;
+            this.rentClearButton.Text = "Clear";
+            this.rentClearButton.UseVisualStyleBackColor = true;
+            this.rentClearButton.Click += new System.EventHandler(this.rentClearButton_Click);
             // 
             // EmployeeForm
             // 
@@ -1019,6 +1035,7 @@
         private System.Windows.Forms.ComboBox rentQuantityComboBox;
         private System.Windows.Forms.ToolStripMenuItem searchForFurnitureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rentFurnitureToolStripMenuItem;
+        private System.Windows.Forms.Button rentClearButton;
     }
 }
 

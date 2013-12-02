@@ -125,11 +125,14 @@ namespace FurnitureRentalSystem.Database
                 conn = new MySqlConnection(conStr);
                 conn.Open();
 
-                String selectQuantity = "SELECT totalNumber FROM FURNITURE_ITEM WHERE number=@fnumber";
+                String selectTotalNumber = "SELECT totalNumber FROM FURNITURE_ITEM WHERE number=@fnumber";
+               // String selectRentedQuantity = "SELECT SUM(quantity) FROM RENTAL_ITEM WHERE furnitureNumber=@fnumber";
+               // String selectReturnedQuantity = "SELECT SUM(i.quantity) FROM ITEM_RETURN as i JOIN RENTAL_ITEM as r ON rentalItemId = r.id WHERE furnitureNumber=@fnumber";
+
 
                 MySqlDataReader reader;
 
-                cmd = new MySqlCommand(selectQuantity, conn);
+                cmd = new MySqlCommand(selectTotalNumber, conn);
                 cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
 
                 reader = cmd.ExecuteReader();
@@ -164,17 +167,17 @@ namespace FurnitureRentalSystem.Database
             return quantity;
         }
 
-        public string GetFurnitureDescription(int furnitureNumber)
+        public string[] GetFurnitureDescription(int furnitureNumber)
         {
 
-            string description = "";
+            string[] data = new string[3];
 
             try
             {
                 conn = new MySqlConnection(conStr);
                 conn.Open();
 
-                String selectQuantity = "SELECT description FROM FURNITURE_ITEM WHERE number=@fnumber";
+                String selectQuantity = "SELECT description, dailyRentalRate, dailyRentalFee FROM FURNITURE_ITEM WHERE number=@fnumber";
 
                 MySqlDataReader reader;
 
@@ -186,7 +189,9 @@ namespace FurnitureRentalSystem.Database
                 while (reader.Read())
                 {
                     Debug.WriteLine(reader["description"]);
-                    description = (string)reader["description"];
+                    data[0] = (string)reader["description"];
+                    data[1] = reader["dailyRentalRate"].ToString();
+                    data[2] = reader["dailyRentalFee"].ToString();
                 }
 
                 if (reader != null)
@@ -210,7 +215,7 @@ namespace FurnitureRentalSystem.Database
                     conn.Close();
             }
 
-            return description;
+            return data;
         }
 
 
