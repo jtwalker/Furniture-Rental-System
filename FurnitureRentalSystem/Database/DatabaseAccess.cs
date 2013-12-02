@@ -859,6 +859,103 @@ namespace FurnitureRentalSystem.Database
             return result;
         }
 
+        public ArrayList getRentals(string fromDate, string toDate)
+        {
+            ArrayList rentals = new ArrayList();
+            string query = "SELECT rentalID, customerID, employeeID, DATE_FORMAT(rentalDate,'%Y-%m-%d') FROM RENTAL WHERE rentalDate BETWEEN @fromDate and @toDate";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@fromDate", fromDate);
+                cmd.Parameters.AddWithValue("@toDate", toDate);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        rentals.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return rentals;
+        }
+
+        public ArrayList getRentalItems(string rentalID)
+        {
+            ArrayList rentalItems = new ArrayList();
+            string query = "SELECT * FROM RENTAL_ITEM WHERE rentalID=@rentalID";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@rentalID", rentalID);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        rentalItems.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return rentalItems;
+        }
+
         private void HandleMySqlException(MySqlException ex)
         {
             switch (ex.Number)
@@ -878,11 +975,5 @@ namespace FurnitureRentalSystem.Database
                     break;
             }
         }
-
-
-
-
-
-       
     }
 }
