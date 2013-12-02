@@ -8,6 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Collections;
 
+using FurnitureRentalSystem.Model;
 
 namespace FurnitureRentalSystem.Database
 {
@@ -164,19 +165,13 @@ namespace FurnitureRentalSystem.Database
 
         public int GetQuantityForFurnitureNumber(int furnitureNumber)
         {
-
             int totalNumber = 0;
-            string rentalQuantity = "";
-            string returnQuantity = "";
-
+          
             try
             {
                 conn = new MySqlConnection(conStr);
                 conn.Open();
 
-               // String selectTotalNumber = "SELECT totalNumber FROM FURNITURE_ITEM WHERE number=@fnumber";
-              //  String selectRentedQuantity = "SELECT SUM(quantity) as quantity FROM RENTAL_ITEM WHERE furnitureNumber=@fnumber";
-               // String selectReturnedQuantity = "SELECT SUM(i.quantity) as quantity FROM ITEM_RETURN as i JOIN RENTAL_ITEM as r ON rentalItemId = r.id WHERE furnitureNumber=@fnumber";
                 String selectQuantity = "SELECT (totalNumber - IFNULL(SUM(r.quantity),0) + IFNULL(SUM(ir.quantity),0)) as quantity " +
                                         "FROM (FURNITURE_ITEM as f left join RENTAL_ITEM  as r on f.number=r.furnitureNumber) " +
                                         "left join ITEM_RETURN as ir on r.id=ir.rentalItemId " +
@@ -200,12 +195,6 @@ namespace FurnitureRentalSystem.Database
                     reader.Close();
                 }
 
-                //GetRentalSumQuantity(furnitureNumber, ref rentalQuantity, selectRentedQuantity, ref reader);
-
-               // GetReturnedSumQuantity(furnitureNumber, ref returnQuantity, selectReturnedQuantity, ref reader);
-
-
-                //totalNumber = totalNumber - Convert.ToInt32(rentalQuantity) + Convert.ToInt32(returnQuantity);
                 Debug.WriteLine("Final total quantity: " + totalNumber);
             }
             catch (MySqlException ex)
@@ -224,54 +213,6 @@ namespace FurnitureRentalSystem.Database
             }
 
             return totalNumber;
-        }
-
-        private void GetReturnedSumQuantity(int furnitureNumber, ref string returnQuantity, String selectReturnedQuantity, ref MySqlDataReader reader)
-        {
-            cmd = new MySqlCommand(selectReturnedQuantity, conn);
-            cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
-
-            reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Debug.WriteLine(reader["quantity"]);
-                returnQuantity = (reader.IsDBNull(0) ? null : reader["quantity"].ToString());
-            }
-
-            if (reader != null)
-            {
-                reader.Close();
-            }
-            if (returnQuantity == null)
-            {
-                returnQuantity = "0";
-            }
-        }
-
-        private void GetRentalSumQuantity(int furnitureNumber, ref string rentalQuantity, String selectRentedQuantity, ref MySqlDataReader reader)
-        {
-            cmd = new MySqlCommand(selectRentedQuantity, conn);
-            cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
-
-            reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Debug.WriteLine(reader["quantity"]);
-                rentalQuantity = (reader.IsDBNull(0) ? null : reader["quantity"].ToString());
-            }
-
-            if (reader != null)
-            {
-                reader.Close();
-            }
-
-            if (rentalQuantity == null)
-            {
-                rentalQuantity = "0";
-
-            }
         }
 
         public string[] GetFurnitureDescription(int furnitureNumber)
@@ -596,8 +537,7 @@ namespace FurnitureRentalSystem.Database
         }
 
 
-        public String AddCustomer(String fname, String mname, String lname, String phone, 
-            String ssn, String street, String city, String stateAbbrev, String zipCode)
+        public String AddCustomer(Customer customer)
         {
             String customerID = "Inserted";
 
@@ -611,15 +551,15 @@ namespace FurnitureRentalSystem.Database
                 conn.Open();
 
                 cmd = new MySqlCommand(insertCustomerSQL, conn);
-                cmd.Parameters.AddWithValue("@fname", fname);
-                cmd.Parameters.AddWithValue("@mname", mname);
-                cmd.Parameters.AddWithValue("@lname", lname);
-                cmd.Parameters.AddWithValue("@phone", phone); 
-                cmd.Parameters.AddWithValue("@ssn", ssn);
-                cmd.Parameters.AddWithValue("@street", street);
-                cmd.Parameters.AddWithValue("@city", city);
-                cmd.Parameters.AddWithValue("@stateAbbrev", stateAbbrev);
-                cmd.Parameters.AddWithValue("@zipCode", zipCode);
+                cmd.Parameters.AddWithValue("@fname", customer.FName);
+                cmd.Parameters.AddWithValue("@mname", customer.MName);
+                cmd.Parameters.AddWithValue("@lname", customer.LName);
+                cmd.Parameters.AddWithValue("@phone", customer.Phone); 
+                cmd.Parameters.AddWithValue("@ssn", customer.SSN);
+                cmd.Parameters.AddWithValue("@street", customer.StreetAddress);
+                cmd.Parameters.AddWithValue("@city", customer.City);
+                cmd.Parameters.AddWithValue("@stateAbbrev", customer.State);
+                cmd.Parameters.AddWithValue("@zipCode", customer.ZIPCode);
 
                 cmd.ExecuteNonQuery();
 
