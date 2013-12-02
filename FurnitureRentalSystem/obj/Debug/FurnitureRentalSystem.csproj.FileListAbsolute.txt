@@ -4,7 +4,6 @@ C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\Fu
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.pdb
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csprojResolveAssemblyReference.cache
-C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Form1.resources
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Properties.Resources.resources
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csproj.GenerateResource.Cache
 C:\Users\Family\Desktop\furniture_rental_system\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe.config
@@ -87,3 +86,7 @@ C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\bin\Debug\
 C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.AdminForm.resources
 C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.EmployeeForm.resources
 C:\Users\Family\Desktop\Furniture Rental System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.loginForm.resources
+C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\bin\Debug\mysql.data.dll
+C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.AdminForm.resources
+C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.EmployeeForm.resources
+C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.loginForm.resources
