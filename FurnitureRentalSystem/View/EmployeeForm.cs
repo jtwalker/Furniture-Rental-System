@@ -35,7 +35,6 @@ namespace FurnitureRentalSystem
 
             this.rentErrorProvider = new ErrorProvider();
 
-
             rentalInfoTable = new DataTable();
             rentalInfoTable.Columns.Add("FurnitureID", typeof(int));
             rentalInfoTable.Columns.Add("Description", typeof(string));
