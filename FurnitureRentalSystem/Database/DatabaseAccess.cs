@@ -67,6 +67,53 @@ namespace FurnitureRentalSystem.Database
             return stateAbbrevs;
         }
 
+         public ArrayList GetRentalIDsNumbers(string custID)
+        {
+            ArrayList rentalIDs = new ArrayList();
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                String selectAllFurnitureIDs = "SELECT rentalId FROM RENTAL WHERE customerID = @custID";
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(selectAllFurnitureIDs, conn);
+                cmd.Parameters.AddWithValue("@custID", custID);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Debug.WriteLine(reader["rentalId"]);
+                    rentalIDs.Add(reader["rentalId"]);
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return rentalIDs;
+        }
+
 
         public ArrayList GetFurnitureItemNumbers()
         {
@@ -275,6 +322,7 @@ namespace FurnitureRentalSystem.Database
             return data;
         }
 
+       
 
 
         public ArrayList CustomerValidation(String customerID)
@@ -399,8 +447,88 @@ namespace FurnitureRentalSystem.Database
 
         }
 
-        
 
+        public void GetRentalInfo(int rentalID, DataTable table)
+        {
+
+            string loginQuerySQL = "SELECT number, description, (IFNULL(r.quantity, 0) - IFNULL(i.quantity, 0)) as quantityNotReturned, dailyRentalRate, dailyRentalFee, dueDate " + 
+                                    "FROM (RENTAL_ITEM as r left join FURNITURE_ITEM on number = furnitureNumber) left join ITEM_RETURN as i on r.id = rentalItemId " +
+                                    "WHERE r.rentalID = @rentalID";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(loginQuerySQL, conn);
+                cmd.Parameters.AddWithValue("@rentalID", rentalID);
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Debug.WriteLine("TBL - Furnid: " + reader["number"]);
+                    int furnId = (int)reader["number"];
+
+                    Debug.WriteLine("TBL - desc: " + reader["description"].ToString());
+                    string desc = reader.IsDBNull(0) ? "NA" : reader["description"].ToString();
+
+                    Debug.WriteLine("TBL - qtyNotRtrn: " + reader["quantityNotReturned"]);
+                    int qtyNotReturned = Convert.ToInt32(reader["quantityNotReturned"]);
+
+                    Debug.WriteLine("TBL - rate: " + reader["dailyRentalRate"].ToString());
+                    decimal rate = Convert.ToDecimal(reader["dailyRentalRate"]);
+
+                    Debug.WriteLine("TBL - fee: " + reader["dailyRentalFee"].ToString());
+                    decimal fee =  Convert.ToDecimal(reader["dailyRentalFee"]);
+
+                    Debug.WriteLine("TBL - dueDate: " + reader["dueDate"]);
+                    DateTime dueDate = (DateTime)reader["dueDate"];
+
+                    int quantityToReturn = 0;
+                    Debug.WriteLine("TBL - qtyToReturn: " + quantityToReturn);
+                    decimal amountDue = 0;
+                    Debug.WriteLine("TBL - amtDUe " + amountDue);
+
+                    DataRow newRow = table.NewRow();
+             
+                    newRow["FurnitureID"] = furnId;
+                    newRow["Description"] = desc;
+                    newRow["QuantityNotReturned"] = qtyNotReturned;
+                    newRow["DailyRate"] = rate;
+                    newRow["DailyFee"] = fee;
+                    newRow["DueDate"] = dueDate;
+                    newRow["QuantityToReturn"] = quantityToReturn;
+                    newRow["AmountDue"] = amountDue;
+                    table.Rows.Add(newRow);
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+           
+
+
+        }
 
 
         public String AddCustomer(String fname, String mname, String lname, String phone, 
@@ -745,5 +873,9 @@ namespace FurnitureRentalSystem.Database
                     break;
             }
         }
+
+
+
+       
     }
 }

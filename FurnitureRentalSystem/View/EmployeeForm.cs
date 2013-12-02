@@ -22,6 +22,7 @@ namespace FurnitureRentalSystem
         private ArrayList stateAbbrevs;
         private ErrorProvider rentErrorProvider;
         private DataTable rentalInfoTable;
+        private DataTable returnInfoTable;
 
         public EmployeeForm(LoginInformation loginInformation)
         {
@@ -35,15 +36,11 @@ namespace FurnitureRentalSystem
 
             this.rentErrorProvider = new ErrorProvider();
 
-            rentalInfoTable = new DataTable();
-            rentalInfoTable.Columns.Add("FurnitureID", typeof(int));
-            rentalInfoTable.Columns.Add("Description", typeof(string));
-            rentalInfoTable.Columns.Add("Quantity", typeof(int));
-            rentalInfoTable.Columns.Add("DailyRate", typeof(decimal));
-            rentalInfoTable.Columns.Add("DailyFee", typeof(decimal));
-
-            this.rentalInfoDataGridView.DataSource = rentalInfoTable;
+            this.SetUpRentalInfoTable();
+            this.SetUpReturnInfoTable();
         }
+
+     
 
 
 
@@ -82,6 +79,10 @@ namespace FurnitureRentalSystem
             tabControl.SelectTab(rentFurnitureTab);
         }
 
+        private void returnFurnitureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(returnFurnitureTab);
+        }
 
 
         //****************************Tab Control Event Handlers***************************
@@ -718,7 +719,7 @@ namespace FurnitureRentalSystem
             }
         }
 
-        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        private void rentalInfoDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             ArrayList data = new ArrayList();
 
@@ -729,7 +730,6 @@ namespace FurnitureRentalSystem
 
             this.rentFurnitureNumberCombBox.Items.Add(data[0]);
             
-
         }
 
         private void rentButton_Click(object sender, EventArgs e)
@@ -767,6 +767,96 @@ namespace FurnitureRentalSystem
         private void rentClearButton_Click(object sender, EventArgs e)
         {
             this.setUpRentForm();
+        }
+
+        private void SetUpRentalInfoTable()
+        {
+            rentalInfoTable = new DataTable();
+            rentalInfoTable.Columns.Add("FurnitureID", typeof(int));
+            rentalInfoTable.Columns.Add("Description", typeof(string));
+            rentalInfoTable.Columns.Add("Quantity", typeof(int));
+            rentalInfoTable.Columns.Add("DailyRate", typeof(decimal));
+            rentalInfoTable.Columns.Add("DailyFee", typeof(decimal));
+
+            this.rentalInfoDataGridView.DataSource = rentalInfoTable;
+        }
+    
+
+
+
+        //******************************************************************************
+        //****************************Return Furniture Tab******************************
+        //******************************************************************************
+
+
+        private void returnCustomerIdTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            this.HandleReturnCustomerIDValidation();
+        }
+
+        private void HandleReturnCustomerIDValidation()
+        {
+            DatabaseAccess dba = new DatabaseAccess();
+            ArrayList customerInfo = dba.CustomerValidation(this.returnCustomerIdTextBox.Text);
+
+            if (customerInfo.Count == 2)
+            {
+                this.errorProvider.SetError(this.returnCustomerIdTextBox, "");
+
+                this.returnRentalIDComboBox.Enabled = true;
+
+                this.SetUpReturnRentalIDComboBox();
+                this.returnRentalIDComboBox.Focus();
+            }
+            else
+            {
+                this.errorProvider.SetError(this.returnCustomerIdTextBox, "Invalid Customer ID");
+            }
+        }
+
+        private void SetUpReturnRentalIDComboBox()
+        {
+
+            DatabaseAccess dba = new DatabaseAccess();
+            ArrayList rentalIDs = dba.GetRentalIDsNumbers(this.returnCustomerIdTextBox.Text.ToString());
+
+            this.returnRentalIDComboBox.Items.Clear();
+
+            foreach (int id in rentalIDs)
+            {
+                this.returnRentalIDComboBox.Items.Add(id);
+            }
+            
+        }
+
+        private void returnRentalIDComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int rentalID = (int)this.returnRentalIDComboBox.SelectedItem;
+
+            DatabaseAccess dba = new DatabaseAccess();
+            returnInfoTable.Rows.Clear();
+            dba.GetRentalInfo(rentalID, returnInfoTable);
+         
+
+            
+
+           
+        
+        }
+
+        private void SetUpReturnInfoTable()
+        {
+            returnInfoTable = new DataTable();
+            returnInfoTable.Columns.Add("FurnitureID", typeof(int));
+            returnInfoTable.Columns.Add("Description", typeof(string));
+            returnInfoTable.Columns.Add("QuantityNotReturned", typeof(int));
+            returnInfoTable.Columns.Add("DailyRate", typeof(decimal));
+            returnInfoTable.Columns.Add("DailyFee", typeof(decimal));
+            returnInfoTable.Columns.Add("DueDate", typeof(DateTime));
+            returnInfoTable.Columns.Add("QuantityToReturn", typeof(int));
+            returnInfoTable.Columns.Add("AmountDue", typeof(decimal));
+
+            this.returnDataGridView.DataSource = returnInfoTable;
         }
 
 
