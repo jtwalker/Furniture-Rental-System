@@ -174,22 +174,25 @@ namespace FurnitureRentalSystem.Database
                 conn = new MySqlConnection(conStr);
                 conn.Open();
 
-                String selectTotalNumber = "SELECT totalNumber FROM FURNITURE_ITEM WHERE number=@fnumber";
-                String selectRentedQuantity = "SELECT SUM(quantity) as quantity FROM RENTAL_ITEM WHERE furnitureNumber=@fnumber";
-                String selectReturnedQuantity = "SELECT SUM(i.quantity) as quantity FROM ITEM_RETURN as i JOIN RENTAL_ITEM as r ON rentalItemId = r.id WHERE furnitureNumber=@fnumber";
-
+               // String selectTotalNumber = "SELECT totalNumber FROM FURNITURE_ITEM WHERE number=@fnumber";
+              //  String selectRentedQuantity = "SELECT SUM(quantity) as quantity FROM RENTAL_ITEM WHERE furnitureNumber=@fnumber";
+               // String selectReturnedQuantity = "SELECT SUM(i.quantity) as quantity FROM ITEM_RETURN as i JOIN RENTAL_ITEM as r ON rentalItemId = r.id WHERE furnitureNumber=@fnumber";
+                String selectQuantity = "SELECT (totalNumber - IFNULL(SUM(r.quantity),0) + IFNULL(SUM(ir.quantity),0)) as quantity " +
+                                        "FROM (FURNITURE_ITEM as f left join RENTAL_ITEM  as r on f.number=r.furnitureNumber) " +
+                                        "left join ITEM_RETURN as ir on r.id=ir.rentalItemId " +
+                                        "WHERE f.number = @furnNumber";
 
                 MySqlDataReader reader;
 
-                cmd = new MySqlCommand(selectTotalNumber, conn);
-                cmd.Parameters.AddWithValue("@fnumber", furnitureNumber);
+                cmd = new MySqlCommand(selectQuantity, conn);
+                cmd.Parameters.AddWithValue("@furnNumber", furnitureNumber);
 
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Debug.WriteLine(reader["totalNumber"]);
-                    totalNumber = (int) reader["totalNumber"];
+                    Debug.WriteLine(reader["quantity"]);
+                    totalNumber = Convert.ToInt32(reader["quantity"]);
                 }
 
                 if (reader != null)
@@ -197,12 +200,12 @@ namespace FurnitureRentalSystem.Database
                     reader.Close();
                 }
 
-                GetRentalSumQuantity(furnitureNumber, ref rentalQuantity, selectRentedQuantity, ref reader);
+                //GetRentalSumQuantity(furnitureNumber, ref rentalQuantity, selectRentedQuantity, ref reader);
 
-                GetReturnedSumQuantity(furnitureNumber, ref returnQuantity, selectReturnedQuantity, ref reader);
+               // GetReturnedSumQuantity(furnitureNumber, ref returnQuantity, selectReturnedQuantity, ref reader);
 
 
-                totalNumber = totalNumber - Convert.ToInt32(rentalQuantity) + Convert.ToInt32(returnQuantity);
+                //totalNumber = totalNumber - Convert.ToInt32(rentalQuantity) + Convert.ToInt32(returnQuantity);
                 Debug.WriteLine("Final total quantity: " + totalNumber);
             }
             catch (MySqlException ex)
