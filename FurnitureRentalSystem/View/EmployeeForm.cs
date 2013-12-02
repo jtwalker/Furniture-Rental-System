@@ -865,7 +865,6 @@ namespace FurnitureRentalSystem
             this.returnDataGridView.Columns[6].ReadOnly = true;
             this.returnDataGridView.Columns[7].ReadOnly = true;
             this.returnDataGridView.Columns[9].ReadOnly = true;
-
         }
 
         private void returnDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -949,15 +948,33 @@ namespace FurnitureRentalSystem
 
         private void returnReturnButton_Click(object sender, EventArgs e)
         {
-            /**
+            
             int employeeID = loginInformation.getEmployeeID();
             int rentalID = Convert.ToInt32(this.returnRentalIDComboBox.SelectedItem);
 
             DataTable data = new DataTable();
-            data.Columns.Add("furnitureNumber", typeof(int));
+            data.Columns.Add("rentalItemID", typeof(int));
             data.Columns.Add("quantityReturned", typeof(int));
-            **/
 
+            foreach (DataRow row in this.returnInfoTable.Rows)
+            {
+                int rentalItemID = Convert.ToInt32(row[2]);
+                Debug.WriteLine("rentalItemId: " + rentalItemID);
+                
+                int quantity = Convert.ToInt32(row[8]);
+                Debug.WriteLine("quantity: " + quantity);
+
+                DataRow newRow = data.NewRow();
+                newRow["rentalItemID"] = rentalItemID;
+                Debug.WriteLine("newRow rentalItemId: " + newRow["rentalItemID"]);
+                newRow["quantityReturned"] = quantity;
+                Debug.WriteLine("newRow quantityReturned: " + newRow["quantityReturned"]);
+
+                data.Rows.Add(newRow);
+            }
+
+            DatabaseAccess dba = new DatabaseAccess();
+            dba.InsertReturns(data, employeeID);
         }
 
 

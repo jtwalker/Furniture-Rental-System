@@ -381,6 +381,58 @@ namespace FurnitureRentalSystem.Database
 
         }
 
+        public void InsertReturns(DataTable returnInfo, int employeeId)
+        {
+            String insertReturnSQL = "INSERT INTO ITEM_RETURN(rentalItemId, returnDate, employeeId, quantity) VALUES (@rentalItemId, @returnDate, @employeeId, @quantity)";
+           
+           
+            try
+            {
+                conn = new MySqlConnection(conStr);
+                conn.Open();
+
+                foreach (DataRow row in returnInfo.Rows)
+                {
+
+                    cmd = new MySqlCommand(insertReturnSQL, conn);
+                    Debug.WriteLine("DBA -  @rentalItemId: " + row.ItemArray[0]);
+                    cmd.Parameters.AddWithValue("@rentalItemId", row.ItemArray[0]);
+
+                    Debug.WriteLine("DBA - @returnDate:: " + DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@returnDate", DateTime.Now.ToString("yyyy-MM-dd"));
+
+                    Debug.WriteLine("DBA -  @employeeId: " + employeeId);
+                    cmd.Parameters.AddWithValue("@employeeId", employeeId);
+
+                    Debug.WriteLine("DBA - @quantity: " + row.ItemArray[1]);
+                    cmd.Parameters.AddWithValue("@quantity", row.ItemArray[1]);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+               
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+                
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+                
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+
+            
+        }
+
         public String AddRental(int customerID, int employeeID, DataTable rentalInfo)
         {
 
@@ -883,6 +935,8 @@ namespace FurnitureRentalSystem.Database
                     break;
             }
         }
+
+
 
 
 
