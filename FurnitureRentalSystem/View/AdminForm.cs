@@ -20,6 +20,7 @@ namespace FurnitureRentalSystem
         public AdminForm(LoginInformation loginInformation)
         {
             InitializeComponent();
+            this.formatDateTimePickers();
         }
 
         private void logOut_Click(object sender, EventArgs e)
@@ -38,7 +39,7 @@ namespace FurnitureRentalSystem
             MessageBox.Show(aboutMessage, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
+        private void performBtn_Click(object sender, EventArgs e)
         {
             if (this.sqlStatementTextBox.Text == "")
             {
@@ -169,14 +170,67 @@ namespace FurnitureRentalSystem
             resultView.Items.Add(noResultsViewItem);
         }
 
-        private void nonQueryRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             this.clearForm();
         }
 
-        private void queryRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void formatDateTimePickers()
         {
-            this.clearForm();
+            this.fromDateTimePicker.CustomFormat = "yyyy-MM-dd";
+            this.toDateTimePicker.CustomFormat = "yyyy-MM-dd";
+        }
+
+        private void searchRentalsButton_Click(object sender, EventArgs e)
+        {
+            this.ordersListView.Items.Clear();
+            this.performGetRentals();
+        }
+
+        private void performGetRentals()
+        {
+            string fromDate = this.fromDateTimePicker.Text;
+            string toDate = this.toDateTimePicker.Text;
+
+            DatabaseAccess dbAccess = new DatabaseAccess();
+            ArrayList rentals = dbAccess.getRentals(fromDate, toDate);
+
+            if (rentals.Count != 0)
+            {
+                this.placeSearchResultsInList(rentals, this.ordersListView);
+            }
+            else
+            {
+                this.noResultsFound(this.ordersListView);
+            }
+
+            this.resizeListViewColumns(this.ordersListView);
+        }
+
+        private void performGetRentalDetails()
+        {
+            ListView.SelectedListViewItemCollection rental = this.ordersListView.SelectedItems;
+            string rentalID = rental[0].SubItems[0].Text;
+
+            DatabaseAccess dbAccess = new DatabaseAccess();
+            ArrayList rentalItems = dbAccess.getRentalItems(rentalID);
+
+            if (rentalItems.Count != 0)
+            {
+                this.placeSearchResultsInList(rentalItems, this.contentsListView);
+            }
+            else
+            {
+                this.noResultsFound(this.contentsListView);
+            }
+
+            this.resizeListViewColumns(this.contentsListView);
+        }
+
+        private void ordersListView_DoubleClick(object sender, EventArgs e)
+        {
+            this.contentsListView.Items.Clear();
+            this.performGetRentalDetails();
         }
     }
 }
