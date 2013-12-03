@@ -79,7 +79,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(487, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(771, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -135,7 +135,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(487, 363);
+            this.tabControl.Size = new System.Drawing.Size(771, 567);
             this.tabControl.TabIndex = 1;
             // 
             // tabPageRentals
@@ -169,6 +169,9 @@
             // 
             // contentsListView
             // 
+            this.contentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.contentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
             this.columnHeader6,
@@ -213,6 +216,9 @@
             // 
             // contentsLabel
             // 
+            this.contentsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.contentsLabel.AutoSize = true;
             this.contentsLabel.Location = new System.Drawing.Point(8, 198);
             this.contentsLabel.Name = "contentsLabel";
@@ -222,6 +228,9 @@
             // 
             // rentalsLabel
             // 
+            this.rentalsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rentalsLabel.AutoSize = true;
             this.rentalsLabel.Location = new System.Drawing.Point(8, 52);
             this.rentalsLabel.Name = "rentalsLabel";
@@ -232,6 +241,8 @@
             // ordersListView
             // 
             this.ordersListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.ordersListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ordersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -317,7 +328,7 @@
             this.tabPageSQL.Location = new System.Drawing.Point(4, 22);
             this.tabPageSQL.Name = "tabPageSQL";
             this.tabPageSQL.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSQL.Size = new System.Drawing.Size(479, 337);
+            this.tabPageSQL.Size = new System.Drawing.Size(763, 541);
             this.tabPageSQL.TabIndex = 1;
             this.tabPageSQL.Text = "SQL";
             this.tabPageSQL.UseVisualStyleBackColor = true;
@@ -349,7 +360,7 @@
             // errorMessageLabel
             // 
             this.errorMessageLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorMessageLabel.Location = new System.Drawing.Point(273, 8);
+            this.errorMessageLabel.Location = new System.Drawing.Point(378, 34);
             this.errorMessageLabel.Name = "errorMessageLabel";
             this.errorMessageLabel.Size = new System.Drawing.Size(192, 70);
             this.errorMessageLabel.TabIndex = 19;
@@ -358,7 +369,7 @@
             // 
             // performBtn
             // 
-            this.performBtn.Location = new System.Drawing.Point(377, 96);
+            this.performBtn.Location = new System.Drawing.Point(576, 208);
             this.performBtn.Name = "performBtn";
             this.performBtn.Size = new System.Drawing.Size(75, 23);
             this.performBtn.TabIndex = 18;
@@ -368,7 +379,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(296, 96);
+            this.clearButton.Location = new System.Drawing.Point(495, 208);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 17;
@@ -378,13 +389,15 @@
             // 
             // queryResultsListView
             // 
+            this.queryResultsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.queryResultsListView.AutoArrange = false;
-            this.queryResultsListView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.queryResultsListView.FullRowSelect = true;
             this.queryResultsListView.GridLines = true;
-            this.queryResultsListView.Location = new System.Drawing.Point(3, 131);
+            this.queryResultsListView.Location = new System.Drawing.Point(3, 250);
             this.queryResultsListView.Name = "queryResultsListView";
-            this.queryResultsListView.Size = new System.Drawing.Size(473, 203);
+            this.queryResultsListView.Size = new System.Drawing.Size(757, 288);
             this.queryResultsListView.TabIndex = 16;
             this.queryResultsListView.TabStop = false;
             this.queryResultsListView.UseCompatibleStateImageBehavior = false;
@@ -393,7 +406,7 @@
             // queryResultLabel
             // 
             this.queryResultLabel.AutoSize = true;
-            this.queryResultLabel.Location = new System.Drawing.Point(5, 109);
+            this.queryResultLabel.Location = new System.Drawing.Point(5, 234);
             this.queryResultLabel.Name = "queryResultLabel";
             this.queryResultLabel.Size = new System.Drawing.Size(45, 13);
             this.queryResultLabel.TabIndex = 15;
@@ -405,7 +418,7 @@
             this.sqlStatementTextBox.Multiline = true;
             this.sqlStatementTextBox.Name = "sqlStatementTextBox";
             this.sqlStatementTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.sqlStatementTextBox.Size = new System.Drawing.Size(259, 75);
+            this.sqlStatementTextBox.Size = new System.Drawing.Size(356, 200);
             this.sqlStatementTextBox.TabIndex = 14;
             // 
             // sqlStatementLabel
@@ -421,10 +434,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 387);
+            this.ClientSize = new System.Drawing.Size(771, 591);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(787, 629);
             this.Name = "AdminForm";
             this.Text = "Administrator";
             this.menuStrip1.ResumeLayout(false);

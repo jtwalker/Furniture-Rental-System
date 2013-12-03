@@ -92,3 +92,16 @@ C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\Fu
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.View.ReceiptForm.resources
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csprojResolveAssemblyReference.cache
 C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.View.ReceiptForm.resources
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe.config
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.exe
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.pdb
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.exe
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\bin\Debug\FurnitureRentalSystem.pdb
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\bin\Debug\mysql.data.dll
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csprojResolveAssemblyReference.cache
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.AdminForm.resources
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.EmployeeForm.resources
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.loginForm.resources
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.Properties.Resources.resources
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.View.ReceiptForm.resources
+C:\Users\jwalke21\Desktop\Rental Furniture System\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csproj.GenerateResource.Cache

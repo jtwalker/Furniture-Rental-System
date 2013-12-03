@@ -96,7 +96,11 @@ namespace FurnitureRentalSystem
             DatabaseAccessController dbc = new DatabaseAccessController();
             ArrayList results = dbc.AdminQueryResults(this.sqlStatementTextBox.Text);
 
-            if (results.Count != 0)
+            if (results == null)
+            {
+                MessageBox.Show("SQL is incorrect");
+            }
+            else if (results.Count != 0)
             {
                 this.SetColumnHeaders();
                 this.PlaceSearchResultsInList(results, this.queryResultsListView);
