@@ -39,6 +39,11 @@
             this.tabPageRentals = new System.Windows.Forms.TabPage();
             this.searchRentalsButton = new System.Windows.Forms.Button();
             this.contentsListView = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contentsLabel = new System.Windows.Forms.Label();
             this.rentalsLabel = new System.Windows.Forms.Label();
             this.ordersListView = new System.Windows.Forms.ListView();
@@ -60,11 +65,6 @@
             this.queryResultLabel = new System.Windows.Forms.Label();
             this.sqlStatementTextBox = new System.Windows.Forms.TextBox();
             this.sqlStatementLabel = new System.Windows.Forms.Label();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageRentals.SuspendLayout();
@@ -185,6 +185,31 @@
             this.contentsListView.TabIndex = 7;
             this.contentsListView.UseCompatibleStateImageBehavior = false;
             this.contentsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "ID";
+            this.columnHeader5.Width = 75;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Rental ID";
+            this.columnHeader6.Width = 75;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Furniture Number";
+            this.columnHeader7.Width = 125;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Due Date";
+            this.columnHeader8.Width = 75;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Quantity";
+            this.columnHeader9.Width = 75;
             // 
             // contentsLabel
             // 
@@ -363,6 +388,7 @@
             this.queryResultsListView.TabIndex = 16;
             this.queryResultsListView.TabStop = false;
             this.queryResultsListView.UseCompatibleStateImageBehavior = false;
+            this.queryResultsListView.View = System.Windows.Forms.View.Details;
             // 
             // queryResultLabel
             // 
@@ -390,31 +416,6 @@
             this.sqlStatementLabel.Size = new System.Drawing.Size(82, 13);
             this.sqlStatementLabel.TabIndex = 13;
             this.sqlStatementLabel.Text = "SQL Statement:";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "ID";
-            this.columnHeader5.Width = 75;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Rental ID";
-            this.columnHeader6.Width = 75;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Furniture Number";
-            this.columnHeader7.Width = 125;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Due Date";
-            this.columnHeader8.Width = 75;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Quantity";
-            this.columnHeader9.Width = 75;
             // 
             // AdminForm
             // 

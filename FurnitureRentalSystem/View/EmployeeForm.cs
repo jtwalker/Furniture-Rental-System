@@ -12,6 +12,7 @@ using System.Collections;
 
 using FurnitureRentalSystem.Model;
 using FurnitureRentalSystem.Database;
+using FurnitureRentalSystem.View;
 
 namespace FurnitureRentalSystem
 {
@@ -757,7 +758,10 @@ namespace FurnitureRentalSystem
             string rentalID = dba.AddRental(customerID, empID, rentalInfoTable);
             this.setUpRentForm();
         }
-
+        //4 represents the rentalID number. I'm not going to add this to your methods without permission.
+        //It doesn't do the no results thing the other list views do because it should always exist.
+        //ReceiptForm receipt = new ReceiptForm("4");
+        //receipt.ShowDialog();
 
         private void setUpRentForm()
         {

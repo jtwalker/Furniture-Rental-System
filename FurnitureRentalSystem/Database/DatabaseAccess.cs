@@ -908,6 +908,54 @@ namespace FurnitureRentalSystem.Database
             return rentals;
         }
 
+        public ArrayList getRentals(string rentalID)
+        {
+            ArrayList rentals = new ArrayList();
+            string query = "SELECT rentalID, customerID, employeeID, DATE_FORMAT(rentalDate,'%Y-%m-%d') FROM RENTAL WHERE rentalID=@rentalID";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@rentalID", rentalID);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        rentals.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return rentals;
+        }
+
         public ArrayList getRentalItems(string rentalID)
         {
             ArrayList rentalItems = new ArrayList();
@@ -954,6 +1002,54 @@ namespace FurnitureRentalSystem.Database
             }
 
             return rentalItems;
+        }
+
+        public ArrayList getReceiptDetails(string rentalID)
+        {
+            ArrayList receiptDetails = new ArrayList();
+            string query = "SELECT number, description, quantity, dailyRentalRate, dailyRentalFee FROM RENTAL_ITEM JOIN FURNITURE_ITEM ON furnitureNumber=number WHERE rentalID=@rentalID";
+
+            try
+            {
+                conn = new MySqlConnection(conStr);
+
+                conn.Open();
+
+                MySqlDataReader reader;
+                cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@rentalID", rentalID);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        receiptDetails.Add((reader.IsDBNull(i) ? "NULL" : reader[i].ToString()));
+                    }
+                }
+
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                this.HandleMySqlException(ex);
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                    conn.Close();
+            }
+
+            return receiptDetails;
         }
 
         private void HandleMySqlException(MySqlException ex)
