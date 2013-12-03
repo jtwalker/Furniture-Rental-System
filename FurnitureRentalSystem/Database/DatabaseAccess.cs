@@ -458,8 +458,8 @@ namespace FurnitureRentalSystem.Database
                     Debug.WriteLine("DBA - FurnNum: " + row.ItemArray[0]);
                     cmd.Parameters.AddWithValue("@furnNum", row.ItemArray[0]);
 
-                    Debug.WriteLine("DBA - dueDate: " + DateTime.Now.AddDays(7).ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@dueDate", DateTime.Now.AddDays(7).ToString("yyyy-MM-dd HH:mm:ss"));
+                    Debug.WriteLine("DBA - dueDate: " + DateTime.Now.AddDays(30).ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@dueDate", DateTime.Now.AddDays(30).ToString("yyyy-MM-dd HH:mm:ss"));
 
                     Debug.WriteLine("DBA - @quantity: " + row.ItemArray[2]);
                     cmd.Parameters.AddWithValue("@quantity", row.ItemArray[2]);
