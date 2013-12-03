@@ -692,6 +692,13 @@ namespace FurnitureRentalSystem
 
         private void rentAddItemButton_Click(object sender, EventArgs e)
         {
+
+            if (this.rentQuantityComboBox.SelectedItem == null)
+            {
+                this.errorProvider.SetError(this.rentQuantityComboBox, "Must make selection.");
+                return;
+            }
+            this.errorProvider.SetError(this.rentQuantityComboBox, "");
             int furnitureNumber = (int)this.rentFurnitureNumberCombBox.SelectedItem;
 
             DatabaseAccess dba = new DatabaseAccess();
@@ -983,13 +990,16 @@ namespace FurnitureRentalSystem
                 int quantity = Convert.ToInt32(row[8]);
                 Debug.WriteLine("quantity: " + quantity);
 
-                DataRow newRow = data.NewRow();
-                newRow["rentalItemID"] = rentalItemID;
-                Debug.WriteLine("newRow rentalItemId: " + newRow["rentalItemID"]);
-                newRow["quantityReturned"] = quantity;
-                Debug.WriteLine("newRow quantityReturned: " + newRow["quantityReturned"]);
+                if (quantity > 0)
+                {
+                    DataRow newRow = data.NewRow();
+                    newRow["rentalItemID"] = rentalItemID;
+                    Debug.WriteLine("newRow rentalItemId: " + newRow["rentalItemID"]);
+                    newRow["quantityReturned"] = quantity;
+                    Debug.WriteLine("newRow quantityReturned: " + newRow["quantityReturned"]);
 
-                data.Rows.Add(newRow);
+                    data.Rows.Add(newRow);
+                }
             }
 
             DatabaseAccess dba = new DatabaseAccess();
