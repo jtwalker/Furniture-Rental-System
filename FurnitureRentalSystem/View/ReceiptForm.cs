@@ -42,7 +42,7 @@ namespace FurnitureRentalSystem.View
         private void receiptBody()
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList receiptDetails = dbAccess.getReceiptDetails(this.rentalID);
+            ArrayList receiptDetails = dbAccess.GetReceiptDetails(this.rentalID);
 
             this.placeSearchResultsInList(receiptDetails, this.receiptListView);
         }
@@ -50,7 +50,7 @@ namespace FurnitureRentalSystem.View
         private ArrayList getRentals()
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList rentals = dbAccess.getRentals(this.rentalID);
+            ArrayList rentals = dbAccess.GetRentals(this.rentalID);
 
             return rentals;
         }

@@ -136,7 +136,7 @@ namespace FurnitureRentalSystem
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
             string searchCriteria = this.searchFurnitureCriteriaTextBox.Text;
-            ArrayList results = dbAccess.searchFurniture(searchCriteria);
+            ArrayList results = dbAccess.SearchFurniture(searchCriteria);
 
             if (results.Count != 0)
             {
@@ -199,7 +199,7 @@ namespace FurnitureRentalSystem
             String fname = this.firstNameSearchCustomerTextBox.Text;
             String lname = this.lastNameSearchCustomerTextBox.Text;
             String phone = this.phoneNumberSearchCustomerMaskedTextBox.Text;
-            ArrayList customers = dbc.getCustomers(fname, lname, phone);
+            ArrayList customers = dbc.GetCustomers(fname, lname, phone);
 
             if (customers.Count != 0)
             {
