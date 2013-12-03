@@ -129,7 +129,6 @@ namespace FurnitureRentalSystem
                 this.queryResultsListView.Columns.Add(column);
             }
 
-            queryResultsListView.View = View.Details;
         }
 
         private void placeSearchResultsInList(ArrayList results, ListView resultView)
