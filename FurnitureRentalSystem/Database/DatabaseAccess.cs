@@ -852,10 +852,12 @@ namespace FurnitureRentalSystem.Database
             catch (MySqlException ex)
             {
                 this.HandleMySqlException(ex);
+                return null;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                return null;
             }
             finally
             {
@@ -941,11 +943,13 @@ namespace FurnitureRentalSystem.Database
             {
                 this.HandleMySqlException(ex);
                 result = ex.Message;
+                return result;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 result = ex.Message;
+                return result;
             }
             finally
             {
