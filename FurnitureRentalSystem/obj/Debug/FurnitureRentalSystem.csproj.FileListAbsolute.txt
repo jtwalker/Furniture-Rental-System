@@ -91,3 +91,4 @@ C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\Fu
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.loginForm.resources
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.View.ReceiptForm.resources
 C:\Users\Family\Desktop\FurnitureRentalSystem\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.csprojResolveAssemblyReference.cache
+C:\Users\Jen\Desktop\FurnitureRentalStoreProject\FurnitureRentalSystem\obj\Debug\FurnitureRentalSystem.View.ReceiptForm.resources
