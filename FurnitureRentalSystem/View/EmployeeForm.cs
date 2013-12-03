@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Collections;
 
 using FurnitureRentalSystem.Model;
-using FurnitureRentalSystem.Database;
+using FurnitureRentalSystem.Controller;
 using FurnitureRentalSystem.View;
 
 namespace FurnitureRentalSystem
@@ -134,7 +134,7 @@ namespace FurnitureRentalSystem
 
         private void performFurnitureSearch()
         {
-            DatabaseAccess dbAccess = new DatabaseAccess();
+            DatabaseAccessController dbAccess = new DatabaseAccessController();
             string searchCriteria = this.searchFurnitureCriteriaTextBox.Text;
             ArrayList results = dbAccess.SearchFurniture(searchCriteria);
 
@@ -195,7 +195,7 @@ namespace FurnitureRentalSystem
 
         private void performCustomerSearch()
         {
-            DatabaseAccess dbc = new DatabaseAccess();
+            DatabaseAccessController dbc = new DatabaseAccessController();
             String fname = this.firstNameSearchCustomerTextBox.Text;
             String lname = this.lastNameSearchCustomerTextBox.Text;
             String phone = this.phoneNumberSearchCustomerMaskedTextBox.Text;
@@ -491,7 +491,7 @@ namespace FurnitureRentalSystem
             //MessageBox.Show(message, "Entered Info", MessageBoxButtons.OK, MessageBoxIcon.None);
             //this.customerID++;
 
-            DatabaseAccess dbc = new DatabaseAccess();
+            DatabaseAccessController dbc = new DatabaseAccessController();
 
             String customerID = dbc.AddCustomer(customer);
             MessageBox.Show(customer.FName + " " + customer.LName + "\n\nCustomer ID: " + customerID, "Registered Customer", MessageBoxButtons.OK, MessageBoxIcon.None);
@@ -558,7 +558,7 @@ namespace FurnitureRentalSystem
 
         private void PopulateStateComboBox()
         {
-            DatabaseAccess dbc = new DatabaseAccess();
+            DatabaseAccessController dbc = new DatabaseAccessController();
             stateAbbrevs = dbc.GetStateAbbrevs();
 
             foreach (String abbrev in stateAbbrevs)
@@ -596,7 +596,7 @@ namespace FurnitureRentalSystem
 
         private void HandleCustomerIDValidation()
         {
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             ArrayList customerInfo = dba.CustomerValidation(this.rentCustomerIDTextBox.Text);
 
             if (customerInfo.Count == 2)
@@ -619,7 +619,7 @@ namespace FurnitureRentalSystem
 
         private void SetUpFurnitureNumberComboBox()
         {
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             ArrayList furnitureNums = dba.GetFurnitureItemNumbers();
 
             this.rentFurnitureNumberCombBox.Items.Clear();
@@ -656,7 +656,7 @@ namespace FurnitureRentalSystem
         private void ValidateFurnitureNumberSelection()
         {
 
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             int furnNum = (int)this.rentFurnitureNumberCombBox.SelectedItem;
 
             int quantity = dba.GetQuantityForFurnitureNumber(furnNum);
@@ -701,7 +701,7 @@ namespace FurnitureRentalSystem
             this.errorProvider.SetError(this.rentQuantityComboBox, "");
             int furnitureNumber = (int)this.rentFurnitureNumberCombBox.SelectedItem;
 
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
 
             string[] data = dba.GetFurnitureDescription(furnitureNumber);
             string description = data[0];
@@ -761,7 +761,7 @@ namespace FurnitureRentalSystem
             int customerID = Convert.ToInt32(custID);
             int empID = this.loginInformation.getEmployeeID();
 
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             string rentalID = dba.AddRental(customerID, empID, rentalInfoTable);
 
             ReceiptForm receipt = new ReceiptForm(rentalID);
@@ -823,7 +823,7 @@ namespace FurnitureRentalSystem
 
         private void HandleReturnCustomerIDValidation()
         {
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             ArrayList customerInfo = dba.CustomerValidation(this.returnCustomerIdTextBox.Text);
 
             if (customerInfo.Count == 2)
@@ -844,7 +844,7 @@ namespace FurnitureRentalSystem
         private void SetUpReturnRentalIDComboBox()
         {
 
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             ArrayList rentalIDs = dba.GetRentalIDsNumbers(this.returnCustomerIdTextBox.Text.ToString());
 
             this.returnRentalIDComboBox.Items.Clear();
@@ -860,7 +860,7 @@ namespace FurnitureRentalSystem
         {
             int rentalID = (int)this.returnRentalIDComboBox.SelectedItem;
 
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             returnInfoTable.Rows.Clear();
             dba.GetRentalInfo(rentalID, returnInfoTable);
          
@@ -940,6 +940,8 @@ namespace FurnitureRentalSystem
             DateTime dueDate = Convert.ToDateTime(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(7));
             
             int days = (today - rentalDate).Days;
+            days = (days == 0) ? 1 : days;
+            Debug.WriteLine("days: " + days);
             decimal rate = Convert.ToDecimal(returnInfoTable.Rows[e.RowIndex].ItemArray.ElementAt(4));
 
             if (today.Date <= dueDate.Date)
@@ -957,8 +959,6 @@ namespace FurnitureRentalSystem
             }
 
             Debug.WriteLine("amount: " + amount);
-            Debug.WriteLine("amount shown: " + this.returnInfoTable.Rows[e.RowIndex][9]);
-            Debug.WriteLine("e.RowIndesx: " + e.RowIndex);
             this.returnInfoTable.Rows[e.RowIndex][9]= amount;
             Debug.WriteLine("amount after: " + this.returnInfoTable.Rows[e.RowIndex][9]);
 
@@ -1003,7 +1003,7 @@ namespace FurnitureRentalSystem
                 }
             }
 
-            DatabaseAccess dba = new DatabaseAccess();
+            DatabaseAccessController dba = new DatabaseAccessController();
             bool isReturnSuccessful = dba.InsertReturns(data, employeeID);
             string successReturn = "Your items were returned.";
 
