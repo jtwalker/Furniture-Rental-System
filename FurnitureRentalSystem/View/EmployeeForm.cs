@@ -769,10 +769,7 @@ namespace FurnitureRentalSystem
 
             this.setUpRentForm();
         }
-        //4 represents the rentalID number. I'm not going to add this to your methods without permission.
-        //It doesn't do the no results thing the other list views do because it should always exist.
-        //ReceiptForm receipt = new ReceiptForm("4");
-        //receipt.ShowDialog();
+
 
         private void setUpRentForm()
         {
@@ -1007,7 +1004,17 @@ namespace FurnitureRentalSystem
             }
 
             DatabaseAccess dba = new DatabaseAccess();
-            dba.InsertReturns(data, employeeID);
+            bool isReturnSuccessful = dba.InsertReturns(data, employeeID);
+            string successReturn = "Your items were returned.";
+
+            if (!isReturnSuccessful)
+            {
+                successReturn = "Your return was not successful. Contact Administrator.";
+            }
+
+            MessageBox.Show(successReturn, "Return", MessageBoxButtons.OK, MessageBoxIcon.None);
+            this.returnInfoTable.Rows.Clear();
+            dba.GetRentalInfo(rentalID, returnInfoTable);
         }
 
 

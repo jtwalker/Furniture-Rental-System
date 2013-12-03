@@ -172,10 +172,14 @@ namespace FurnitureRentalSystem.Database
                 conn = new MySqlConnection(conStr);
                 conn.Open();
 
-                String selectQuantity = "SELECT (totalNumber - IFNULL(SUM(r.quantity),0) + IFNULL(SUM(ir.quantity),0)) as quantity " +
-                                        "FROM (FURNITURE_ITEM as f left join RENTAL_ITEM  as r on f.number=r.furnitureNumber) " +
-                                        "left join ITEM_RETURN as ir on r.id=ir.rentalItemId " +
+                String selectQuantity = "SELECT (totalNumber - IFNULL(SUM(r.quantity), 0) + IFNULL(" +
+                                            "(SELECT SUM(ir.quantity) " +
+                                            "FROM ITEM_RETURN as ir join RENTAL_ITEM s " +
+                                            "WHERE s.id = ir.rentalItemId AND s.furnitureNumber =f.number) ,0)) as quantity " +
+                                        "FROM FURNITURE_ITEM as f  join RENTAL_ITEM  as r on f.number=r.furnitureNumber " +
                                         "WHERE f.number = @furnNumber";
+
+
 
                 MySqlDataReader reader;
 
@@ -325,8 +329,11 @@ namespace FurnitureRentalSystem.Database
 
         }
 
-        public void InsertReturns(DataTable returnInfo, int employeeId)
+        public bool InsertReturns(DataTable returnInfo, int employeeId)
         {
+            bool isSuccess = false;
+
+
             String insertReturnSQL = "INSERT INTO ITEM_RETURN(rentalItemId, returnDate, employeeId, quantity) VALUES (@rentalItemId, @returnDate, @employeeId, @quantity)";
            
            
@@ -342,8 +349,8 @@ namespace FurnitureRentalSystem.Database
                     Debug.WriteLine("DBA -  @rentalItemId: " + row.ItemArray[0]);
                     cmd.Parameters.AddWithValue("@rentalItemId", row.ItemArray[0]);
 
-                    Debug.WriteLine("DBA - @returnDate:: " + DateTime.Now.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@returnDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                    Debug.WriteLine("DBA - @returnDate:: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@returnDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
                     Debug.WriteLine("DBA -  @employeeId: " + employeeId);
                     cmd.Parameters.AddWithValue("@employeeId", employeeId);
@@ -354,6 +361,7 @@ namespace FurnitureRentalSystem.Database
                     cmd.ExecuteNonQuery();
                 }
 
+                isSuccess = true;
                
             }
             catch (MySqlException ex)
@@ -373,7 +381,7 @@ namespace FurnitureRentalSystem.Database
                     conn.Close();
             }
 
-
+            return isSuccess;
             
         }
 
@@ -393,7 +401,7 @@ namespace FurnitureRentalSystem.Database
                 cmd = new MySqlCommand(insertRentalSQL, conn);
                 cmd.Parameters.AddWithValue("@custID", customerID);
                 cmd.Parameters.AddWithValue("@empID", employeeID);
-                cmd.Parameters.AddWithValue("@rentDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@rentDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
            
 
                 cmd.ExecuteNonQuery();
@@ -408,9 +416,9 @@ namespace FurnitureRentalSystem.Database
 
                     Debug.WriteLine("DBA - FurnNum: " + row.ItemArray[0]);
                     cmd.Parameters.AddWithValue("@furnNum", row.ItemArray[0]);
-                    
-                    Debug.WriteLine("DBA - dueDate: " + DateTime.Now.AddDays(7).ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@dueDate", DateTime.Now.AddDays(7).ToString("yyyy-MM-dd"));
+
+                    Debug.WriteLine("DBA - dueDate: " + DateTime.Now.AddDays(7).ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@dueDate", DateTime.Now.AddDays(7).ToString("yyyy-MM-dd HH:mm:ss"));
 
                     Debug.WriteLine("DBA - @quantity: " + row.ItemArray[2]);
                     cmd.Parameters.AddWithValue("@quantity", row.ItemArray[2]);
@@ -447,11 +455,17 @@ namespace FurnitureRentalSystem.Database
         public void GetRentalInfo(int rentalID, DataTable table)
         {
 
-            string loginQuerySQL = "SELECT number, description, r.id as rentalItemID, (IFNULL(r.quantity, 0) - IFNULL(i.quantity, 0)) as quantityNotReturned, " +
+            string loginQuerySQL = "SELECT number, description, r.id as rentalItemID, (IFNULL(r.quantity, 0) - IFNULL((" +
+                                        "Select SUM(i.quantity) " +
+                                        "From ITEM_RETURN as i " +
+                                        "Where r.id = rentalItemId), 0)) as quantityNotReturned, " +
                                     "dailyRentalRate, dailyRentalFee, rentalDate, dueDate " +
-                                    "FROM (RENTAL_ITEM as r left join FURNITURE_ITEM on number = furnitureNumber) left join RENTAL as n on n.rentalID = r.rentalID " + 
-                                    "left join ITEM_RETURN as i on r.id = rentalItemId " +
+                                    "FROM (RENTAL_ITEM as r join FURNITURE_ITEM on number = furnitureNumber) join RENTAL as n on n.rentalID = r.rentalID  " +
                                     "WHERE r.rentalID = @rentalID";
+
+           
+
+
 
             try
             {
