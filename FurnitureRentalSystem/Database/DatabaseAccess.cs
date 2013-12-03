@@ -12,6 +12,9 @@ using FurnitureRentalSystem.Model;
 
 namespace FurnitureRentalSystem.Database
 {
+    /// <summary>
+    /// Provides access to the database that contains all the stores information.
+    /// </summary>
     public class DatabaseAccess
     {
 
@@ -23,7 +26,10 @@ namespace FurnitureRentalSystem.Database
            "pwd=MAFhpJBWRd3NAhFW;database=cs3230f13f;";
 
 
-
+        /// <summary>
+        /// Gets the state abbreviations from the database.
+        /// </summary>
+        /// <returns>ArrayList of State Abbreviations</returns>
         public ArrayList GetStateAbbrevs()
         {
 
@@ -68,6 +74,11 @@ namespace FurnitureRentalSystem.Database
             return stateAbbrevs;
         }
 
+        /// <summary>
+        /// Gets the rental id numbers belonging to the specified customerID
+        /// </summary>
+        /// <param name="custID">Customer ID</param>
+        /// <returns>ArrayList of rentalIDS</returns>
          public ArrayList GetRentalIDsNumbers(string custID)
         {
             ArrayList rentalIDs = new ArrayList();
@@ -115,7 +126,10 @@ namespace FurnitureRentalSystem.Database
             return rentalIDs;
         }
 
-
+         /// <summary>
+         /// Gets all the furniture item numbers.
+         /// </summary>
+         /// <returns>ArrayList of all the furniture item numbers</returns>
         public ArrayList GetFurnitureItemNumbers()
         {
 
@@ -162,7 +176,11 @@ namespace FurnitureRentalSystem.Database
             return furnitureIDs;
         }
 
-
+        /// <summary>
+        /// Gets the quantity available for the specified furnitureItem
+        /// </summary>
+        /// <param name="furnitureNumber">Number of the furniture item</param>
+        /// <returns>Quantity available for specified furniture item</returns>
         public int GetQuantityForFurnitureNumber(int furnitureNumber)
         {
             int totalNumber = 0;
@@ -219,6 +237,11 @@ namespace FurnitureRentalSystem.Database
             return totalNumber;
         }
 
+        /// <summary>
+        /// Gets the furniture descriptions of the specified furnitureItem
+        /// </summary>
+        /// <param name="furnitureNumber">Number of the furniture item</param>
+        /// <returns>A string[] of the description</returns>
         public string[] GetFurnitureDescription(int furnitureNumber)
         {
 
@@ -270,9 +293,14 @@ namespace FurnitureRentalSystem.Database
             return data;
         }
 
-       
 
 
+        /// <summary>
+        /// Returns an Arraylist containing the customer's first and last name if validated. 
+        /// Otherwise, and empty ArrayList.
+        /// </summary>
+        /// <param name="customerID">Id of customer to validate</param>
+        /// <returns>Arraylist containing the customer's first and last name if validated. Otherwise, and empty ArrayList.</returns>
         public ArrayList CustomerValidation(String customerID)
         {
             ArrayList customer = new ArrayList();
@@ -329,6 +357,13 @@ namespace FurnitureRentalSystem.Database
 
         }
 
+
+        /// <summary>
+        /// Inserts data into Database, returns true if successful, false otherwise.
+        /// </summary>
+        /// <param name="returnInfo">Table of information to be inserted into Database</param>
+        /// <param name="employeeId">employee id who handled return</param>
+        /// <returns>true if success, false otherwise</returns>
         public bool InsertReturns(DataTable returnInfo, int employeeId)
         {
             bool isSuccess = false;
@@ -384,7 +419,13 @@ namespace FurnitureRentalSystem.Database
             return isSuccess;
             
         }
-
+        /// <summary>
+        /// Adds Rental to Database
+        /// </summary>
+        /// <param name="customerID">customer id who made rental</param>
+        /// <param name="employeeID">id of employee who made rental</param>
+        /// <param name="rentalInfo">information about the rental</param>
+        /// <returns>String containing the RentalID, or an empty string if not successful </returns>
         public String AddRental(int customerID, int employeeID, DataTable rentalInfo)
         {
 
@@ -451,7 +492,11 @@ namespace FurnitureRentalSystem.Database
 
         }
 
-
+        /// <summary>
+        /// Places rental info in specified table
+        /// </summary>
+        /// <param name="rentalID">rental id</param>
+        /// <param name="table">table to put the info in </param>
         public void GetRentalInfo(int rentalID, DataTable table)
         {
 
@@ -550,7 +595,11 @@ namespace FurnitureRentalSystem.Database
 
         }
 
-
+        /// <summary>
+        /// Adds customer to database
+        /// </summary>
+        /// <param name="customer">customer to add</param>
+        /// <returns>String with customer id, or empty string</returns>
         public String AddCustomer(Customer customer)
         {
             String customerID = "Inserted";
@@ -603,7 +652,13 @@ namespace FurnitureRentalSystem.Database
 
         }
 
-        public ArrayList getLogin(string username, string password)
+        /// <summary>
+        /// Get login info
+        /// </summary>
+        /// <param name="username">username to login</param>
+        /// <param name="password">password to try</param>
+        /// <returns>Information about user</returns>
+        public ArrayList GetLogin(string username, string password)
         {
             ArrayList userData = new ArrayList();
             string loginQuerySQL = "SELECT id, fname, lname, isAdmin FROM EMPLOYEE WHERE login=@username AND BINARY password=@password";
@@ -651,7 +706,14 @@ namespace FurnitureRentalSystem.Database
             return userData;
         }
 
-        public ArrayList getCustomers(String fname, String lname, String phone)
+        /// <summary>
+        /// Gets Customers with matching fname, lname, or phone#
+        /// </summary>
+        /// <param name="fname">first name</param>
+        /// <param name="lname">last name</param>
+        /// <param name="phone">phone number</param>
+        /// <returns>Information about the customers</returns>
+        public ArrayList GetCustomers(String fname, String lname, String phone)
         {
             ArrayList customers = new ArrayList();
             String query = "SELECT id, fname, mname, lname, CONCAT(street, ', ', city, ', ', stateAbbrev, ' ', zipCode) AS address, phone FROM CUSTOMER WHERE (fname=@fname AND lname=@lname) OR phone=@phone";
@@ -701,7 +763,12 @@ namespace FurnitureRentalSystem.Database
             return customers;
         }
 
-        public ArrayList searchFurniture(string searchCriteria)
+        /// <summary>
+        /// Searches for furniture with specified criteria
+        /// </summary>
+        /// <param name="searchCriteria">Specified search criteria</param>
+        /// <returns>Arraylist of info on furniture</returns>
+        public ArrayList SearchFurniture(string searchCriteria)
         {
             ArrayList results = new ArrayList();
             string query = "SELECT number, description, totalNumber, dailyRentalFee, dailyRentalRate, category, style FROM FURNITURE_ITEM WHERE number=@criteria OR category=@criteria OR style=@criteria";
@@ -749,7 +816,12 @@ namespace FurnitureRentalSystem.Database
             return results;
         }
 
-        public ArrayList adminQueryResults(string query)
+        /// <summary>
+        /// Queries the database 
+        /// </summary>
+        /// <param name="query">the query to use</param>
+        /// <returns>ArrayList of information from query</returns>
+        public ArrayList AdminQueryResults(string query)
         {
             ArrayList results = new ArrayList();
 
@@ -794,7 +866,13 @@ namespace FurnitureRentalSystem.Database
             return results;
         }
 
-        public ArrayList adminQueryColumns(string query)
+
+        /// <summary>
+        /// Gets the columns for the specified query
+        /// </summary>
+        /// <param name="query">the query to use</param>
+        /// <returns>Arraylist of columns</returns>
+        public ArrayList AdminQueryColumns(string query)
         {
             ArrayList columnHeaders = new ArrayList();
 
@@ -838,7 +916,12 @@ namespace FurnitureRentalSystem.Database
             return columnHeaders;
         }
 
-        public string adminNonQuery(string adminSQL)
+        /// <summary>
+        /// Runs non-query admininstrator SQL 
+        /// </summary>
+        /// <param name="adminSQL">sql to run</param>
+        /// <returns>String with "Completed" if success, "Failed" otherwise</returns>
+        public string AdminNonQuery(string adminSQL)
         {
             string result = "Failed";
 
@@ -873,7 +956,13 @@ namespace FurnitureRentalSystem.Database
             return result;
         }
 
-        public ArrayList getRentals(string fromDate, string toDate)
+        /// <summary>
+        /// Gets all rentals between fromDate and toDate
+        /// </summary>
+        /// <param name="fromDate">the date from</param>
+        /// <param name="toDate">the date to</param>
+        /// <returns>The rental information</returns>
+        public ArrayList GetRentals(string fromDate, string toDate)
         {
             ArrayList rentals = new ArrayList();
             string query = "SELECT rentalID, customerID, employeeID, DATE_FORMAT(rentalDate,'%Y-%m-%d') FROM RENTAL WHERE rentalDate BETWEEN @fromDate and @toDate";
@@ -922,7 +1011,12 @@ namespace FurnitureRentalSystem.Database
             return rentals;
         }
 
-        public ArrayList getRentals(string rentalID)
+        /// <summary>
+        /// Gets the rental with the specified rentalID
+        /// </summary>
+        /// <param name="rentalID">specified rental id</param>
+        /// <returns>ArrayList of information on the rental</returns>
+        public ArrayList GetRentals(string rentalID)
         {
             ArrayList rentals = new ArrayList();
             string query = "SELECT rentalID, customerID, employeeID, DATE_FORMAT(rentalDate,'%Y-%m-%d') FROM RENTAL WHERE rentalID=@rentalID";
@@ -970,7 +1064,12 @@ namespace FurnitureRentalSystem.Database
             return rentals;
         }
 
-        public ArrayList getRentalItems(string rentalID)
+        /// <summary>
+        /// Get rental items of the specified rentalID
+        /// </summary>
+        /// <param name="rentalID">specified rental id</param>
+        /// <returns>ArrayList of rental items</returns>
+        public ArrayList GetRentalItems(string rentalID)
         {
             ArrayList rentalItems = new ArrayList();
             string query = "SELECT * FROM RENTAL_ITEM WHERE rentalID=@rentalID";
@@ -1018,7 +1117,13 @@ namespace FurnitureRentalSystem.Database
             return rentalItems;
         }
 
-        public ArrayList getReceiptDetails(string rentalID)
+
+        /// <summary>
+        /// Gets the receipt details of the specified rentalID
+        /// </summary>
+        /// <param name="rentalID">specified rental id</param>
+        /// <returns>Arraylist of information about the rental</returns>
+        public ArrayList GetReceiptDetails(string rentalID)
         {
             ArrayList receiptDetails = new ArrayList();
             string query = "SELECT number, description, quantity, dailyRentalRate, dailyRentalFee FROM RENTAL_ITEM JOIN FURNITURE_ITEM ON furnitureNumber=number WHERE rentalID=@rentalID";

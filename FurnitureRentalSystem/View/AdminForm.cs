@@ -94,7 +94,7 @@ namespace FurnitureRentalSystem
         private void performQuery()
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList results = dbAccess.adminQueryResults(this.sqlStatementTextBox.Text);
+            ArrayList results = dbAccess.AdminQueryResults(this.sqlStatementTextBox.Text);
 
             if (results.Count != 0)
             {
@@ -112,7 +112,7 @@ namespace FurnitureRentalSystem
         private void performNonQuery()
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
-            string result = dbAccess.adminNonQuery(this.sqlStatementTextBox.Text);
+            string result = dbAccess.AdminNonQuery(this.sqlStatementTextBox.Text);
 
             MessageBox.Show(result);
         }
@@ -120,7 +120,7 @@ namespace FurnitureRentalSystem
         private void setColumnHeaders()
         {
             DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList columnHeaders = dbAccess.adminQueryColumns(this.sqlStatementTextBox.Text);
+            ArrayList columnHeaders = dbAccess.AdminQueryColumns(this.sqlStatementTextBox.Text);
 
             queryResultsListView.Columns.Clear();
 
@@ -192,7 +192,7 @@ namespace FurnitureRentalSystem
             string toDate = this.toDateTimePicker.Text;
 
             DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList rentals = dbAccess.getRentals(fromDate, toDate);
+            ArrayList rentals = dbAccess.GetRentals(fromDate, toDate);
 
             if (rentals.Count != 0)
             {
@@ -212,7 +212,7 @@ namespace FurnitureRentalSystem
             string rentalID = rental[0].SubItems[0].Text;
 
             DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList rentalItems = dbAccess.getRentalItems(rentalID);
+            ArrayList rentalItems = dbAccess.GetRentalItems(rentalID);
 
             if (rentalItems.Count != 0)
             {

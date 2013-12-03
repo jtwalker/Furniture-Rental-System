@@ -64,7 +64,7 @@ namespace FurnitureRentalSystem
         private void validateLogin(string username, string password)
         {
             DatabaseAccess dbc = new DatabaseAccess();
-            ArrayList userData = dbc.getLogin(username, password);
+            ArrayList userData = dbc.GetLogin(username, password);
 
             if (userData.Count != NO_RESULTS)
             {

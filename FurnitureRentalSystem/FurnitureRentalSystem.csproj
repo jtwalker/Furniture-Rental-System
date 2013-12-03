@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\DatabaseController.cs" />
+    <Compile Include="Controller\DatabaseAccessController.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
