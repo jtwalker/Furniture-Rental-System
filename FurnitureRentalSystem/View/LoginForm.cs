@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Collections;
 
 using FurnitureRentalSystem.Model;
-using FurnitureRentalSystem.Database;
+using FurnitureRentalSystem.Controller;
 
 namespace FurnitureRentalSystem
 {
@@ -30,6 +30,11 @@ namespace FurnitureRentalSystem
             this.loginInformation = loginInformation;
         }
 
+        //***************************************************************************************************************
+        //******************************************* LoginForm **********************************************
+        //***************************************************************************************************************  
+
+        //**********************************************Click Event Handlers *************************************************
         private void textBox_Validated(object sender, EventArgs e)
         {
             var textBox = (TextBox)sender;
@@ -57,13 +62,14 @@ namespace FurnitureRentalSystem
 
             if (this.userNameLoginTextBox.TextLength > 0 && this.passwordLoginTextBox.TextLength > 0)
             {
-                this.validateLogin(this.userNameLoginTextBox.Text, this.passwordLoginTextBox.Text);
+                this.ValidateLogin(this.userNameLoginTextBox.Text, this.passwordLoginTextBox.Text);
             }
         }
 
-        private void validateLogin(string username, string password)
+        //******************************* Login Methods *********************************
+        private void ValidateLogin(string username, string password)
         {
-            DatabaseAccess dbc = new DatabaseAccess();
+            DatabaseAccessController dbc = new DatabaseAccessController();
             ArrayList userData = dbc.GetLogin(username, password);
 
             if (userData.Count != NO_RESULTS)

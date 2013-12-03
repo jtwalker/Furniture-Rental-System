@@ -117,7 +117,7 @@ namespace FurnitureRentalSystem
 
         //************************Search Furniture Methods***************************
 
-        private bool ensureSearchFurnitureFieldsAreCompleted()
+        private bool EnsureSearchFurnitureFieldsAreCompleted()
         {
             if (String.IsNullOrEmpty(this.searchFurnitureCriteriaTextBox.Text))
             {
@@ -132,7 +132,7 @@ namespace FurnitureRentalSystem
             }
         }
 
-        private void performFurnitureSearch()
+        private void PerformFurnitureSearch()
         {
             DatabaseAccessController dbAccess = new DatabaseAccessController();
             string searchCriteria = this.searchFurnitureCriteriaTextBox.Text;
@@ -140,14 +140,14 @@ namespace FurnitureRentalSystem
 
             if (results.Count != 0)
             {
-                this.placeSearchResultsInList(results, this.searchResultsSearchFurnitureListView);
+                this.PlaceSearchResultsInList(results, this.searchResultsSearchFurnitureListView);
             }
             else
             {
-                this.noResultsFound(this.searchResultsSearchFurnitureListView);
+                this.NoResultsFound(this.searchResultsSearchFurnitureListView);
             }
 
-            this.resizeListViewColumns(this.searchResultsSearchFurnitureListView);
+            this.ResizeListViewColumns(this.searchResultsSearchFurnitureListView);
         }
 
 
@@ -156,10 +156,10 @@ namespace FurnitureRentalSystem
         private void searchSearchFurnitureButton_Click(object sender, EventArgs e)
         {
             this.searchResultsSearchFurnitureListView.Items.Clear();
-            bool canPerformSearch = this.ensureSearchFurnitureFieldsAreCompleted();
+            bool canPerformSearch = this.EnsureSearchFurnitureFieldsAreCompleted();
             if (canPerformSearch)
             {
-                this.performFurnitureSearch();
+                this.PerformFurnitureSearch();
             }
         }
 
@@ -172,7 +172,7 @@ namespace FurnitureRentalSystem
 
         //************************Search Customer ID Methods*************************
 
-        private bool ensureSearchCustomerFieldsAreCompleted()
+        private bool EnsureSearchCustomerFieldsAreCompleted()
         {
             if ((String.IsNullOrEmpty(this.firstNameSearchCustomerTextBox.Text) || String.IsNullOrEmpty(this.lastNameSearchCustomerTextBox.Text)) && this.nameSearchCustomerRadioButton.Checked)
             {
@@ -193,7 +193,7 @@ namespace FurnitureRentalSystem
             }
         }
 
-        private void performCustomerSearch()
+        private void PerformCustomerSearch()
         {
             DatabaseAccessController dbc = new DatabaseAccessController();
             String fname = this.firstNameSearchCustomerTextBox.Text;
@@ -203,17 +203,17 @@ namespace FurnitureRentalSystem
 
             if (customers.Count != 0)
             {
-                this.placeSearchResultsInList(customers, this.searchResultsSearchCustomerListView);
+                this.PlaceSearchResultsInList(customers, this.searchResultsSearchCustomerListView);
             }
             else
             {
-                this.noResultsFound(this.searchResultsSearchCustomerListView);
+                this.NoResultsFound(this.searchResultsSearchCustomerListView);
             }
 
-            this.resizeListViewColumns(this.searchResultsSearchCustomerListView);
+            this.ResizeListViewColumns(this.searchResultsSearchCustomerListView);
         }
 
-        private void clearSearchCustomerFields()
+        private void ClearSearchCustomerFields()
         {
             this.firstNameSearchCustomerTextBox.Text = "";
             this.lastNameSearchCustomerTextBox.Text = "";
@@ -228,10 +228,10 @@ namespace FurnitureRentalSystem
         private void searchSearchCustomerButton_Click(object sender, EventArgs e)
         {
             this.searchResultsSearchCustomerListView.Items.Clear();
-            bool canPerformSearch = this.ensureSearchCustomerFieldsAreCompleted();
+            bool canPerformSearch = this.EnsureSearchCustomerFieldsAreCompleted();
             if (canPerformSearch)
             {
-                this.performCustomerSearch();
+                this.PerformCustomerSearch();
             }
         }
 
@@ -249,7 +249,7 @@ namespace FurnitureRentalSystem
 
         private void nameSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            this.clearSearchCustomerFields();
+            this.ClearSearchCustomerFields();
             if (this.nameSearchCustomerRadioButton.Checked)
             {
                 this.phoneNumberSearchCustomerMaskedTextBox.Enabled = false;
@@ -262,7 +262,7 @@ namespace FurnitureRentalSystem
 
         private void phoneSearchCustomerRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            this.clearSearchCustomerFields();
+            this.ClearSearchCustomerFields();
             if (this.phoneSearchCustomerRadioButton.Checked)
             {
                 this.firstNameSearchCustomerTextBox.Enabled = false;
@@ -285,7 +285,7 @@ namespace FurnitureRentalSystem
         //**********************************************Search Methods*************************************************
 
 
-        private void placeSearchResultsInList(ArrayList results, ListView resultView)
+        private void PlaceSearchResultsInList(ArrayList results, ListView resultView)
         {
             int numberOfColumns = resultView.Columns.Count;
             int counter = 0;
@@ -316,14 +316,14 @@ namespace FurnitureRentalSystem
             }
         }
 
-        private void noResultsFound(ListView resultView)
+        private void NoResultsFound(ListView resultView)
         {
             resultView.Items.Clear();
             ListViewItem noResultsViewItem = new ListViewItem("No Results Found", 0);
             resultView.Items.Add(noResultsViewItem);
         }
 
-        private void resizeListViewColumns(ListView lv)
+        private void ResizeListViewColumns(ListView lv)
         {
             foreach (ColumnHeader column in lv.Columns)
             {

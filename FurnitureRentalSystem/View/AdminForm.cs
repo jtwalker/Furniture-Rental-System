@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Collections;
 
 using FurnitureRentalSystem.Model;
-using FurnitureRentalSystem.Database;
+using FurnitureRentalSystem.Controller;
 
 
 namespace FurnitureRentalSystem
@@ -20,8 +20,10 @@ namespace FurnitureRentalSystem
         public AdminForm(LoginInformation loginInformation)
         {
             InitializeComponent();
-            this.formatDateTimePickers();
+            this.FormatDateTimePickers();
         }
+
+        //******************************Menu Item Event Handlers**************************
 
         private void logOut_Click(object sender, EventArgs e)
         {
@@ -39,23 +41,28 @@ namespace FurnitureRentalSystem
             MessageBox.Show(aboutMessage, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        //***************************************************************************************************************
+        //******************************************* ADMIN SQL TAB **********************************************
+        //***************************************************************************************************************
+
+        //************************Click Event Handlers*******************************
         private void performBtn_Click(object sender, EventArgs e)
         {
             if (this.sqlStatementTextBox.Text == "")
             {
-                this.setErrorMessage("Please enter a SQL statement.");
+                this.SetErrorMessage("Please enter a SQL statement.");
             }
             else if(this.queryRadioButton.Checked)
             {
                 this.errorMessageLabel.Visible = false;
-                this.clearEverythingExceptSQL();
-                this.performQuery();
+                this.ClearEverythingExceptSQL();
+                this.PerformQuery();
             }
             else if (this.nonQueryRadioButton.Checked)
             {
                 this.errorMessageLabel.Visible = false;
-                this.clearEverythingExceptSQL();
-                this.performNonQuery();
+                this.ClearEverythingExceptSQL();
+                this.PerformNonQuery();
             }
         }
 
@@ -64,21 +71,14 @@ namespace FurnitureRentalSystem
             this.clearForm();
         }
 
-        private void setErrorMessage(String errorMessage)
+        //************************SQL Methods***************************
+        private void SetErrorMessage(String errorMessage)
         {
             this.errorMessageLabel.Text = errorMessage;
             this.errorMessageLabel.Visible = true;
         }
 
-        private void resizeListViewColumns(ListView lv)
-        {
-            foreach (ColumnHeader column in lv.Columns)
-            {
-                column.Width = -2;
-            }
-        }
-
-        private void clearEverythingExceptSQL()
+        private void ClearEverythingExceptSQL()
         {
             this.queryResultsListView.Clear();
             this.errorMessageLabel.Visible = false;
@@ -87,40 +87,40 @@ namespace FurnitureRentalSystem
         private void clearForm()
         {
             this.sqlStatementTextBox.Clear();
-            this.clearEverythingExceptSQL();
+            this.ClearEverythingExceptSQL();
             this.sqlStatementTextBox.Focus();
         }
 
-        private void performQuery()
+        private void PerformQuery()
         {
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList results = dbAccess.AdminQueryResults(this.sqlStatementTextBox.Text);
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            ArrayList results = dbc.AdminQueryResults(this.sqlStatementTextBox.Text);
 
             if (results.Count != 0)
             {
-                this.setColumnHeaders();
-                this.placeSearchResultsInList(results, this.queryResultsListView);
+                this.SetColumnHeaders();
+                this.PlaceSearchResultsInList(results, this.queryResultsListView);
             }
             else
             {
-                this.noResultsFound(this.queryResultsListView);
+                this.NoResultsFound(this.queryResultsListView);
             }
 
-            this.resizeListViewColumns(this.queryResultsListView);
+            this.ResizeListViewColumns(this.queryResultsListView);
         }
 
-        private void performNonQuery()
+        private void PerformNonQuery()
         {
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            string result = dbAccess.AdminNonQuery(this.sqlStatementTextBox.Text);
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            string result = dbc.AdminNonQuery(this.sqlStatementTextBox.Text);
 
             MessageBox.Show(result);
         }
 
-        private void setColumnHeaders()
+        private void SetColumnHeaders()
         {
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList columnHeaders = dbAccess.AdminQueryColumns(this.sqlStatementTextBox.Text);
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            ArrayList columnHeaders = dbc.AdminQueryColumns(this.sqlStatementTextBox.Text);
 
             queryResultsListView.Columns.Clear();
 
@@ -131,7 +131,82 @@ namespace FurnitureRentalSystem
 
         }
 
-        private void placeSearchResultsInList(ArrayList results, ListView resultView)
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.clearForm();
+        }
+
+        //***************************************************************************************************************
+        //*******************************************SEARCH RENTALS TAB **********************************************
+        //***************************************************************************************************************
+
+        //******************************************Click Event Handlers************************************************
+
+        private void searchRentalsButton_Click(object sender, EventArgs e)
+        {
+            this.ordersListView.Items.Clear();
+            this.PerformGetRentals();
+        }
+
+        private void ordersListView_DoubleClick(object sender, EventArgs e)
+        {
+            this.contentsListView.Items.Clear();
+            this.PerformGetRentalDetails();
+        }
+
+        //************************Search RENTALS ID Methods*************************
+        private void FormatDateTimePickers()
+        {
+            this.fromDateTimePicker.CustomFormat = "yyyy-MM-dd";
+            this.toDateTimePicker.CustomFormat = "yyyy-MM-dd";
+        }
+
+        private void PerformGetRentals()
+        {
+            string fromDate = this.fromDateTimePicker.Text;
+            string toDate = this.toDateTimePicker.Text;
+
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            ArrayList rentals = dbc.GetRentals(fromDate, toDate);
+
+            if (rentals.Count != 0)
+            {
+                this.PlaceSearchResultsInList(rentals, this.ordersListView);
+            }
+            else
+            {
+                this.NoResultsFound(this.ordersListView);
+            }
+
+            this.ResizeListViewColumns(this.ordersListView);
+        }
+
+        private void PerformGetRentalDetails()
+        {
+            ListView.SelectedListViewItemCollection rental = this.ordersListView.SelectedItems;
+            string rentalID = rental[0].SubItems[0].Text;
+
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            ArrayList rentalItems = dbc.GetRentalItems(rentalID);
+
+            if (rentalItems.Count != 0)
+            {
+                this.PlaceSearchResultsInList(rentalItems, this.contentsListView);
+            }
+            else
+            {
+                this.NoResultsFound(this.contentsListView);
+            }
+
+            this.ResizeListViewColumns(this.contentsListView);
+        }
+
+        //***************************************************************************************************************
+        //*******************************************SEARCH TABS SHARED **********************************************
+        //***************************************************************************************************************  
+
+        //**********************************************Shared Methods*************************************************
+        private void PlaceSearchResultsInList(ArrayList results, ListView resultView)
         {
             int numberOfColumns = resultView.Columns.Count;
             int counter = 0;
@@ -162,74 +237,19 @@ namespace FurnitureRentalSystem
             }
         }
 
-        private void noResultsFound(ListView resultView)
+        private void NoResultsFound(ListView resultView)
         {
             resultView.Items.Clear();
             ListViewItem noResultsViewItem = new ListViewItem("No Results Found", 0);
             resultView.Items.Add(noResultsViewItem);
         }
 
-        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        private void ResizeListViewColumns(ListView lv)
         {
-            this.clearForm();
-        }
-
-        private void formatDateTimePickers()
-        {
-            this.fromDateTimePicker.CustomFormat = "yyyy-MM-dd";
-            this.toDateTimePicker.CustomFormat = "yyyy-MM-dd";
-        }
-
-        private void searchRentalsButton_Click(object sender, EventArgs e)
-        {
-            this.ordersListView.Items.Clear();
-            this.performGetRentals();
-        }
-
-        private void performGetRentals()
-        {
-            string fromDate = this.fromDateTimePicker.Text;
-            string toDate = this.toDateTimePicker.Text;
-
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList rentals = dbAccess.GetRentals(fromDate, toDate);
-
-            if (rentals.Count != 0)
+            foreach (ColumnHeader column in lv.Columns)
             {
-                this.placeSearchResultsInList(rentals, this.ordersListView);
+                column.Width = -2;
             }
-            else
-            {
-                this.noResultsFound(this.ordersListView);
-            }
-
-            this.resizeListViewColumns(this.ordersListView);
-        }
-
-        private void performGetRentalDetails()
-        {
-            ListView.SelectedListViewItemCollection rental = this.ordersListView.SelectedItems;
-            string rentalID = rental[0].SubItems[0].Text;
-
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList rentalItems = dbAccess.GetRentalItems(rentalID);
-
-            if (rentalItems.Count != 0)
-            {
-                this.placeSearchResultsInList(rentalItems, this.contentsListView);
-            }
-            else
-            {
-                this.noResultsFound(this.contentsListView);
-            }
-
-            this.resizeListViewColumns(this.contentsListView);
-        }
-
-        private void ordersListView_DoubleClick(object sender, EventArgs e)
-        {
-            this.contentsListView.Items.Clear();
-            this.performGetRentalDetails();
         }
     }
 }

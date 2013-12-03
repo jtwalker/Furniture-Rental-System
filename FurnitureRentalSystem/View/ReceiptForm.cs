@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FurnitureRentalSystem.Database;
+using FurnitureRentalSystem.Controller;
 
 namespace FurnitureRentalSystem.View
 {
@@ -21,41 +21,46 @@ namespace FurnitureRentalSystem.View
         {
             InitializeComponent();
             this.rentalID = rentalID;
-            this.formatReceipt();
+            this.FormatReceipt();
         }
 
-        private void formatReceipt()
+        //***************************************************************************************************************
+        //*******************************************Receipt Form **********************************************
+        //***************************************************************************************************************  
+
+        //********************************************** Methods *************************************************
+        private void FormatReceipt()
         {
-            this.receiptHeader();
-            this.receiptBody();
+            this.ReceiptHeader();
+            this.ReceiptBody();
         }
 
-        private void receiptHeader()
+        private void ReceiptHeader()
         {
-            ArrayList rentals = this.getRentals();
+            ArrayList rentals = this.GetRentals();
             this.rentalIDLabel.Text = String.Format("Rental ID: {0}", rentals[0]);
             this.customerIDLabel.Text = String.Format("Customer ID: {0}", rentals[1]);
             this.employeeIDLabel.Text = String.Format("Employee ID: {0}", rentals[2]);
             this.rentalDateLabel.Text = String.Format("Rental Date: {0}", rentals[3]);
         }
 
-        private void receiptBody()
+        private void ReceiptBody()
         {
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList receiptDetails = dbAccess.GetReceiptDetails(this.rentalID);
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            ArrayList receiptDetails = dbc.GetReceiptDetails(this.rentalID);
 
-            this.placeSearchResultsInList(receiptDetails, this.receiptListView);
+            this.PlaceSearchResultsInList(receiptDetails, this.receiptListView);
         }
 
-        private ArrayList getRentals()
+        private ArrayList GetRentals()
         {
-            DatabaseAccess dbAccess = new DatabaseAccess();
-            ArrayList rentals = dbAccess.GetRentals(this.rentalID);
+            DatabaseAccessController dbc = new DatabaseAccessController();
+            ArrayList rentals = dbc.GetRentals(this.rentalID);
 
             return rentals;
         }
 
-        private void placeSearchResultsInList(ArrayList results, ListView resultView)
+        private void PlaceSearchResultsInList(ArrayList results, ListView resultView)
         {
             int numberOfColumns = resultView.Columns.Count;
             int counter = 0;
