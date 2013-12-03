@@ -763,6 +763,10 @@ namespace FurnitureRentalSystem
 
             DatabaseAccess dba = new DatabaseAccess();
             string rentalID = dba.AddRental(customerID, empID, rentalInfoTable);
+
+            ReceiptForm receipt = new ReceiptForm(rentalID);
+            receipt.ShowDialog();
+
             this.setUpRentForm();
         }
         //4 represents the rentalID number. I'm not going to add this to your methods without permission.
