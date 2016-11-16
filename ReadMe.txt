@@ -1,3 +1,5 @@
+IMPORTANT: This project no longer runs due to the use of an external SQL server that we no longer has access to.
+
 1. Run the solution.
 
 2. Employee: username: johndoe | password: 12345
