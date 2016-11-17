@@ -1,5 +1,7 @@
 IMPORTANT: This project no longer runs due to the use of an external SQL server that we no longer have access to.
 
+Group project by Jennifer Holland and Justin Walker.
+
 1. Run the solution.
 
 2. Employee: username: johndoe | password: 12345
